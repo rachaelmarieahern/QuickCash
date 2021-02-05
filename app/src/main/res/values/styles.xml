@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="classic_button">
+        <item name="android:background">@drawable/classic_button_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/quickcashwhite</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+</resources>

@@ -14,4 +14,25 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+    @Test
+    public void username_isSaved(){
+
+        assertTrue()
+    }
+
+    @Test
+    public void password_isSaved(){
+
+        assertTrue()
+    }
+
+    @Test
+    public void username_isSaved(){
+
+        assertTrue()
+    }
+
+
 }
