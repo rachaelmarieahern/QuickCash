@@ -18,7 +18,7 @@
             tools:layout_editor_absoluteY="114dp" />
 
         <Button
-            android:id="@+id/registrationButton"
+            android:id="@+id/registerButton"
             style="@style/classic_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

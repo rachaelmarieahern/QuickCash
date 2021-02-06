@@ -16,23 +16,5 @@ public class ExampleUnitTest {
     }
 
 
-    @Test
-    public void username_isSaved(){
-
-        assertTrue()
-    }
-
-    @Test
-    public void password_isSaved(){
-
-        assertTrue()
-    }
-
-    @Test
-    public void username_isSaved(){
-
-        assertTrue()
-    }
-
 
 }
