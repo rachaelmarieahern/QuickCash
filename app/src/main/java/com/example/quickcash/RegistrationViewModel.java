@@ -44,7 +44,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     public void signUpClicked(){
         errors.clear(); //clear error variable
         validateInfo(); //confirm the inputted username, password, and email are correctly formatted
-        userTypeSelected(); //
+        userTypeSelected(); //save user type in userTypeSelection variable
 
         if(errors.isEmpty()){ //no errors found!
             registerWithDB(); //add user to DB
