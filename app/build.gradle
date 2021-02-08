@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,23 +33,23 @@ android {
 }
 
 dependencies {
-        def nav_version = "2.3.3"
+    apply plugin: "androidx.navigation.safeargs"
+    implementation 'com.google.firebase:firebase-database:19.6.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    def nav_version = "2.3.3"
 
-        apply plugin: "androidx.navigation.safeargs"
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
 
-        // Java language implementation
-        implementation "androidx.navigation:navigation-fragment:$nav_version"
-        implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
-        // Feature module Support
-        implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-        // Testing Navigation
-        androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-
-        // Jetpack Compose Integration
-        implementation "androidx.navigation:navigation-compose:1.0.0-alpha06"
-
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha06"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
