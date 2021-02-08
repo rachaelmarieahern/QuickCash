@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RegistrationViewModel extends AndroidViewModel implements Observable {
 
@@ -36,7 +37,10 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     enum errorType {invalidUserName, invalidPassword, invalidEmail}
     List<errorType> errors = new ArrayList<errorType>();
     userType userTypeSelection;
-    String user;
+    private String message;
+
+    public String msgGetter() { return message;}
+
 
     /**
      * When the user clicks the sign up button on the register page
@@ -76,11 +80,9 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     public void userTypeSelected(){
         if (helperSelected) {
             userTypeSelection = userType.HELPER;
-            user = "HELPER";
         }
         else {
             userTypeSelection = userType.CLIENT;
-            user = "CLIENT";
         }
     }
 
@@ -120,12 +122,12 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 if (task.isSuccessful()) { //if adding user to DB was successful
                     DB = FirebaseDatabase.getInstance();
                     userTypeRef = DB.getReference();
-                    userTypeRef.child(username).setValue(user);
-                    String message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
+                    userTypeRef.child(username).setValue(userTypeSelection.toString());
+                    message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
                             "been sent to " + email;
                     Toast.makeText(getApplication(), message, Toast.LENGTH_LONG).show(); //welcome message
                 } else {
-                    Toast.makeText(getApplication(), "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
