@@ -26,18 +26,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
         def nav_version = "2.3.3"
 
+        apply plugin: "androidx.navigation.safeargs"
+
         // Java language implementation
         implementation "androidx.navigation:navigation-fragment:$nav_version"
         implementation "androidx.navigation:navigation-ui:$nav_version"
-
-        // Kotlin
-        implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-        implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
         // Feature module Support
         implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
