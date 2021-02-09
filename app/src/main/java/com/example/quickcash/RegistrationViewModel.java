@@ -36,7 +36,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     enum userType {HELPER, CLIENT}
     enum errorType {invalidUserName, invalidPassword, invalidEmail}
     List<errorType> errors = new ArrayList<errorType>();
-    userType userTypeSelection;
+    userType userTypeSelection = userType.CLIENT;
     private String message;
 
     public String msgGetter() { return message;}
