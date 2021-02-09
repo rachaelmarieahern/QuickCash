@@ -1,5 +1,7 @@
 package com.example.quickcash;
 import android.app.Application;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,10 +39,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     enum errorType {invalidUserName, invalidPassword, invalidEmail}
     List<errorType> errors = new ArrayList<errorType>();
     userType userTypeSelection = userType.CLIENT;
-    private String message;
-
-    public String msgGetter() { return message;}
-
 
     /**
      * When the user clicks the sign up button on the register page
@@ -123,9 +121,10 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                     DB = FirebaseDatabase.getInstance();
                     userTypeRef = DB.getReference();
                     userTypeRef.child(username).setValue(userTypeSelection.toString());
-                    message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
+                    String message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
                             "been sent to " + email;
-                    Toast.makeText(getApplication(), message, Toast.LENGTH_LONG).show(); //welcome message
+                    Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
+                    welcome.show(); //welcome message
                 } else {
                     Toast.makeText(getApplication(), "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }

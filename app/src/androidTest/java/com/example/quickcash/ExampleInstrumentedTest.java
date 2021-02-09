@@ -79,29 +79,16 @@ public class ExampleInstrumentedTest {
         assertNotNull(RegistrationViewModel.errorType.valueOf("invalidPassword"));
     }
 
-    //US-5: AT 1 - Tests Creating a new client user
+    //US-5: AT 1 - Tests Creating a new user
+    //User must not exist in FB authentication & Realtime DB for test to pass
     @Test
-    public void creatingNewClientUser() {
+    public void creatingNewUser() {
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hello@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
         onView(withId(R.id.passwordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        DatabaseReference DBCred = FirebaseDatabase.getInstance().getReference().child("HelloMan");
-        DBCred.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                assertEquals("CLIENT", value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Failed to read value.", error.toException());
-            }
-        });
+        String DBCred = FirebaseDatabase.getInstance().getReference("HelloMan").getKey();
+        assertEquals("HelloMan", DBCred);
     }
 }
