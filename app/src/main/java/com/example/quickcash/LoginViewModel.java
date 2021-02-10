@@ -48,14 +48,21 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
      */
     public void loginClicked(){
 
-       String errorMessage = "hello";
-        Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+        if(validateLogin()){
+       String message = "Welcome " + email;
+        Toast.makeText(getApplication(), message, Toast.LENGTH_LONG).show(); //show welcome Message
+            }
 
-    }
+        else {
+            String errorMessage = "Username or password is incorrect";
+            Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+            }
+        }
+
 
     /* TODO: Donovan here's where you can put functionality for validation */
 
-    public boolean validateInfo(){
+    public boolean validateLogin(){
         //Check firebase to see if this is a valid login
         return true;
     }
