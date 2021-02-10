@@ -1,7 +1,5 @@
 package com.example.quickcash;
 import android.app.Application;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;

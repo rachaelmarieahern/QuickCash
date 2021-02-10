@@ -21,6 +21,10 @@ import android.widget.Button;
 import com.example.quickcash.R;
 import com.example.quickcash.RegistrationViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class RegistrationFragment extends Fragment {
     RegistrationViewModel viewModel;
 
@@ -32,7 +36,7 @@ public class RegistrationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
-        FragmentRegistrationBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_registration);
+        FragmentRegistrationBinding binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_registration);
         binding.setViewModel(viewModel);
     }
 
@@ -44,7 +48,7 @@ public class RegistrationFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
     }

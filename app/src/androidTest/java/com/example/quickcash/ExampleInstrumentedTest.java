@@ -1,9 +1,15 @@
 package com.example.quickcash;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.testing.TestNavHostController;
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -15,18 +21,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
+import static android.service.autofill.Validators.not;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -90,5 +102,30 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.signupButton)).perform(click());
         String DBCred = FirebaseDatabase.getInstance().getReference("HelloMan").getKey();
         assertEquals("HelloMan", DBCred);
+    }
+
+    @Test
+    public void validLoginNavigation() {
+        TestNavHostController navController = new TestNavHostController(
+                ApplicationProvider.getApplicationContext());
+        navController.setGraph(R.navigation.nav_graph);
+
+        onView(withId(R.id.loginUsernameText)).perform(typeText("HelloMan"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
+
+        onView(withId(R.id.loginButton)).perform(click());
+        assertEquals((navController.getCurrentDestination().getId()), (R.id.dashboardFragment));
+    }
+
+    @Test
+    public void invalidLoginNavigation() {
+        TestNavHostController navController = new TestNavHostController(
+                ApplicationProvider.getApplicationContext());
+        navController.setGraph(R.navigation.nav_graph);
+
+        onView(withId(R.id.loginUsernameText)).perform(typeText("Heln"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("s4"), closeSoftKeyboard());
+
+        onView(withId(R.id.loginButton)).perform(click());
     }
 }
