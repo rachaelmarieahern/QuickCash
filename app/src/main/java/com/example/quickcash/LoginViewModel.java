@@ -19,24 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewModel extends AndroidViewModel implements Observable {
 
-        public MutableLiveData<Event<String>> _navigateToDashboard = new MutableLiveData<Event<String>>();
-
-        public LiveData<Event<String>> navigateToDashboard;
-
-
     @Bindable
-    public String username = "", password= "";
+    public String email = "";
+    @Bindable
+    public String password= "";
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
-    }
-
-    public MutableLiveData<Event<String>> get_navigateToDashboard() {
-        return _navigateToDashboard;
-    }
-
-    public LiveData<Event<String>> getNavigateToDashboard() {
-        return navigateToDashboard;
     }
 
     //DB connections
@@ -59,17 +48,12 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
      */
     public void loginClicked(){
 
-//        if(validateInfo()){ //If information exists in database
-//            _navigateToDashboard.setValue(new Event("123"));
-//        }
-//
-//       else{ //If information does not exist
-            String errorMessage = "One or both of your login credentials is incorrect";
-            Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
-//        }
+       String errorMessage = "hello";
+        Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+
     }
 
-    /* TODO: Donovan */
+    /* TODO: Donovan here's where you can put functionality for validation */
 
     public boolean validateInfo(){
         //Check firebase to see if this is a valid login

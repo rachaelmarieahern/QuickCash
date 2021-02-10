@@ -60,23 +60,6 @@ public class LoginFragment extends Fragment  {
         NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegister();
 
 
-        //Set up object for navigation to dashboard
-        NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
-
-        final Observer<Event<String>> navObserver = new Observer<Event<String>>() {
-            @Override
-            public void onChanged(@Nullable Event<String> stringEvent) {
-                if (stringEvent.getContentIfNotHandled() != null) {
-                        Navigation.findNavController(view).navigate(actionLoginToDashboard);
-                }
-            }
-        };
-
-        if (viewModel.getNavigateToDashboard() != null) {
-            viewModel.getNavigateToDashboard().observe(getViewLifecycleOwner(), navObserver);
-        }
-
-
         //Navigate to registration page
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
