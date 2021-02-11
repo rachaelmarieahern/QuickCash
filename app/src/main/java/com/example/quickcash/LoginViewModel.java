@@ -33,7 +33,7 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
 
     public void validateLogin(){
         //Check firebase to see if this is a valid login
-        validLogin = email.equalsIgnoreCase("RachaelMarie09@dal.ca");
+        validLogin = email.equalsIgnoreCase("validEmail@dal.ca");
         if(validLogin){
             Toast.makeText(getApplication(), "Valid Login" +validLogin, Toast.LENGTH_LONG).show();
             //ideally navigate to dashboard
