@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
@@ -58,20 +57,7 @@ public class LoginFragment extends Fragment  {
 
         Button loginButton = getView().findViewById(R.id.loginButton);
 
-        //Validate login and allow navigation to dashboard
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                viewModel.validateLogin();
-                if(viewModel.validLogin){
-                        Toast.makeText(getActivity(), "Valid Login" +viewModel.validLogin, Toast.LENGTH_LONG).show();
-                        //ideally navigate to dashboard
-                }
-                if(!viewModel.validLogin){
-                    Toast.makeText(getActivity(), "Invalid Login" + viewModel.validLogin, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+
 
         //Navigate to dashboard page
         dashboardButton.setOnClickListener(new View.OnClickListener() {

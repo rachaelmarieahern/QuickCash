@@ -3,12 +3,17 @@ package com.example.quickcash.View;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.quickcash.R;
+
+import org.jetbrains.annotations.NotNull;
 
 public class DashboardFragment extends Fragment {
 
@@ -28,5 +33,24 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        Button goToLoginButton = getView().findViewById(R.id.gotologin);
+        NavDirections actionDashboardToLogin = DashboardFragmentDirections.dashboardToLogin();
+
+
+        //Navigate to dashboard page
+        goToLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionDashboardToLogin);
+                //}
+            }
+        });
+
     }
 }
