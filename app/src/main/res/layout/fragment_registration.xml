@@ -8,131 +8,142 @@
          <import type="android.view.View"/>
         </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".View.RegistrationFragment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailField"
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="email address"
-                android:textColorHint="@color/quickcashgreen"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/quickcashwhite"
-                    android:selectAllOnFocus="true"
-                    android:singleLine="false"
-                    android:text="@={viewModel.email}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="email address"
+                    android:textColorHint="@color/quickcashgreen"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/usernameField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quickcashwhite"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:text="@={viewModel.email}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                android:hint="username"
-                android:textColorHint="@color/quickcashgreen"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/usernameText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/quickcashwhite"
-                    android:selectAllOnFocus="true"
-                    android:singleLine="false"
-                    android:text="@={viewModel.username}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="username"
+                    android:textColorHint="@color/quickcashgreen"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="password"
-                android:textColorHint="@color/quickcashgreen"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quickcashwhite"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:text="@={viewModel.username}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/quickcashwhite"
-                    android:selectAllOnFocus="true"
-                    android:singleLine="false"
-                    android:text="@={viewModel.password}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="password"
+                    android:textColorHint="@color/quickcashgreen"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
 
-            <TextView
-                android:id="@+id/userTypeHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Select Your User Type"
-                android:textColor="@color/quickcashgreen"
-                android:textSize="20dp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quickcashwhite"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:text="@={viewModel.password}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <ToggleButton
-                android:id="@+id/roleSelector"
-                style="@style/classic_button"
-                android:layout_width="match_parent"
-                android:layout_height="69dp"
-                android:checked="@={viewModel.helperSelected}"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:textOff="client"
-                android:textOn="helper"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/userTypeHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Select Your User Type"
+                    android:textColor="@color/quickcashgreen"
+                    android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/signupButton"
-                style="@style/classic_button"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:onClick="@{() -> viewModel.signUpClicked()}"
-                android:text="sign up" />
+                <ToggleButton
+                    android:id="@+id/roleSelector"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@={viewModel.helperSelected}"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:textOff="client"
+                    android:textOn="helper"
+                    android:textSize="20dp" />
 
-            <Button
-                android:id="@+id/registerGoToDashboardButton"
-                style="@style/classic_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="24dp"
-                android:background="@drawable/classic_button_light"
-                android:backgroundTintMode="multiply"
-                android:text="Go to Dashboard" />
+                <Button
+                    android:id="@+id/signupButton"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="@{() -> viewModel.signUpClicked()}"
+                    android:text="sign up" />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/registerGoToDashboardButton"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:background="@drawable/classic_button_light"
+                    android:text="Go to Dashboard"
+                    android:focusable="true" />
 
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

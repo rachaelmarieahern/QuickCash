@@ -32,34 +32,12 @@
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
-            android:id="@+id/registrationToUserType"
-            app:destination="@id/userTypeEmployerFragment" />
+            android:id="@+id/registrationToDashboard"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.quickcash.View.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/userTypeEmployerFragment"
-        android:name="com.example.quickcash.View.UserTypeEmployerFragment"
-        android:label="UserTypeEmployerFragment" >
-        <action
-            android:id="@+id/employerToEmployee"
-            app:destination="@id/userTypeEmployeeFragment" />
-        <action
-            android:id="@+id/employerToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/userTypeEmployeeFragment"
-        android:name="com.example.quickcash.View.UserTypeEmployeeFragment"
-        android:label="UserTypeEmployeeFragment" >
-        <action
-            android:id="@+id/employeeToEmployer"
-            app:destination="@id/userTypeEmployerFragment" />
-        <action
-            android:id="@+id/employeeToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
 </navigation>

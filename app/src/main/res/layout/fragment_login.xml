@@ -1,95 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable name="viewModel" type="com.example.quickcash.LoginViewModel"/>
-        <import type="android.view.View"/>
-    </data>
+        <data>
+         <variable name="viewModel" type="com.example.quickcash.LoginViewModel"/>
+        </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".View.LoginFragment">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="20dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginUserNameField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="email"
-                    android:id="@+id/loginUsernameText"
-                    android:text="@={viewModel.email}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginPasswordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/loginPasswordText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="password"
-                    android:text="@={viewModel.password}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <Button
-            android:id="@+id/loginButton"
-            style="@style/classic_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/classic_button_light"
-            android:backgroundTintMode="multiply"
-            android:text="Login"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/registerButton"
-                style="@style/classic_button"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/classic_button_light"
-                android:backgroundTintMode="multiply"
-                android:text="Register"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/loginGoToDashboardButton"
-                style="@style/classic_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:background="@drawable/classic_button_light"
-                android:backgroundTintMode="multiply"
-                android:text="Go to Dashboard"
-                android:backgroundTint="@color/common_google_signin_btn_text_dark_disabled"
-                android:clickable="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/loginEmailField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="email address"
+                    android:textColorHint="@color/quickcashgreen"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/loginEmailText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quickcashwhite"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:text="@={viewModel.email}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/loginPasswordField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="password"
+                    android:textColorHint="@color/quickcashgreen"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/loginPasswordText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quickcashwhite"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:text="@={viewModel.password}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/loginButton"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="login" />
+
+                <Button
+                    android:id="@+id/registerButton"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="register" />
+
+                <Button
+                    android:id="@+id/loginGoToDashboardButton"
+                    style="@style/classic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:background="@drawable/classic_button_light"
+                    android:text="Go to Dashboard"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

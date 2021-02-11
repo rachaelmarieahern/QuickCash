@@ -1,7 +1,6 @@
 package com.example.quickcash;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
@@ -16,11 +15,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginViewModel extends AndroidViewModel implements Observable {
 
     @Bindable
-    public String email = "";
+    public String email = "viewModel email", password= "viewModel password";
     @Bindable
-    public boolean validLogin = false;
-    @Bindable
-    public String password= "";
+    public boolean validLogin;
+
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
@@ -30,6 +28,13 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     DatabaseReference userTypeRef;
     FirebaseAuth DBAuth;
 
+    /* TODO: Donovan here's where you can put functionality for validation */
+
+    public void validateLogin(){
+        //Check firebase to see if this is a valid login
+        validLogin = email.equalsIgnoreCase("RachaelMarie09@dal.ca");
+    }
+
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
 
@@ -38,12 +43,5 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
 
-    }
-
-    /* TODO: Donovan here's where you can put functionality for validation */
-
-    public void validateLogin(){
-        //Check firebase to see if this is a valid login
-        validLogin = true;
     }
 }

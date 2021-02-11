@@ -52,6 +52,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
         userTypeSelected(); //save user type in userTypeSelection variable
 
         if(errors.isEmpty()){ //no errors found!
+            validRegistration = true;
             registerWithDB(); //add user to DB
         }
 
@@ -125,7 +126,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                     DB = FirebaseDatabase.getInstance();
                     userTypeRef = DB.getReference();
                     userTypeRef.child(username).setValue(userTypeSelection.toString());
-                    validRegistration = true;
                     String message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
                             "been sent to " + email;
                     Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);

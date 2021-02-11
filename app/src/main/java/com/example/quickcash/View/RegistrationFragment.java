@@ -5,11 +5,16 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import com.example.quickcash.databinding.FragmentRegistrationBinding;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.quickcash.R;
 import com.example.quickcash.RegistrationViewModel;
@@ -43,6 +48,21 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
+        Button dashboardButton2 = getView().findViewById(R.id.registerGoToDashboardButton);
+        NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToDashboard();
+
+
+        //Navigate to dashboard page
+        dashboardButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if(viewModel.validRegistration) {
+                //Was setting button to gray and unclickable originally, and then setting to green and clickable here
+                Navigation.findNavController(view).navigate(actionRegisterToDashboard);
+                //}
+            }
+        });
 
     }
 }

@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
@@ -50,13 +50,13 @@ public class LoginFragment extends Fragment  {
 
 
         //Set up objects for navigation to registration page
-        Button registerButton = (Button) getView().findViewById(R.id.registerButton);
+        Button registerButton = getView().findViewById(R.id.registerButton);
         NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegister();
 
-        Button dashboardButton1 = (Button)getView().findViewById(R.id.loginGoToDashboardButton);
+        Button dashboardButton = getView().findViewById(R.id.loginGoToDashboardButton);
         NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
 
-        Button loginButton = (Button) getView().findViewById(R.id.loginButton);
+        Button loginButton = getView().findViewById(R.id.loginButton);
 
         //Validate login and allow navigation to dashboard
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +64,23 @@ public class LoginFragment extends Fragment  {
             public void onClick(View v){
                 viewModel.validateLogin();
                 if(viewModel.validLogin){
-                    dashboardButton1.setBackgroundColor(getResources().getColor(R.color.quickcashgreen));
-                    dashboardButton1.setClickable(true);
+                        Toast.makeText(getActivity(), "Valid Login" +viewModel.validLogin, Toast.LENGTH_LONG).show();
+                        //ideally navigate to dashboard
+                }
+                if(!viewModel.validLogin){
+                    Toast.makeText(getActivity(), "Invalid Login" + viewModel.validLogin, Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         //Navigate to dashboard page
-        dashboardButton1.setOnClickListener(new View.OnClickListener() {
+        dashboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(actionLoginToDashboard);
+                //if(viewModel.validLogin) {
+                    //Was setting button to gray and unclickable originally, and then setting to green and clickable here
+                    Navigation.findNavController(view).navigate(actionLoginToDashboard);
+                //}
             }
         });
 
