@@ -12,125 +12,117 @@
         android:layout_height="match_parent"
         tools:context=".View.LoginFragment">
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="401dp"
-            android:layout_height="449dp"
-            android:fillViewport="true"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="413dp"
+            android:layout_height="492dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.695"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8">
+            app:layout_constraintVertical_bias="0.891">
 
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/loginEmailField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_margin="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="email address"
+                android:textColorHint="@color/quickcashgreen"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/loginEmailField"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginEmailText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="email address"
-                    android:textColorHint="@color/quickcashgreen"
-                    app:hintAnimationEnabled="true"
-                    app:hintEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/loginEmailText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/quickcashwhite"
-                        android:inputType="text|textEmailAddress"
-                        android:password="false"
-                        android:selectAllOnFocus="true"
-                        android:singleLine="true"
-                        android:text="@={viewModel.email}" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/quickcashwhite"
+                    android:inputType="text|textEmailAddress"
+                    android:password="false"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:text="@={viewModel.email}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/loginPasswordField"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/loginPasswordField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="password"
+                android:textColorHint="@color/quickcashgreen"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginPasswordText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="password"
-                    android:textColorHint="@color/quickcashgreen"
-                    app:hintAnimationEnabled="true"
-                    app:hintEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/loginPasswordText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/quickcashwhite"
-                        android:editable="false"
-                        android:inputType="numberPassword|textWebPassword"
-                        android:password="true"
-                        android:selectAllOnFocus="true"
-                        android:singleLine="true"
-                        android:text="@={viewModel.password}" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/quickcashwhite"
+                    android:editable="false"
+                    android:inputType="numberPassword|textWebPassword"
+                    android:password="true"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:text="@={viewModel.password}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-                <Button
-                    android:id="@+id/loginButton"
-                    style="@style/classic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:text="login"
-                    android:textSize="20sp" />
+            <Button
+                android:id="@+id/loginButton"
+                style="@style/classic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:text="login"
+                android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/registerButton"
-                    style="@style/classic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center"
-                    android:text="register"
-                    android:textSize="20sp" />
+            <Button
+                android:id="@+id/registerButton"
+                style="@style/classic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:text="register"
+                android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/loginGoToDashboardButton"
-                    style="@style/classic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/classic_button_light"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="Go to Dashboard"
-                    android:textSize="20sp" />
+            <Button
+                android:id="@+id/loginGoToDashboardButton"
+                style="@style/classic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:background="@drawable/classic_button_light"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Go to Dashboard"
+                android:textSize="20sp"
+                android:visibility="visible"
+                tools:visibility="visible" />
 
-            </LinearLayout>
-
-        </ScrollView>
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="359dp"
-            android:layout_height="164dp"
-            android:layout_marginBottom="504dp"
+            android:id="@+id/imageView5"
+            android:layout_width="377dp"
+            android:layout_height="270dp"
+            android:layout_marginBottom="444dp"
+            android:contentDescription="QuickCash Logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.326"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@mipmap/logoqc_foreground" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
+
+

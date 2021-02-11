@@ -52,8 +52,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/quickcashwhite"
+                        android:inputType="text|textEmailAddress"
                         android:selectAllOnFocus="true"
-                        android:singleLine="false"
+                        android:singleLine="true"
                         android:text="@={viewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
