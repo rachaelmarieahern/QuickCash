@@ -36,10 +36,7 @@ android {
 }
 
 dependencies {
-    def kotlinVersion = '1.1.51'
     apply plugin: 'com.android.application'
-    apply plugin: 'kotlin-android'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     apply plugin: "androidx.navigation.safeargs"
     implementation 'com.google.firebase:firebase-database:19.6.0'
     implementation 'com.google.firebase:firebase-auth:20.0.2'

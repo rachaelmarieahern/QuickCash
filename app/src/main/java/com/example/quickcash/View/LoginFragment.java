@@ -2,12 +2,9 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -18,12 +15,7 @@ import android.widget.Button;
 
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
-import com.example.quickcash.RegistrationViewModel;
-import com.example.quickcash.Util.Event;
 import com.example.quickcash.databinding.FragmentLoginBinding;
-import com.example.quickcash.databinding.FragmentRegistrationBinding;
-
-import java.util.Observable;
 
 
 public class LoginFragment extends Fragment  {
@@ -38,8 +30,9 @@ public class LoginFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        FragmentLoginBinding binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_login);
+        FragmentLoginBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
         binding.setViewModel(viewModel);
+
     }
 
 
@@ -47,6 +40,7 @@ public class LoginFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 

@@ -104,28 +104,5 @@ public class ExampleInstrumentedTest {
         assertEquals("HelloMan", DBCred);
     }
 
-    @Test
-    public void validLoginNavigation() {
-        TestNavHostController navController = new TestNavHostController(
-                ApplicationProvider.getApplicationContext());
-        navController.setGraph(R.navigation.nav_graph);
 
-        onView(withId(R.id.loginUsernameText)).perform(typeText("HelloMan"));
-        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
-
-        onView(withId(R.id.loginButton)).perform(click());
-        assertEquals((navController.getCurrentDestination().getId()), (R.id.dashboardFragment));
-    }
-
-    @Test
-    public void invalidLoginNavigation() {
-        TestNavHostController navController = new TestNavHostController(
-                ApplicationProvider.getApplicationContext());
-        navController.setGraph(R.navigation.nav_graph);
-
-        onView(withId(R.id.loginUsernameText)).perform(typeText("Heln"));
-        onView(withId(R.id.loginPasswordText)).perform(typeText("s4"), closeSoftKeyboard());
-
-        onView(withId(R.id.loginButton)).perform(click());
-    }
 }
