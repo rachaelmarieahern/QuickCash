@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,6 @@ public class LoginFragment extends Fragment  {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         FragmentLoginBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
         binding.setViewModel(viewModel);
-
     }
 
 
@@ -53,6 +53,30 @@ public class LoginFragment extends Fragment  {
         Button registerButton = (Button) getView().findViewById(R.id.registerButton);
         NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegister();
 
+        Button dashboardButton1 = (Button)getView().findViewById(R.id.loginGoToDashboardButton);
+        NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
+
+        Button loginButton = (Button) getView().findViewById(R.id.loginButton);
+
+        //Validate login and allow navigation to dashboard
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                viewModel.validateLogin();
+                if(viewModel.validLogin){
+                    dashboardButton1.setBackgroundColor(getResources().getColor(R.color.quickcashgreen));
+                    dashboardButton1.setClickable(true);
+                }
+            }
+        });
+
+        //Navigate to dashboard page
+        dashboardButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionLoginToDashboard);
+            }
+        });
 
         //Navigate to registration page
         registerButton.setOnClickListener(new View.OnClickListener() {

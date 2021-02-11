@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +26,9 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     public String username = "", email = "", password= "";
     @Bindable
     public boolean helperSelected = false;
+    @Bindable
+    public boolean validRegistration;
+
     public RegistrationViewModel(@NonNull Application application) {
         super(application);
     }
@@ -51,6 +56,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
         }
 
         if(!errors.isEmpty()){ //error is found in username, pass, and/or email
+            validRegistration = false;
             String errorMessage = "";
             if (errors.contains(errorType.invalidUserName)){
                 errorMessage = errorMessage.concat("Invalid username");
@@ -119,11 +125,13 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                     DB = FirebaseDatabase.getInstance();
                     userTypeRef = DB.getReference();
                     userTypeRef.child(username).setValue(userTypeSelection.toString());
+                    validRegistration = true;
                     String message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
                             "been sent to " + email;
                     Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
                     welcome.show(); //welcome message
                 } else {
+                    validRegistration = false;
                     Toast.makeText(getApplication(), "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
