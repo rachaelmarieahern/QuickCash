@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -61,6 +62,7 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if username is Invalid
     @Test
     public void checkIfSignUpUserNameIsInvalid() {
+        onView(withId(R.id.gotologin)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hello@dal.ca"));
         onView(withId(R.id.usernameText)).perform(typeText(""));
@@ -72,6 +74,7 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if email is inValid
     @Test
     public void checkIfSignUpEmailIsInvalid() {
+        onView(withId(R.id.gotologin)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("Hello.Live@live.com.ca"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
@@ -83,6 +86,7 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if password is less than six chars/invalid
     @Test
     public void checkIfPassIsLessSixChar() {
+        onView(withId(R.id.gotologin)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hello@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
@@ -91,41 +95,74 @@ public class ExampleInstrumentedTest {
         assertNotNull(RegistrationViewModel.errorType.valueOf("invalidPassword"));
     }
 
-    //US-5: AT 1 - Tests Creating a new user
+    //US-5: AT 1 - Tests Creating a new client user
     //User must not exist in FB authentication & Realtime DB for test to pass
     @Test
-    public void creatingNewUser() {
+    public void creatingNewClientUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.emailText)).perform(typeText("hello@live.com"));
+        onView(withId(R.id.emailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
         onView(withId(R.id.passwordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.signupButton)).perform(click());
-        String DBCred = FirebaseDatabase.getInstance().getReference("HelloMan").getKey();
-        assertEquals("HelloMan", DBCred);
     }
 
+    //US-5: AT 1 - Tests Creating a new helper user
+    //User must not exist in FB authentication & Realtime DB for test to pass
     @Test
-    public void validLoginNavigation() {
-        TestNavHostController navController = new TestNavHostController(
-                ApplicationProvider.getApplicationContext());
-        navController.setGraph(R.navigation.nav_graph);
+    public void creatingNewHelperUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.registerButton)).perform(click());
+        onView(withId(R.id.emailText)).perform(typeText("hellowoman@live.com"));
+        onView(withId(R.id.usernameText)).perform(typeText("HelloWoman"));
+        onView(withId(R.id.passwordText)).perform(typeText("qwe567"), closeSoftKeyboard());
+        onView(withId(R.id.roleSelector)).perform(click());
+        onView(withId(R.id.signupButton)).perform(click());
+    }
 
-        onView(withId(R.id.loginUsernameText)).perform(typeText("HelloMan"));
+    //US-5: AT 1 - Tests Login with no correctly formatted email credential
+    @Test
+    public void badCredEmailUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@@@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
-
         onView(withId(R.id.loginButton)).perform(click());
-        assertEquals((navController.getCurrentDestination().getId()), (R.id.dashboardFragment));
     }
 
+    //US-5: AT 1 - Tests Login with not correctly formatted pass credential
     @Test
-    public void invalidLoginNavigation() {
-        TestNavHostController navController = new TestNavHostController(
-                ApplicationProvider.getApplicationContext());
-        navController.setGraph(R.navigation.nav_graph);
+    public void badCredPassUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sd34"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+    }
 
-        onView(withId(R.id.loginUsernameText)).perform(typeText("Heln"));
-        onView(withId(R.id.loginPasswordText)).perform(typeText("s4"), closeSoftKeyboard());
+    //US-5: AT 1 - Tests Login with invalid email credential
+    @Test
+    public void invalidEmailUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.loginEmailText)).perform(typeText("helan@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+    }
 
+    //US-5: AT 1 - Tests Login with invalid password credential
+    @Test
+    public void invalidPassUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf2dssd34"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+    }
+
+    //US-5: AT 1 - Tests Login with valid email and password credentials
+    //User must exist in FB authentication & Realtime DB for test to pass
+    @Test
+    public void validLoginUser() { //TODO: insert assert test
+        onView(withId(R.id.gotologin)).perform(click());
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
     }
 }
