@@ -1,19 +1,13 @@
 package com.example.quickcash;
 import android.app.Application;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
-import com.example.quickcash.View.RegistrationFragmentDirections;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -41,7 +35,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
 
     //DB connections
     FirebaseDatabase DB;
-    DatabaseReference userTypeRef;
+    DatabaseReference users;
     FirebaseAuth DBAuth;
 
     enum userType {HELPER, CLIENT}
@@ -103,7 +97,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
             errors.add(errorType.invalidEmail);
         }
 
-        if (!password.matches("[A-Za-z0-9_]{3,15}")){
+        if (!password.matches("[A-Za-z0-9_]{6,15}")){
             errors.add(errorType.invalidPassword);
         }
     }
@@ -123,20 +117,38 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      */
     public void registerWithDB() {
         DBAuth = FirebaseAuth.getInstance();
-        DBAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        DBAuth.createUserWithEmailAndPassword(email.trim(), password.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) { //if adding user to DB was successful
+            public void onComplete(@NonNull Task<AuthResult> createUNPass) {
+                if (createUNPass.isSuccessful()) { //if adding user to DB was successful
                     DB = FirebaseDatabase.getInstance();
-                    userTypeRef = DB.getReference();
-                    userTypeRef.child(username).setValue(userTypeSelection.toString());
-                    String message = "Welcome User: " + username + " of type " + userTypeSelection.toString() + "\nA welcome email has " +
-                            "been sent to " + email;
-                    Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
-                    welcome.show(); //welcome message
-                    //TODO: Navigate to dashboard from here
+                    users = DB.getReference("CLIENTS"); //the user is a client
+                    if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
+                        users = DB.getReference("HELPERS");
+                    //create user in FB auth
+                    User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim());
+                    users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newUser)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> setUNType) {
+                                    if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
+                                        String message = "Welcome User: " + username + " of type " +
+                                                userTypeSelection.toString() + "\nA welcome email has " +
+                                                "been sent to " + email;
+                                        Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
+                                        welcome.show(); //welcome message
+                                        //TODO: Navigate to dashboard from here
+                                    } else {
+                                        Toast.makeText(getApplication(), "Error! " +
+                                                Objects.requireNonNull(setUNType.getException()).getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                 } else {
-                    Toast.makeText(getApplication(), "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), "Error! "
+                            + Objects.requireNonNull(createUNPass.getException()).getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
