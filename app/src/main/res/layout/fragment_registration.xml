@@ -88,6 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/quickcashwhite"
+                        android:inputType="textPassword|textEmailAddress|textWebPassword"
                         android:selectAllOnFocus="true"
                         android:singleLine="false"
                         android:text="@={viewModel.password}" />

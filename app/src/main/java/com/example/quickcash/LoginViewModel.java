@@ -14,9 +14,14 @@ import androidx.navigation.Navigation;
 
 import com.example.quickcash.View.LoginFragment;
 import com.example.quickcash.View.LoginFragmentDirections;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 
 public class LoginViewModel extends AndroidViewModel implements Observable {
@@ -32,25 +37,35 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
         super(application);
     }
 
-    //DB connections
-    FirebaseDatabase DB;
-    DatabaseReference userTypeRef;
+    //DB connection
     FirebaseAuth DBAuth;
 
-    /* TODO: Donovan here's where you can put functionality for validation */
+    public void validateLogin() {
+        String emailCred = email.trim();
+        String passwordCred = password.trim();
+        DBAuth = FirebaseAuth.getInstance();
 
-    public void validateLogin(){
-        //Check firebase to see if this is a valid login
-        validLogin = email.equalsIgnoreCase("validEmail@dal.ca");
-        if(validLogin){
-            //TODO: Navigate to dashboard from here
-            Toast.makeText(getApplication(), "Valid Login", Toast.LENGTH_LONG).show();
-        }
-        if(!validLogin){
-            Toast.makeText(getApplication(), "Invalid Login", Toast.LENGTH_LONG).show();
+        //if the email or password is not formatted correctly
+        if (!emailCred.matches("[A-Za-z0-9_]*@[A-Za-z0-9_]*\\.[A-Za-z0-9_/]{1,5}") ||
+                !passwordCred.matches("[A-Za-z0-9_]{6,15}")){
+            Toast.makeText(getApplication(), "Error! Your credentials are not formatted correctly",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            DBAuth.signInWithEmailAndPassword(emailCred, passwordCred).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
+                    if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
+                        Toast.makeText(getApplication(), "Credentials match Username & Password in DB",
+                                Toast.LENGTH_LONG).show();
+                        //TODO: Navigate to dashboard from here
+                    } else { //email and un did not match in DB
+                        Toast.makeText(getApplication(), "Error! Incorrect email and/or password",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
-
 
     public void goToRegistration(){
         navController.navigate(R.id.registrationFragment);
@@ -66,4 +81,5 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
 
     }
+
 }
