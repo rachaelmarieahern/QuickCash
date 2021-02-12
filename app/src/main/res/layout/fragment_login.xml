@@ -93,6 +93,7 @@
                 android:layout_gravity="center"
                 android:onClick="@{() -> viewModel.goToRegistration()}"
                 android:text="register"
+                android:onClick="@{() -> viewModel.goToRegistration()}"
                 android:textSize="20sp" />
 
         </LinearLayout>

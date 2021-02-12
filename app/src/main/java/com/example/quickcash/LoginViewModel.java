@@ -43,8 +43,6 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
         //Check firebase to see if this is a valid login
         validLogin = email.equalsIgnoreCase("validEmail@dal.ca");
         if(validLogin){
-            DBAuth = FirebaseAuth.getInstance();
-
             //TODO: Navigate to dashboard from here
             Toast.makeText(getApplication(), "Valid Login", Toast.LENGTH_LONG).show();
         }
