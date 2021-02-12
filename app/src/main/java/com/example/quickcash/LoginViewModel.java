@@ -1,13 +1,19 @@
 package com.example.quickcash;
 
 import android.app.Application;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
+import com.example.quickcash.View.LoginFragment;
+import com.example.quickcash.View.LoginFragmentDirections;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,8 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewModel extends AndroidViewModel implements Observable {
 
+    public NavController navController;
+
     @Bindable
-    public String email = "viewModel email", password= "viewModel password";
+    public String email = "", password= "";
     @Bindable
     public boolean validLogin;
 
@@ -35,12 +43,17 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
         //Check firebase to see if this is a valid login
         validLogin = email.equalsIgnoreCase("validEmail@dal.ca");
         if(validLogin){
-            Toast.makeText(getApplication(), "Valid Login" +validLogin, Toast.LENGTH_LONG).show();
-            //ideally navigate to dashboard
+            //TODO: Navigate to dashboard from here
+            Toast.makeText(getApplication(), "Valid Login", Toast.LENGTH_LONG).show();
         }
         if(!validLogin){
-            Toast.makeText(getApplication(), "Invalid Login" + validLogin, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplication(), "Invalid Login", Toast.LENGTH_LONG).show();
         }
+    }
+
+
+    public void goToRegistration(){
+        navController.navigate(R.id.registrationFragment);
     }
 
 
