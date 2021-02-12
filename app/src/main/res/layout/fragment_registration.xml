@@ -14,15 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".View.RegistrationFragment">
 
-        <ScrollView
-            android:layout_width="386dp"
-            android:layout_height="612dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
 
 
             <LinearLayout
@@ -133,30 +124,20 @@
                     android:text="sign up"
                     android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/registerGoToDashboardButton"
-                    style="@style/classic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="49dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/classic_button_light"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="Go to Dashboard"
-                    android:textSize="20sp" />
-
 
             </LinearLayout>
 
-        </ScrollView>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="305dp"
             android:layout_height="210dp"
-            app:srcCompat="@mipmap/logoqc_foreground"
-            tools:layout_editor_absoluteX="53dp"
-            tools:layout_editor_absoluteY="-37dp" />
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/logoqc_foreground" />
+ />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

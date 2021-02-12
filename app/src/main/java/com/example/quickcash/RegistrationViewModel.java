@@ -1,5 +1,6 @@
 package com.example.quickcash;
 import android.app.Application;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -8,7 +9,11 @@ import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
+import com.example.quickcash.View.RegistrationFragmentDirections;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,12 +27,13 @@ import java.util.Objects;
 
 public class RegistrationViewModel extends AndroidViewModel implements Observable {
 
+
     @Bindable
     public String username = "", email = "", password= "";
     @Bindable
     public boolean helperSelected = false;
-    @Bindable
-    public boolean validRegistration;
+
+    public NavController navController;
 
     public RegistrationViewModel(@NonNull Application application) {
         super(application);
@@ -52,12 +58,10 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
         userTypeSelected(); //save user type in userTypeSelection variable
 
         if(errors.isEmpty()){ //no errors found!
-            validRegistration = true;
             registerWithDB(); //add user to DB
         }
 
         if(!errors.isEmpty()){ //error is found in username, pass, and/or email
-            validRegistration = false;
             String errorMessage = "";
             if (errors.contains(errorType.invalidUserName)){
                 errorMessage = errorMessage.concat("Invalid username");
@@ -130,8 +134,8 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                             "been sent to " + email;
                     Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
                     welcome.show(); //welcome message
+                    //TODO: Navigate to dashboard from here
                 } else {
-                    validRegistration = false;
                     Toast.makeText(getApplication(), "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
