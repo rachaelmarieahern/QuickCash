@@ -1,12 +1,8 @@
 package com.example.quickcash;
 
-import android.app.Application;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Util.ErrorTypes;
 
@@ -14,24 +10,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TaskViewModel implements Observable {
+public class TaskViewModel extends ViewModel implements Observable {
 
     @Bindable
     public String headLine = "", description = "";
     @Bindable
     public Date startDate , endDate;
     @Bindable
-    public Boolean urgent;
+    public boolean urgent;
     @Bindable
     public double longitude, latitude;
     @Bindable
-    public String price = "";
+    public String wage = "";
     @Bindable
     public int projectHours,projectMinutes, projectDays;
     @Bindable
     public String errorMessage = "";
-
-
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
@@ -64,8 +58,8 @@ public class TaskViewModel implements Observable {
                 errorMessage = errorMessage.concat("\nDescription contains too few characters!");
             }
 
-            if (errors.contains(ErrorTypes.invalidPrice)){
-                errorMessage = errorMessage.concat("\nPrice must be greater than 0");
+            if (errors.contains(ErrorTypes.invalidWage)){
+                errorMessage = errorMessage.concat("\nWage must be greater than 0");
             }
 
             if (errors.contains(ErrorTypes.requiredFieldsBlank)){
@@ -91,11 +85,11 @@ public class TaskViewModel implements Observable {
         if (startDate.after(endDate)){
             errors.add(ErrorTypes.invalidDateRange);
         }
-        if (Double.parseDouble(price) <= 0){
-            errors.add(ErrorTypes.invalidPrice);
+        if (Double.parseDouble(wage) <= 0){
+            errors.add(ErrorTypes.invalidWage);
         }
 
-        if (headLine.length()==0 ||  price.length()==0){
+        if (headLine.length()==0 ||  wage.length()==0){
             errors.add(ErrorTypes.requiredFieldsBlank);
         }
 
