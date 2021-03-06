@@ -3,27 +3,30 @@ package com.example.quickcash;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
+import androidx.lifecycle.ViewModel;
 import com.example.quickcash.Util.ErrorTypes;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TaskViewModel implements Observable {
+public class TaskViewModel extends ViewModel implements Observable {
 
     @Bindable
     public String headLine, description;
     @Bindable
     public Date startDate, endDate;
     @Bindable
-    public Boolean urgent;
+    public boolean urgent;
     @Bindable
-    public double longitude, latitude, price;
+    public double longitude, latitude;
+    @Bindable
+    public String wage = "";
     @Bindable
     public int projectHours,projectMinutes, projectDays;
     @Bindable
     public String errorMessage = "";
-    
+
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
 
@@ -38,51 +41,60 @@ public class TaskViewModel implements Observable {
      * When the user clicks the sign up button on the register page
      */
     public void addTaskClicked(){
-        //Kept blank for testing
-         errorMessage = "";
+        errors.clear(); //clear error variable
+        validateInfo(); //confirm the inputted username, password, and email are correctly formatted
 
+        if(errors.isEmpty()){ //no errors found!
+            addTaskToDB(); //add user to DB
+        }
 
-//        errors.clear(); //clear error variable
-//        validateInfo(); //confirm the inputted username, password, and email are correctly formatted
-//        userTypeSelected(); //save user type in userTypeSelection variable
-//
-//        if(errors.isEmpty()){ //no errors found!
-//            registerWithDB(); //add user to DB
-//        }
-//
-//        if(!errors.isEmpty()){ //error is found in username, pass, and/or email
-//            String errorMessage = "";
-//            if (errors.contains(RegistrationViewModel.errorType.invalidUserName)){
-//                errorMessage = errorMessage.concat("Invalid username");
-//                username = ""; //reset username
-//            }
-//            if (errors.contains(RegistrationViewModel.errorType.invalidEmail)){
-//                errorMessage = errorMessage.concat("\tInvalid email address");
-//                email = ""; //reset email
-//            }
-//            if (errors.contains(RegistrationViewModel.errorType.invalidPassword)){
-//                errorMessage = errorMessage.concat("\tInvalid Password");
-//                password = ""; //reset password
-//            }
-//
-//            Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
-//        }
+        if(!errors.isEmpty()){ //error is found in username, pass, and/or email
+            String errorMessage = "";
+            if (errors.contains(ErrorTypes.invalidHeadline)){
+                errorMessage = errorMessage.concat("\nHeadline contains too many characters!");
+            }
 
+            if (errors.contains(ErrorTypes.invalidDescription)){
+                errorMessage = errorMessage.concat("\nDescription contains too few characters!");
+            }
+
+            if (errors.contains(ErrorTypes.invalidWage)){
+                errorMessage = errorMessage.concat("\nWage must be greater than 0");
+            }
+
+            if (errors.contains(ErrorTypes.requiredFieldsBlank)){
+                errorMessage = errorMessage.concat("\nAll fields are required");
+            }
+
+            if (errors.contains(ErrorTypes.invalidDateRange)){
+                errorMessage = errorMessage.concat("\nEnd date must be after start date");
+            }
+            //Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+        }
     }
 
     public void validateInfo(){
 
-//        if (!username.matches("[A-Za-z0-9_]{3,15}")){
-//            errors.add(errorType.invalidUserName);
-//        }
-//
-//        if (!email.matches("[A-Za-z0-9_]*@[A-Za-z0-9_]*\\.[A-Za-z0-9_/]{1,5}")){
-//            errors.add(errorType.invalidEmail);
-//        }
-//
-//        if (!password.matches("[A-Za-z0-9_]{6,15}")){
-//            errors.add(errorType.invalidPassword);
-//        }
+        if (headLine.length()>41){
+            errors.add(ErrorTypes.invalidHeadline);
+        }
+        if (description.length()<20){
+            errors.add(ErrorTypes.invalidDescription);
+        }
+        if (startDate.after(endDate)){
+            errors.add(ErrorTypes.invalidDateRange);
+        }
+        if (Double.parseDouble(wage) <= 0){
+            errors.add(ErrorTypes.invalidWage);
+        }
+
+        if (headLine.length()==0 ||  wage.length()==0){
+            errors.add(ErrorTypes.requiredFieldsBlank);
+        }
+
+        if(startDate == null || endDate == null){
+            errors.add(ErrorTypes.datesBlank);
+        }
     }
 
     public void addTaskToDB(){

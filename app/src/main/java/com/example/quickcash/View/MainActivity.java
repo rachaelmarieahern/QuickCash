@@ -17,16 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-<<<<<<< HEAD
-        imageView = (ImageView)findViewById(R.id.splashlogo);
-        rotateAnimation();
-    }
-    private void rotateAnimation() {
-        rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        imageView.startAnimation(rotateAnimation);
-=======
->>>>>>> f6a52cc7fd56d79f8582ba5943019c37c3b89192
     }
 
 

@@ -1,7 +1,5 @@
 package com.example.quickcash;
 
-import android.app.Application;
-
 import com.example.quickcash.Util.ErrorTypes;
 
 import org.junit.Before;
@@ -18,7 +16,7 @@ public class TaskUnitTest {
         taskViewModel = new TaskViewModel();
         taskViewModel.description = "";
         taskViewModel.headLine = "";
-        taskViewModel.price = "25";
+        taskViewModel.wage = "25";
         Calendar calendar = Calendar.getInstance();
         calendar.set(2000,0,1);
         taskViewModel.startDate = calendar.getTime();
@@ -82,18 +80,18 @@ public class TaskUnitTest {
 
 
     @Test
-    public void invalidPrice(){
-        taskViewModel.price = "0.0";
+    public void invalidWage(){
+        taskViewModel.wage = "0.0";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
-        assertTrue(taskViewModel.errors.contains(ErrorTypes.invalidPrice));
+        assertTrue(taskViewModel.errors.contains(ErrorTypes.invalidWage));
     }
 
     @Test
-    public void validPrice(){
-        taskViewModel.price = "10.0";
+    public void validWage(){
+        taskViewModel.wage = "10.0";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
-        assertFalse(taskViewModel.errors.contains(ErrorTypes.invalidPrice));
+        assertFalse(taskViewModel.errors.contains(ErrorTypes.invalidWage));
     }
 }
