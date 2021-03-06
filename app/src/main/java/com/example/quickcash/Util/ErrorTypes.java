@@ -1,6 +1,6 @@
 package com.example.quickcash.Util;
 
 public enum ErrorTypes {
-    invalidHeadline, invalidDescription, invalidDate, invalidPrice,
-    invalidUserName, invalidPassword, invalidEmail
+    invalidHeadline, invalidDescription, invalidDateRange, invalidPrice, requiredFieldsBlank, //Task types
+    invalidUserName, invalidPassword, datesBlank, invalidEmail // Registration/Login types
 }

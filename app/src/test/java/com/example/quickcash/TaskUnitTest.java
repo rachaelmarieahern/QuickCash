@@ -1,8 +1,10 @@
 package com.example.quickcash;
 
-import com.example.quickcash.Util.ErrorTypes;
-import com.example.quickcash.ViewModel.TaskViewModel;
+import android.app.Application;
 
+import com.example.quickcash.Util.ErrorTypes;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -10,22 +12,27 @@ import java.util.Calendar;
 import static org.junit.Assert.*;
 
 public class TaskUnitTest {
-    TaskViewModel taskViewModel = new TaskViewModel();
+    TaskViewModel taskViewModel;
+
+    @Before public void initializeViewModel(){
+        taskViewModel = new TaskViewModel();
+        taskViewModel.description = "";
+        taskViewModel.headLine = "";
+        taskViewModel.price = "25";
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2000,0,1);
+        taskViewModel.startDate = calendar.getTime();
+        calendar.set(2000,0,1);
+        taskViewModel.endDate = calendar.getTime();
+    }
+
 
     @Test
-    public void headlineCharacterErrorMessage(){
+    public void headlineInvalid(){
         taskViewModel.headLine = "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
-        assertTrue(taskViewModel.errorMessage.equals("Headline contains too many characters!"));
-    }
-
-    @Test
-    public void headlineNewLineErrorMessage(){
-        taskViewModel.headLine = "AHHHHHH" + "\n" + "HHHHHHH";
-        taskViewModel.validateInfo();
-        taskViewModel.addTaskClicked();
-        assertTrue(taskViewModel.errorMessage.equals("Headline must remain on one line!"));
+        assertTrue(taskViewModel.errors.contains(ErrorTypes.invalidHeadline));
     }
 
     @Test
@@ -37,11 +44,11 @@ public class TaskUnitTest {
     }
 
     @Test
-    public void descriptionCharacterErrorMessage(){
+    public void descriptionInvalid(){
         taskViewModel.description = "AHHHHHH";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
-        assertEquals(taskViewModel.errorMessage, "Headline contains too few characters!");
+        assertTrue(taskViewModel.errors.contains(ErrorTypes.invalidDescription));
     }
 
     @Test
@@ -72,11 +79,21 @@ public class TaskUnitTest {
         assertTrue(taskViewModel.startDate.before(taskViewModel.endDate));
     }
 
+
+
     @Test
-    public void validPrice(){
-        taskViewModel.price = 0.0;
+    public void invalidPrice(){
+        taskViewModel.price = "0.0";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
         assertTrue(taskViewModel.errors.contains(ErrorTypes.invalidPrice));
+    }
+
+    @Test
+    public void validPrice(){
+        taskViewModel.price = "10.0";
+        taskViewModel.validateInfo();
+        taskViewModel.addTaskClicked();
+        assertFalse(taskViewModel.errors.contains(ErrorTypes.invalidPrice));
     }
 }

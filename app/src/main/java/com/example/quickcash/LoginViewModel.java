@@ -1,4 +1,4 @@
-package com.example.quickcash.ViewModel;
+package com.example.quickcash;
 
 import android.app.Application;
 import android.view.View;

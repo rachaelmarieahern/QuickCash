@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
         <data>
-         <variable name="viewModel" type="com.example.quickcash.ViewModel.RegistrationViewModel"/>
+         <variable name="viewModel" type="com.example.quickcash.RegistrationViewModel"/>
          <import type="android.view.View"/>
         </data>
 
