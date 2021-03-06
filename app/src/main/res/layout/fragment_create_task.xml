@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="538dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@drawable/ic_menubar" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="49dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="700dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView25"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.941"
+        app:srcCompat="@drawable/ic_user" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.969"
+        app:srcCompat="@drawable/ic_home" />
+
+    <ImageView
+        android:id="@+id/imageView28"
+        android:layout_width="52dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.942"
+        app:srcCompat="@drawable/ic_copy" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="51dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView27"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.942"
+        app:srcCompat="@drawable/ic_plus" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="259dp"
+        android:layout_height="72dp"
+        app:srcCompat="@drawable/quickcash_asset_2"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <EditText
+        android:id="@+id/HeadLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Head Line"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="135dp" />
+
+    <CheckBox
+        android:id="@+id/checkBoxUrgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Urgent"
+        android:text="Urgent"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="205dp" />
+
+    <EditText
+        android:id="@+id/editTextDate3"
+        android:layout_width="126dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <EditText
+        android:id="@+id/editTextDate2"
+        android:layout_width="126dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <TextView
+        android:id="@+id/startviewstatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="432dp"
+        android:text="Start Date"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="23dp" />
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="345dp"
+        android:layout_height="133dp"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textPersonName"
+        android:text="Description"
+        android:textAlignment="viewStart"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="365dp"
+        android:layout_height="153dp"
+        app:srcCompat="@drawable/ic_asset_2"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <EditText
+        android:id="@+id/Wage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="529dp"
+        tools:text="Wage" />
+
+    <TextView
+        android:id="@+id/endviewstatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="432dp"
+        android:text="End Date"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="252dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
