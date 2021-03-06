@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.quickcash.databinding.FragmentRegistrationBinding;
@@ -14,15 +13,11 @@ import com.example.quickcash.databinding.FragmentRegistrationBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.quickcash.R;
-import com.example.quickcash.RegistrationViewModel;
+import com.example.quickcash.ViewModel.RegistrationViewModel;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class RegistrationFragment extends Fragment {
     RegistrationViewModel viewModel;

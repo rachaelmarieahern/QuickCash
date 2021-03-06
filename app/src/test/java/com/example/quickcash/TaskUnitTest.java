@@ -1,11 +1,11 @@
 package com.example.quickcash;
 
-import android.app.Application;
+import com.example.quickcash.Util.ErrorTypes;
+import com.example.quickcash.ViewModel.TaskViewModel;
 
 import org.junit.Test;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 

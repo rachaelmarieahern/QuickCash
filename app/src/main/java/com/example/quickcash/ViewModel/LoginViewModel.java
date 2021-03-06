@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.ViewModel;
 
 import android.app.Application;
 import android.view.View;
@@ -12,8 +12,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.quickcash.R;
 import com.example.quickcash.View.LoginFragment;
-import com.example.quickcash.View.LoginFragmentDirections;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

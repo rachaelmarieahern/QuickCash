@@ -1,12 +1,9 @@
-package com.example.quickcash;
+package com.example.quickcash.ViewModel;
 
-import android.app.Application;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
-import androidx.lifecycle.AndroidViewModel;
+
+import com.example.quickcash.Util.ErrorTypes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +32,7 @@ public class TaskViewModel implements Observable {
 
     enum TaskType{computerRepair, yardwork, dogWalking, babysitting, errands}
     //UPDATE
-    List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
+    public List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
 
     /**
      * When the user clicks the sign up button on the register page
@@ -86,5 +83,13 @@ public class TaskViewModel implements Observable {
 //        if (!password.matches("[A-Za-z0-9_]{6,15}")){
 //            errors.add(errorType.invalidPassword);
 //        }
+    }
+
+    public void addTaskToDB(){
+        //TODO: Donovon you can add the functionality here to save a task object to firebase (after creating the object class)
+    }
+
+    public void getTaskFromDB(int taskID){
+        //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
     }
 }

@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.ViewModel;
 import android.app.Application;
 import android.widget.Toast;
 
@@ -8,6 +8,8 @@ import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.navigation.NavController;
 
+import com.example.quickcash.Util.ErrorTypes;
+import com.example.quickcash.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
