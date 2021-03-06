@@ -35,8 +35,7 @@ public class TaskViewModel implements Observable {
 
     enum TaskType{computerRepair, yardwork, dogWalking, babysitting, errands}
     //UPDATE
-    enum errorType {invalidHeadline, invalidDescription, invalidEmail}
-    List<errorType> errors = new ArrayList<errorType>();
+    List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
 
     /**
      * When the user clicks the sign up button on the register page
