@@ -3,7 +3,7 @@
     <style name="Theme.QuickCash" parent="Theme.AppCompat.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/quickcashgreen</item>
-        <item name="colorPrimaryVariant">@color/quickcashdarkgreen</item>
+        <item name="colorPrimaryVariant">@color/quickcashgreen</item>
         <item name="colorOnPrimary">@color/quickcashgreen</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

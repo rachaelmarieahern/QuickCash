@@ -35,22 +35,5 @@ public class DashboardFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
 
-        Button goToLoginButton = getView().findViewById(R.id.gotologin);
-        NavDirections actionDashboardToLogin = DashboardFragmentDirections.dashboardToLogin();
-
-
-        //Navigate to dashboard page
-        goToLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(actionDashboardToLogin);
-                //}
-            }
-        });
-
-    }
 }
