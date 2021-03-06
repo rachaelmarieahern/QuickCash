@@ -8,11 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="quickcashgreen">#86C5AA</color>
+    <color name="quickcashgreen">#6DC9A6</color>
     <color name="quickcashactive">#282B55</color>
     <color name="quickcashinactive">#EEF9BF</color>
     <color name="quickcashlightgreen">#A7E9AF</color>
-    
+
 <!--    <color name="quickcashdarkgreen">#669383</color>-->
     <color name="quickcashwhite">#FFFFFF</color>
 </resources>
