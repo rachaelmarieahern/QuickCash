@@ -10,8 +10,14 @@
         android:id="@+id/splashlogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/qc_asset_1"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="290dp" />
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginBottom="308dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/qc_asset_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
