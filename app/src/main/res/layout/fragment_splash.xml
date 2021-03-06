@@ -13,4 +13,10 @@
         app:srcCompat="@drawable/qc_asset_1"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="290dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/quickcash_asset_2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
