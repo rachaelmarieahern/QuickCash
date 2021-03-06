@@ -41,7 +41,7 @@ public class TaskUnitTest {
         taskViewModel.description = "AHHHHHH";
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
-        assertTrue(taskViewModel.errorMessage.equals("Headline contains too few characters!"));
+        assertEquals(taskViewModel.errorMessage, "Headline contains too few characters!");
     }
 
     @Test
