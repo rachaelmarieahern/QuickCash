@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.quickcash.R;
-import com.example.quickcash.ViewModel.RegistrationViewModel;
+import com.example.quickcash.RegistrationViewModel;
 
 import org.jetbrains.annotations.NotNull;
 

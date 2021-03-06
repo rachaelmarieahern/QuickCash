@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.quickcash.ViewModel.LoginViewModel;
+import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentLoginBinding;
 

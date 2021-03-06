@@ -1,4 +1,4 @@
-package com.example.quickcash.ViewModel;
+package com.example.quickcash;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;

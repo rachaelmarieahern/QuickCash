@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imageView = (ImageView)findViewById(R.id.splashlogo);
-
         rotateAnimation();
     }
     private void rotateAnimation() {
