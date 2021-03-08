@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.Model;
 
 public class User {
 

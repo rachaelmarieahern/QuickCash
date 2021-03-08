@@ -8,6 +8,8 @@ import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.navigation.NavController;
 
+import com.example.quickcash.Util.ErrorTypes;
+import com.example.quickcash.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -39,8 +41,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     FirebaseAuth DBAuth;
 
     enum userType {HELPER, CLIENT}
-    enum errorType {invalidUserName, invalidPassword, invalidEmail}
-    List<errorType> errors = new ArrayList<errorType>();
+    List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
     userType userTypeSelection = userType.CLIENT;
 
     /**
@@ -57,15 +58,15 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
 
         if(!errors.isEmpty()){ //error is found in username, pass, and/or email
             String errorMessage = "";
-            if (errors.contains(errorType.invalidUserName)){
+            if (errors.contains(ErrorTypes.invalidUserName)){
                 errorMessage = errorMessage.concat("Invalid username");
                 username = ""; //reset username
             }
-            if (errors.contains(errorType.invalidEmail)){
+            if (errors.contains(ErrorTypes.invalidEmail)){
                 errorMessage = errorMessage.concat("\tInvalid email address");
                 email = ""; //reset email
             }
-            if (errors.contains(errorType.invalidPassword)){
+            if (errors.contains(ErrorTypes.invalidPassword)){
                 errorMessage = errorMessage.concat("\tInvalid Password");
                 password = ""; //reset password
             }
@@ -90,15 +91,15 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     public void validateInfo(){
 
         if (!username.matches("[A-Za-z0-9_]{3,15}")){
-            errors.add(errorType.invalidUserName);
+            errors.add(ErrorTypes.invalidUserName);
         }
 
         if (!email.matches("[A-Za-z0-9_]*@[A-Za-z0-9_]*\\.[A-Za-z0-9_/]{1,5}")){
-            errors.add(errorType.invalidEmail);
+            errors.add(ErrorTypes.invalidEmail);
         }
 
         if (!password.matches("[A-Za-z0-9_]{6,15}")){
-            errors.add(errorType.invalidPassword);
+            errors.add(ErrorTypes.invalidPassword);
         }
     }
 

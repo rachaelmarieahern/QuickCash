@@ -48,6 +48,17 @@ public class LoginFragment extends Fragment {
 
         final NavController navController = Navigation.findNavController(view);
         viewModel.navController = navController;
+        Button registerButton = (Button) getView().findViewById(R.id.registerButton);
+        NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegistration();
+
+
+        //Navigate to registration page
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionLoginToRegistration);
+            }
+        });
 
     }
 
