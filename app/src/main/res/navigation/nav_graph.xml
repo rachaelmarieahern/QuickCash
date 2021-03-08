@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
         android:id="@+id/dashboardFragment"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.quickcash.SplashFragment"
+        android:name="com.example.quickcash.View.SplashFragment"
         android:label="fragment_splash2"
         tools:layout="@layout/fragment_splash2" >
         <action

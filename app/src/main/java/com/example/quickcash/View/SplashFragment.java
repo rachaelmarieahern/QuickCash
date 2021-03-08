@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.View;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.quickcash.R;
 
 
 public class SplashFragment extends Fragment {

@@ -6,11 +6,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
@@ -46,6 +48,17 @@ public class LoginFragment extends Fragment {
 
         final NavController navController = Navigation.findNavController(view);
         viewModel.navController = navController;
+        Button registerButton = (Button) getView().findViewById(R.id.registerButton);
+        NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegistration();
+
+
+        //Navigate to registration page
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionLoginToRegistration);
+            }
+        });
 
     }
 
