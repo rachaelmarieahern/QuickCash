@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +39,8 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     }
 
     //DB connection
-    FirebaseAuth DBAuth;
+    public FirebaseAuth DBAuth;
+    public FirebaseUser user = null;
 
     public void validateLogin() {
         String emailCred = email.trim();
@@ -57,7 +59,7 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
                         Toast.makeText(getApplication(), "Credentials match Username & Password in DB",
                                 Toast.LENGTH_LONG).show();
-                        //TODO: Navigate to dashboard from here
+                        user = DBAuth.getCurrentUser();
                     } else { //email and un did not match in DB
                         Toast.makeText(getApplication(), "Error! Incorrect email and/or password",
                                 Toast.LENGTH_LONG).show();

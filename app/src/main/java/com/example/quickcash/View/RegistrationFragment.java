@@ -2,6 +2,7 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.quickcash.R;
 import com.example.quickcash.RegistrationViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,7 +46,17 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        final NavController navController = Navigation.findNavController(view);
-        viewModel.navController = navController;
+
+        NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToDashboard();
+
+        //Handle Account Status
+        viewModel.DBAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth DBAuth) {
+                if (viewModel.user != null) {     //If user is logged in, navigate to dashboard page
+                    Navigation.findNavController(view).navigate(actionRegisterToDashboard);
+                }
+            }
+        });
     }
 }

@@ -2,6 +2,7 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 public class LoginFragment extends Fragment {
@@ -60,6 +62,18 @@ public class LoginFragment extends Fragment {
             }
         });
 
-    }
+        NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
 
+        //Handle Account Status
+         viewModel.DBAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth DBAuth) {
+                if (viewModel.user != null) {     //If user is logged in, navigate to dashboard page
+                    Navigation.findNavController(view).navigate(actionLoginToDashboard);
+                }
+            }
+        });
     }
+}
+
+
