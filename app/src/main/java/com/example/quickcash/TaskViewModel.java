@@ -1,17 +1,36 @@
 package com.example.quickcash;
+import android.app.Application;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.quickcash.Model.Task;
 import com.example.quickcash.Util.ErrorTypes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class TaskViewModel extends ViewModel implements Observable {
+
+    //DB connections
+    FirebaseDatabase DB;
+    DatabaseReference tasks;
+    FirebaseAuth DBAuth;
+    String message; //message to display when successfully/unsuccessfully adding tasks
 
     @Bindable
     public String headLine, description;
@@ -100,9 +119,38 @@ public class TaskViewModel extends ViewModel implements Observable {
 
     public void addTaskToDB(){
         //TODO: Donovon you can add the functionality here to save a task object to firebase (after creating the object class)
+        DBAuth = FirebaseAuth.getInstance();
+        DB = FirebaseDatabase.getInstance();
+        tasks = DB.getReference();
+        Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
+                latitude, wage.trim(), projectDays, projectHours, projectMinutes);
+        tasks.child("TASKS").setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
+                if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                    message = "Task Successfully added to DB";
+                } else {
+                    message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
+                }
+            }
+        });
     }
 
-    public void getTaskFromDB(int taskID){
+    public void getTaskFromDB(Task taskToGet){
         //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
+        DBAuth = FirebaseAuth.getInstance();
+        DB = FirebaseDatabase.getInstance();
+        tasks = DB.getReference("TASKS");
+        tasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
