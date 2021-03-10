@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 
 import com.example.quickcash.Util.ErrorTypes;
@@ -22,19 +24,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistrationViewModel extends AndroidViewModel implements Observable {
+public class RegistrationViewModel extends ViewModel implements Observable {
+
+    public FirebaseAuth DBAuth;
+    public FirebaseUser user = null;
 
 
     @Bindable
     public String username = "", email = "", password= "";
     @Bindable
     public boolean helperSelected = false;
+    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
 
-
-    public RegistrationViewModel(@NonNull Application application) {
-        super(application);
+    public RegistrationViewModel() {
+        DBAuth = FirebaseAuth.getInstance();
+        user = null;
+        toastMessage.setValue("");
     }
-
 
     enum userType {HELPER, CLIENT}
     List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
@@ -67,7 +73,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 password = ""; //reset password
             }
 
-            Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+            toastMessage.setValue(errorMessage);
         }
 
     }
@@ -103,8 +109,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     //DB connections
     FirebaseDatabase DB;
     DatabaseReference users;
-    public FirebaseAuth DBAuth;
-    public FirebaseUser user = null;
     /**
      * Adds the user to Firebase using username, password, email, and type of user
      */
@@ -127,16 +131,14 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
                                       user = DBAuth.getCurrentUser();
                                     } else {
-                                        Toast.makeText(getApplication(), "Error! " +
-                                                Objects.requireNonNull(setUNType.getException()).getMessage(),
-                                                Toast.LENGTH_LONG).show();
+                                        toastMessage.setValue( "Error! " +
+                                                Objects.requireNonNull(setUNType.getException()).getMessage());
                                     }
                                 }
                             });
                 } else {
-                    Toast.makeText(getApplication(), "Error! "
-                            + Objects.requireNonNull(createUNPass.getException()).getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    toastMessage.setValue( "Error! "
+                            + Objects.requireNonNull(createUNPass.getException()).getMessage());
                 }
             }
         });

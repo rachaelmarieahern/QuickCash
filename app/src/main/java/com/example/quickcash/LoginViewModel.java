@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -25,52 +27,48 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 
-public class LoginViewModel extends AndroidViewModel implements Observable {
+public class LoginViewModel extends ViewModel implements Observable {
 
-    public NavController navController;
+    public FirebaseAuth DBAuth;
+    public FirebaseUser user;
+    public boolean validLogin;
 
     @Bindable
     public String email = "", password= "";
     @Bindable
-    public boolean validLogin;
+    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
 
-    public LoginViewModel(@NonNull Application application) {
-        super(application);
+
+    public LoginViewModel() {
+        DBAuth = FirebaseAuth.getInstance();
+        user = null;
+        toastMessage.setValue("");
     }
 
     //DB connection
-    public FirebaseAuth DBAuth;
-    public FirebaseUser user = null;
+
 
     public void validateLogin() {
         String emailCred = email.trim();
         String passwordCred = password.trim();
-        DBAuth = FirebaseAuth.getInstance();
 
         //if the email or password is not formatted correctly
         if (!emailCred.matches("[A-Za-z0-9_]*@[A-Za-z0-9_]*\\.[A-Za-z0-9_/]{1,5}") ||
                 !passwordCred.matches("[A-Za-z0-9_]{6,15}")){
-            Toast.makeText(getApplication(), "Error! Your credentials are not formatted correctly",
-                    Toast.LENGTH_LONG).show();
-        } else {
+            toastMessage.setValue("Error! Your credentials are not formatted correctly");
+          } else {
             DBAuth.signInWithEmailAndPassword(emailCred, passwordCred).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
-                        Toast.makeText(getApplication(), "Credentials match Username & Password in DB",
-                                Toast.LENGTH_LONG).show();
+                        validLogin = true;
                         user = DBAuth.getCurrentUser();
                     } else { //email and un did not match in DB
-                        Toast.makeText(getApplication(), "Error! Incorrect email and/or password",
-                                Toast.LENGTH_LONG).show();
+                        toastMessage.setValue("Error! Incorrect email and/or password");
                     }
                 }
             });
         }
-    }
-
-    public void goToRegistration(){
-        navController.navigate(R.id.registrationFragment);
     }
 
 
