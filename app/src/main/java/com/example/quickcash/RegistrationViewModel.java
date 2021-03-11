@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 
 import com.example.quickcash.Util.ErrorTypes;
@@ -14,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,24 +24,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistrationViewModel extends AndroidViewModel implements Observable {
+public class RegistrationViewModel extends ViewModel implements Observable {
+
+    public FirebaseAuth DBAuth;
+    public FirebaseUser user = null;
 
 
     @Bindable
     public String username = "", email = "", password= "";
     @Bindable
     public boolean helperSelected = false;
+    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    @Bindable
+    public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
 
-    public NavController navController;
-
-    public RegistrationViewModel(@NonNull Application application) {
-        super(application);
+    public RegistrationViewModel() {
+        DBAuth = FirebaseAuth.getInstance();
+        user = null;
     }
-
-    //DB connections
-    FirebaseDatabase DB;
-    DatabaseReference users;
-    FirebaseAuth DBAuth;
 
     enum userType {HELPER, CLIENT}
     List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
@@ -71,7 +74,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 password = ""; //reset password
             }
 
-            Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+           // toastMessage.setValue(errorMessage);
         }
 
     }
@@ -103,16 +106,10 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
         }
     }
 
-    @Override
-    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
 
-    }
-
-    @Override
-    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
-    }
-
+    //DB connections
+    FirebaseDatabase DB;
+    DatabaseReference users;
     /**
      * Adds the user to Firebase using username, password, email, and type of user
      */
@@ -133,25 +130,31 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                                 @Override
                                 public void onComplete(@NonNull Task<Void> setUNType) {
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
-                                        String message = "Welcome User: " + username + " of type " +
-                                                userTypeSelection.toString() + "\nA welcome email has " +
-                                                "been sent to " + email;
-                                        Toast welcome = Toast.makeText(getApplication(), message, Toast.LENGTH_LONG);
-                                        welcome.show(); //welcome message
-                                        //TODO: Navigate to dashboard from here
+                                      validLogin.setValue(true);
+                                      toastMessage.setValue("Success!");
                                     } else {
-                                        Toast.makeText(getApplication(), "Error! " +
-                                                Objects.requireNonNull(setUNType.getException()).getMessage(),
-                                                Toast.LENGTH_LONG).show();
+                                        toastMessage.setValue( "Error! " +
+                                                Objects.requireNonNull(setUNType.getException()).getMessage());
                                     }
                                 }
                             });
                 } else {
-                    Toast.makeText(getApplication(), "Error! "
-                            + Objects.requireNonNull(createUNPass.getException()).getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    toastMessage.setValue( "Error! "
+                            + Objects.requireNonNull(createUNPass.getException()).getMessage());
                 }
             }
         });
     }
+
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+
+    }
+
 }

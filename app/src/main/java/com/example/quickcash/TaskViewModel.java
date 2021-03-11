@@ -3,6 +3,7 @@ package com.example.quickcash;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.quickcash.Util.ErrorTypes;
 
@@ -19,13 +20,13 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public boolean urgent;
     @Bindable
-    public double longitude, latitude;
+    public int longitude, latitude;
     @Bindable
     public String wage = "";
     @Bindable
     public int projectHours,projectMinutes, projectDays;
     @Bindable
-    public String errorMessage = "";
+    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
@@ -69,7 +70,7 @@ public class TaskViewModel extends ViewModel implements Observable {
             if (errors.contains(ErrorTypes.invalidDateRange)){
                 errorMessage = errorMessage.concat("\nEnd date must be after start date");
             }
-            //Toast.makeText(getApplication(), errorMessage, Toast.LENGTH_LONG).show(); //show error Message
+           //toastMessage.setValue(errorMessage);
         }
     }
 

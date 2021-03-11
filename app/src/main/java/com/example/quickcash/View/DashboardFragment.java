@@ -41,19 +41,6 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        Button loginNavButton = (Button) getView().findViewById(R.id.loginNavButton);
-        NavDirections actionLoginToRegistration = DashboardFragmentDirections.dashboardToLogin();
-
-
-        //Navigate to login page
-        loginNavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(actionLoginToRegistration);
-            }
-        });
-
     }
 
 
