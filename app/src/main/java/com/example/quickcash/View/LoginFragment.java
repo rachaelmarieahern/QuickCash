@@ -31,7 +31,6 @@ import java.util.Objects;
 public class LoginFragment extends Fragment {
 
     LoginViewModel viewModel;
-    String oldToast = "";
 
     public LoginFragment() {
         // Required empty public constructor
@@ -49,16 +48,8 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         FragmentLoginBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
         binding.setViewModel(viewModel);
-        final Observer<String> toastObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newToast) {
-                if(!newToast.equals(oldToast)) {
-                    Toast.makeText(getActivity().getApplicationContext(), newToast, Toast.LENGTH_LONG).show();
-                }
-                oldToast = newToast;
-            }
-        };
-        viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
+
+
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -66,38 +57,38 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button registerButton = (Button) getView().findViewById(R.id.registerButton);
+        final Observer<String> toastObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String newToast) {
+                if (!newToast.equals("")) {
+                    Toast.makeText(getActivity().getApplicationContext(), newToast, Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
+
         NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegistration();
 
-        View.OnClickListener registerListener = new View.OnClickListener() {
+        final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override
-            public void onClick(View v) {
-                Log.d(getTag(), "Register clicked");
-                Navigation.findNavController(view).navigate(actionLoginToRegistration);
+            public void onChanged(@Nullable final Boolean register) {
+                    Navigation.findNavController(view).navigate(actionLoginToRegistration);
             }
         };
 
-        registerButton.setOnClickListener(registerListener);
+      viewModel.registrationNavigate.observe(getViewLifecycleOwner(), registrationObserver);
 
-        Button loginButton = (Button) getView().findViewById(R.id.loginButton);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(getTag(), "login clicked");
-                viewModel.validateLogin();
-            }
-        });
 
         NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
 
-        //Handle Account Status
-         viewModel.DBAuth.addAuthStateListener(DBAuth -> {
-             if (viewModel.validLogin) {     //If user is logged in, navigate to dashboard page
-                 Navigation.findNavController(view).navigate(actionLoginToDashboard);
-             }
-         });
+        final Observer<Boolean> loginObserver = new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable final Boolean validLogin) {
+                    Navigation.findNavController(view).navigate(actionLoginToDashboard);
+            }
+        };
+
+        viewModel.validLogin.observe(getViewLifecycleOwner(), loginObserver);
     }
+
 }
-
-

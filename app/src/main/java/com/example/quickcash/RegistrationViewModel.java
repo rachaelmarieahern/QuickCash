@@ -35,11 +35,12 @@ public class RegistrationViewModel extends ViewModel implements Observable {
     @Bindable
     public boolean helperSelected = false;
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    @Bindable
+    public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
 
     public RegistrationViewModel() {
         DBAuth = FirebaseAuth.getInstance();
         user = null;
-        toastMessage.setValue("");
     }
 
     enum userType {HELPER, CLIENT}
@@ -73,7 +74,7 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                 password = ""; //reset password
             }
 
-            toastMessage.setValue(errorMessage);
+           // toastMessage.setValue(errorMessage);
         }
 
     }
@@ -129,7 +130,8 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> setUNType) {
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
-                                      user = DBAuth.getCurrentUser();
+                                      validLogin.setValue(true);
+                                      toastMessage.setValue("Success!");
                                     } else {
                                         toastMessage.setValue( "Error! " +
                                                 Objects.requireNonNull(setUNType.getException()).getMessage());

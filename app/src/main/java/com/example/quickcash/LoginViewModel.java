@@ -1,48 +1,38 @@
 package com.example.quickcash;
 
-import android.app.Application;
-import android.view.View;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
-import com.example.quickcash.R;
-import com.example.quickcash.View.LoginFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Objects;
 
 
 public class LoginViewModel extends ViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
     public FirebaseUser user;
-    public boolean validLogin;
 
     @Bindable
     public String email = "", password= "";
+
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    @Bindable
+    public MutableLiveData<Boolean> registrationNavigate = new MutableLiveData<>();
+    @Bindable
+    public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
+
+    Boolean _validLogin = false;
 
 
     public LoginViewModel() {
         DBAuth = FirebaseAuth.getInstance();
         user = null;
-        toastMessage.setValue("");
     }
 
     //DB connection
@@ -61,8 +51,8 @@ public class LoginViewModel extends ViewModel implements Observable {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
-                        validLogin = true;
-                        user = DBAuth.getCurrentUser();
+                        toastMessage.setValue("Correct!");
+                        validLogin.setValue(true);
                     } else { //email and un did not match in DB
                         toastMessage.setValue("Error! Incorrect email and/or password");
                     }
@@ -70,6 +60,11 @@ public class LoginViewModel extends ViewModel implements Observable {
             });
         }
     }
+
+    public void goToRegistration(){
+        registrationNavigate.setValue(true);
+    }
+
 
 
     @Override

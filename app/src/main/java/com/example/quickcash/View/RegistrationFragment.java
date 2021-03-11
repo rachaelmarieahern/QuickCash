@@ -46,27 +46,30 @@ public class RegistrationFragment extends Fragment {
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {
+                if (!newToast.equals(""))
                 Toast.makeText(getActivity().getApplicationContext(), newToast,Toast.LENGTH_LONG).show();
             }
         };
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
+
+
         return inflater.inflate(R.layout.fragment_registration, container, false);
     }
 
     @Override
-    public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToDashboard();
 
-        //Handle Account Status
-        viewModel.DBAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+
+        final Observer<Boolean> validObserver = new Observer<Boolean>() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth DBAuth) {
-                if (viewModel.user != null) {     //If user is logged in, navigate to dashboard page
-                    Navigation.findNavController(view).navigate(actionRegisterToDashboard);
-                }
+            public void onChanged(@Nullable final Boolean validLogin) {
+                Navigation.findNavController(view).navigate(actionRegisterToDashboard);
             }
-        });
+        };
+
+        viewModel.validLogin.observe(getViewLifecycleOwner(), validObserver);
     }
 }
