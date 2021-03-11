@@ -27,9 +27,9 @@ import java.util.Objects;
 public class TaskViewModel extends ViewModel implements Observable {
 
     //DB connections
-    FirebaseDatabase DB;
-    DatabaseReference tasks;
-    FirebaseAuth DBAuth;
+    public FirebaseDatabase DB;
+    public DatabaseReference tasks;
+    public FirebaseAuth DBAuth;
     String message; //message to display when successfully/unsuccessfully adding tasks
 
     @Bindable
@@ -39,7 +39,7 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public boolean urgent;
     @Bindable
-    public int longitude, latitude;
+    public double longitude, latitude;
     @Bindable
     public String wage = "";
     @Bindable
@@ -118,27 +118,28 @@ public class TaskViewModel extends ViewModel implements Observable {
     }
 
     public void addTaskToDB(){
-        //TODO: Donovon you can add the functionality here to save a task object to firebase (after creating the object class)
         DBAuth = FirebaseAuth.getInstance();
-        DB = FirebaseDatabase.getInstance();
-        tasks = DB.getReference();
-        Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
-                latitude, wage.trim(), projectDays, projectHours, projectMinutes);
-        tasks.child("TASKS").setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
-                if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
-                    message = "Task Successfully added to DB";
-                } else {
-                    message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
+        DBAuth.signInWithEmailAndPassword("helloman@live.com", "sdf234");
+        if (DBAuth.getCurrentUser() != null) {
+            DB = FirebaseDatabase.getInstance();
+            tasks = DB.getReference();
+            Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
+                    latitude, wage.trim(), projectDays, projectHours, projectMinutes);
+            tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
+                    if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                        message = "Task Successfully added to DB";
+                    } else {
+                        message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
-    public void getTaskFromDB(Task taskToGet){
+    public void getTaskFromDB(int taskID){
         //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
-        DBAuth = FirebaseAuth.getInstance();
         DB = FirebaseDatabase.getInstance();
         tasks = DB.getReference("TASKS");
         tasks.addValueEventListener(new ValueEventListener() {

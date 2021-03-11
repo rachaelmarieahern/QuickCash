@@ -51,7 +51,7 @@ public class LoginViewModel extends ViewModel implements Observable {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
-                        toastMessage.setValue("Correct!");
+                        toastMessage.setValue("Correct Login Credentials!");
                         validLogin.setValue(true);
                     } else { //email and un did not match in DB
                         toastMessage.setValue("Error! Incorrect email and/or password");

@@ -1,32 +1,22 @@
 package com.example.quickcash.View;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
+import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentLoginBinding;
-import com.google.firebase.auth.FirebaseAuth;
-
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
@@ -72,7 +62,7 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean register) {
-                    Navigation.findNavController(view).navigate(actionLoginToRegistration);
+                Navigation.findNavController(view).navigate(actionLoginToRegistration);
             }
         };
 
@@ -84,7 +74,8 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> loginObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean validLogin) {
-                    Navigation.findNavController(view).navigate(actionLoginToDashboard);
+                Navigation.findNavController(view).navigate(actionLoginToDashboard);
+                SessionManagement sessionManagement = new SessionManagement(getContext());
             }
         };
 
