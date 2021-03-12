@@ -1,16 +1,11 @@
 package com.example.quickcash;
-import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.navigation.NavController;
 
-import com.example.quickcash.Util.ErrorTypes;
 import com.example.quickcash.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

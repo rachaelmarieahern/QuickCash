@@ -6,7 +6,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.quickcash.Util.ErrorTypes;
 import com.example.quickcash.View.MainActivity;
 
 import org.junit.Rule;
