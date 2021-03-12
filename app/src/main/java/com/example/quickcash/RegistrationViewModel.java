@@ -74,7 +74,7 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                 password = ""; //reset password
             }
 
-           // toastMessage.setValue(errorMessage);
+           //toastMessage.setValue(errorMessage);
         }
 
     }
@@ -131,7 +131,7 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                                 public void onComplete(@NonNull Task<Void> setUNType) {
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
                                       validLogin.setValue(true);
-                                      toastMessage.setValue("Success!");
+                                      toastMessage.setValue("Successful Registration!");
                                     } else {
                                         toastMessage.setValue( "Error! " +
                                                 Objects.requireNonNull(setUNType.getException()).getMessage());

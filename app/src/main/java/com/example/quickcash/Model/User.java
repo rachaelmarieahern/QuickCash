@@ -1,7 +1,6 @@
 package com.example.quickcash.Model;
 
 public class User {
-
     public String Username, userType, email;
 
     public User(){
@@ -12,5 +11,25 @@ public class User {
         this.Username = uName;
         this.userType = userType;
         this.email = email;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUserType() {
+        return userType;
     }
 }

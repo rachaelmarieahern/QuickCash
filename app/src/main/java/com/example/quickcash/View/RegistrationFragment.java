@@ -41,8 +41,7 @@ public class RegistrationFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {

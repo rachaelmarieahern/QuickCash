@@ -1,6 +1,6 @@
 package com.example.quickcash;
-
 import com.example.quickcash.Util.ErrorTypes;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -93,5 +93,28 @@ public class TaskUnitTest {
         taskViewModel.validateInfo();
         taskViewModel.addTaskClicked();
         assertFalse(taskViewModel.errors.contains(ErrorTypes.invalidWage));
+    }
+
+    @Test
+    public void validateAddingTask(){
+        //define variables in taskview model
+        Calendar calendarStart = Calendar.getInstance();
+        calendarStart.set(2012,12,25);
+        Calendar calendarEnd = Calendar.getInstance();
+        calendarEnd.set(2013,11,11);
+        taskViewModel.headLine = "Headline 1";
+        taskViewModel.description = "This is a description for a new task";
+        taskViewModel.startDate = calendarStart.getTime();
+        taskViewModel.endDate = calendarEnd.getTime();
+        taskViewModel.urgent = false;
+        taskViewModel.latitude = 111.232;
+        taskViewModel.longitude = 145.112;
+        taskViewModel.wage = "25.00";
+        taskViewModel.projectDays = 321;
+        taskViewModel.projectHours = 0;
+        taskViewModel.projectMinutes = 0;
+
+        //sign in as helloman and add task to DB
+        //taskViewModel.addTaskToDB();
     }
 }
