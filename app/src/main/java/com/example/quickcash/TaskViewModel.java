@@ -37,13 +37,13 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public Date startDate, endDate;
     @Bindable
+    public int projectDays, projectHours, projectMinutes;
+    @Bindable
     public boolean urgent;
     @Bindable
     public double longitude, latitude;
     @Bindable
     public String wage = "";
-    @Bindable
-    public int projectHours,projectMinutes, projectDays;
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
 

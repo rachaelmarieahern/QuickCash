@@ -35,7 +35,6 @@ public class SplashFragment extends Fragment {
     FirebaseUser user;
     boolean loggedIn = false;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
