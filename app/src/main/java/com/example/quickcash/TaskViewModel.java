@@ -115,7 +115,7 @@ public class TaskViewModel extends ViewModel implements Observable {
             if (errors.contains(ErrorTypes.invalidEndDateString)){
                     errorMessage = errorMessage.concat("\nPlease enter valid end date formats");
             }
-         // toastMessage.setValue(errorMessage);
+          toastMessage.setValue(errorMessage);
         }
     }
 
