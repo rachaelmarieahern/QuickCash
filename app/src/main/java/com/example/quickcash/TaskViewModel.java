@@ -67,7 +67,7 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
 
-    enum TaskType{computerRepair, yardwork, dogWalking, babysitting, errands}
+    enum TaskType{cleaning, gardening, housework, labour, babysitting}
     //UPDATE
     public List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
 
@@ -115,7 +115,7 @@ public class TaskViewModel extends ViewModel implements Observable {
             if (errors.contains(ErrorTypes.invalidEndDateString)){
                     errorMessage = errorMessage.concat("\nPlease enter valid end date formats");
             }
-          toastMessage.setValue(errorMessage);
+         // toastMessage.setValue(errorMessage);
         }
     }
 

@@ -44,7 +44,7 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         View view
                 = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.task_list_item, parent, false);
-        return new TaskViewHolder(view);
+        return new TaskAdapter.TaskViewHolder(view);
     }
 
     //Updates task list item variables to new data fetched from firebase
@@ -60,7 +60,6 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             headline = itemView.findViewById(R.id.itemHeadline);
             distance = itemView.findViewById(R.id.itemDistance);
             location = itemView.findViewById(R.id.itemLocation);
-
         }
     }
 }
