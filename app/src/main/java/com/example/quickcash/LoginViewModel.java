@@ -5,6 +5,8 @@ import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.quickcash.View.LoginFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,7 +53,6 @@ public class LoginViewModel extends ViewModel implements Observable {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
-                        toastMessage.setValue("Correct Login Credentials!");
                         validLogin.setValue(true);
                     } else { //email and un did not match in DB
                         toastMessage.setValue("Error! Incorrect email and/or password");

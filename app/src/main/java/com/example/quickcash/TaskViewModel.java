@@ -163,7 +163,7 @@ public class TaskViewModel extends ViewModel implements Observable {
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
-                    if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                    if (addTask.isSuccessful()) { //if the task is successfully added to FB RT DB
                         message = "Task Successfully added to DB";
                     } else {
                         message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
