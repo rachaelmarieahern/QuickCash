@@ -14,13 +14,24 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
+import com.example.quickcash.RegistrationViewModel;
 import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.jetbrains.annotations.NotNull;
 
 public class LoginFragment extends Fragment {
 
     LoginViewModel viewModel;
+    FirebaseAuth DBAuth;
+    FirebaseUser userLoggedIn;
+    SessionManagement session;
+
+    public SessionManagement getSession() {
+        return session;
+    }
 
     public LoginFragment() {
         // Required empty public constructor
@@ -61,6 +72,7 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean register) {
+                createSession();
                 Navigation.findNavController(view).navigate(actionLoginToRegistration);
             }
         };
@@ -73,12 +85,19 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> loginObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean validLogin) {
+                createSession();
                 Navigation.findNavController(view).navigate(actionLoginToDashboard);
-                SessionManagement sessionManagement = new SessionManagement(getContext());
             }
         };
 
         viewModel.validLogin.observe(getViewLifecycleOwner(), loginObserver);
+    }
+
+    public void createSession() {
+        DBAuth = FirebaseAuth.getInstance();
+        userLoggedIn = DBAuth.getCurrentUser();
+        session = new SessionManagement(getActivity().getApplicationContext());
+        session.saveSession(userLoggedIn);
     }
 
 }

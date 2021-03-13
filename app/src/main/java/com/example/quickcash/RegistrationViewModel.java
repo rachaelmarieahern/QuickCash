@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.User;
+import com.example.quickcash.View.LoginFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -125,8 +126,7 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> setUNType) {
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
-                                      validLogin.setValue(true);
-                                      toastMessage.setValue("Successful Registration!");
+                                        validLogin.setValue(true);
                                     } else {
                                         toastMessage.setValue( "Error! " +
                                                 Objects.requireNonNull(setUNType.getException()).getMessage());
