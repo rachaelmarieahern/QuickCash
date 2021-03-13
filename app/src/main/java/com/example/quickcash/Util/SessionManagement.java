@@ -13,7 +13,7 @@ public class SessionManagement {
     SharedPreferences.Editor editor;
     String SHARED_PREF_NAME = "session";
     String SESSION_KEY = "session_user";
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser user;
     String UserId;
 
     public SessionManagement(Context context) {
@@ -31,5 +31,9 @@ public class SessionManagement {
     //return user whose session is saved
     public String getUId() {
         return UserId;
+    }
+
+    public FirebaseUser getUser() {
+        return user;
     }
 }
