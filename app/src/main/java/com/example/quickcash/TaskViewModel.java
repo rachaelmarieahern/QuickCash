@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -44,6 +45,18 @@ public class TaskViewModel extends ViewModel implements Observable {
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
     @Bindable
     public MutableLiveData<Boolean> addTaskNavigate = new MutableLiveData<>();
+
+    public TaskViewModel(){
+
+        headLine = "";
+        description = "";
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2000,0,0);
+        startDate = calendar.getTime();
+        calendar.set(2020,0,0);
+        endDate = calendar.getTime();
+        wage = "0.00";
+    }
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
@@ -87,7 +100,7 @@ public class TaskViewModel extends ViewModel implements Observable {
             if (errors.contains(ErrorTypes.invalidDateRange)){
                 errorMessage = errorMessage.concat("\nEnd date must be after start date");
             }
-           //toastMessage.setValue(errorMessage);
+          // toastMessage.setValue(errorMessage);
         }
     }
 
@@ -113,6 +126,7 @@ public class TaskViewModel extends ViewModel implements Observable {
         if(startDate == null || endDate == null){
             errors.add(ErrorTypes.datesBlank);
         }
+
     }
 
     public void addTaskToDB(){
