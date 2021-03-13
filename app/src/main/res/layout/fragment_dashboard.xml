@@ -12,19 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/goToAddTaskButton"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="@string/add_task_button"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.22000003"
             app:srcCompat="@drawable/ic_plus" />
 
         <LinearLayout
@@ -56,9 +57,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/taskListRecyclerView"
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="434dp"
-                android:layout_marginBottom="3dp"
+                android:layout_margin="20dp"
                 android:layout_weight="5">
 
             </androidx.recyclerview.widget.RecyclerView>
