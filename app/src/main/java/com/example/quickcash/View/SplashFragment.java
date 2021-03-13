@@ -34,7 +34,7 @@ public class SplashFragment extends Fragment {
     ImageView imageView;
     FirebaseAuth DBAuth;
     FirebaseUser user;
-    boolean loggedIn = true;
+    boolean loggedIn = false;
     View view;
 
 
@@ -71,7 +71,7 @@ public class SplashFragment extends Fragment {
             public void run() {
                 redirect(view);
             }
-        }, 5000);
+        }, 3000);
     }
 
 

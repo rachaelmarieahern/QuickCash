@@ -14,18 +14,23 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskViewHolder> {
 
     public TaskAdapter(
-            @NonNull FirebaseRecyclerOptions<Task> options)
-    {
+            @NonNull FirebaseRecyclerOptions<Task> options) {
         super(options);
     }
 
+    //Attaches card view for individual list items to the adapter
+    @NonNull
+    @Override
+    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.task_list_item, parent, false);
+        return new TaskViewHolder(view);
+    }
 
     //Binds data to the holder variables
     @Override
-    protected void
-    onBindViewHolder(@NonNull TaskViewHolder holder,
-                     int position, @NonNull Task currentTask)
-    {
+    protected void  onBindViewHolder(TaskViewHolder holder,
+                                     int position, @NonNull Task currentTask) {
 
         holder.description.setText(currentTask.getDescription());
         holder.headline.setText(currentTask.getHeadline());
@@ -34,22 +39,9 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         holder.location.setText(currentTask.getWage());
     }
 
-  //Attaches card view for individual list items to the adapter
-    @NonNull
-    @Override
-    public TaskViewHolder
-    onCreateViewHolder(@NonNull ViewGroup parent,
-                       int viewType)
-    {
-        View view
-                = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.task_list_item, parent, false);
-        return new TaskAdapter.TaskViewHolder(view);
-    }
 
     //Updates task list item variables to new data fetched from firebase
-    static class TaskViewHolder
-            extends RecyclerView.ViewHolder {
+    static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView taskType, wage, description, headline, distance, location;
         public TaskViewHolder(@NonNull View itemView)
         {
@@ -63,3 +55,6 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         }
     }
 }
+
+
+
