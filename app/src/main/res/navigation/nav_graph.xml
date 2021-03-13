@@ -63,4 +63,9 @@
             android:id="@+id/createTaskToDashboard"
             app:destination="@id/dashboardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_specific_task_view"
+        android:name="com.example.quickcash.fragment_specific_task_view"
+        android:label="fragment_specific_task_view"
+        tools:layout="@layout/fragment_specific_task_view" />
 </navigation>
