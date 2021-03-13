@@ -37,6 +37,7 @@ public class SplashFragment extends Fragment {
     boolean loggedIn = false;
     View view;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,10 @@ public class SplashFragment extends Fragment {
 
         DBAuth = FirebaseAuth.getInstance();
         user = DBAuth.getCurrentUser();
-        //TODO: Set user logged in variable once gotten from Tom
+
+        if(user != null) {
+            loggedIn = true;
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
