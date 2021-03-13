@@ -27,7 +27,6 @@ public class TaskViewModel extends ViewModel implements Observable {
     public FirebaseDatabase DB;
     public DatabaseReference tasks;
     public FirebaseAuth DBAuth;
-    String message; //message to display when successfully/unsuccessfully adding tasks
 
     @Bindable
     public String headLine, description;
@@ -46,13 +45,14 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
     @Bindable
-    public MutableLiveData<Boolean> addTaskNavigate = new MutableLiveData<>();
+    public MutableLiveData<Boolean> successfulTask = new MutableLiveData<>();
 
     public TaskViewModel(){
         headLine = "";
         description = "";
         startDateString = "";
         endDateString = "";
+        successfulTask.setValue(false);
         Calendar calendar = Calendar.getInstance();
         calendar.set(2000,0,0);
         startDate = calendar.getTime();
@@ -163,10 +163,11 @@ public class TaskViewModel extends ViewModel implements Observable {
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
-                    if (addTask.isSuccessful()) { //if the task is successfully added to FB RT DB
-                        message = "Task Successfully added to DB";
+                    if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                        toastMessage.setValue("Task Successfully added to DB");
+                        successfulTask.setValue(true);
                     } else {
-                        message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
+                        toastMessage.setValue("Error! " + Objects.requireNonNull(addTask.getException()).getMessage());
                     }
                 }
             });
@@ -187,8 +188,6 @@ public class TaskViewModel extends ViewModel implements Observable {
         startDate = calendar.getTime();
         calendar.set(endYear, endMonth, endDay);
         endDate = calendar.getTime();
-
-        toastMessage.setValue(startDate.toString() + endDate.toString());
         }
 
     public void getTaskFromDB(int taskID){

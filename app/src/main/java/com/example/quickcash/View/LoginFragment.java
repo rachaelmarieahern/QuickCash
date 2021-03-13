@@ -77,7 +77,7 @@ public class LoginFragment extends Fragment {
             }
         };
 
-      viewModel.registrationNavigate.observe(getViewLifecycleOwner(), registrationObserver);
+        viewModel.registrationNavigate.observe(getViewLifecycleOwner(), registrationObserver);
 
 
         NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToDashboard();
@@ -87,11 +87,12 @@ public class LoginFragment extends Fragment {
             public void onChanged(@Nullable final Boolean validLogin) {
                 createSession();
                 Navigation.findNavController(view).navigate(actionLoginToDashboard);
+       SessionManagement sessionManagement = new SessionManagement(getActivity().getApplicationContext());
             }
         };
-
         viewModel.validLogin.observe(getViewLifecycleOwner(), loginObserver);
     }
+
 
     public void createSession() {
         DBAuth = FirebaseAuth.getInstance();
@@ -99,5 +100,4 @@ public class LoginFragment extends Fragment {
         session = new SessionManagement(getActivity().getApplicationContext());
         session.saveSession(userLoggedIn);
     }
-
 }

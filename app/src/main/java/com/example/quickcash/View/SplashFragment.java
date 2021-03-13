@@ -34,7 +34,7 @@ public class SplashFragment extends Fragment {
     ImageView imageView;
     FirebaseAuth DBAuth;
     FirebaseUser user;
-    boolean loggedIn = false;
+    boolean loggedIn = true;
     View view;
 
 

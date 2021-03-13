@@ -48,19 +48,19 @@ public class DashboardFragment extends Fragment {
 
 
 
-//        databaseReference = FirebaseDatabase.getInstance().getReference();
-//        //Getting the query from Firebase
-//        options = new FirebaseRecyclerOptions.Builder<Task>().setQuery(databaseReference, Task.class).build();
-//        //Instaniating the adapter
-//        taskAdapter = new TaskAdapter(options);
-//        //Finding the recyclerview
-//        taskListRecyclerView = view.findViewById(R.id.taskListRecyclerView);
-//        //Setting the layout of the recyclerview to Linear
-//        taskListRecyclerView.setLayoutManager(
-//                new LinearLayoutManager(view.getContext())
-//                );
-//        //Adding the adapter to the recyclerview
-//        taskListRecyclerView.setAdapter(taskAdapter);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        //Getting the query from Firebase
+        options = new FirebaseRecyclerOptions.Builder<Task>().setQuery(databaseReference, Task.class).build();
+        //Instaniating the adapter
+        taskAdapter = new TaskAdapter(options);
+        //Finding the recyclerview
+        taskListRecyclerView = view.findViewById(R.id.taskListRecyclerView);
+        //Setting the layout of the recyclerview to Linear
+        taskListRecyclerView.setLayoutManager(
+                new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false)
+                );
+        //Adding the adapter to the recyclerview
+        taskListRecyclerView.setAdapter(taskAdapter);
 
 
         binding =  FragmentDashboardBinding.inflate(inflater, container, false);
