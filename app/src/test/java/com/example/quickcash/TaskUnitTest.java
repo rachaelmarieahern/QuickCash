@@ -1,9 +1,13 @@
 package com.example.quickcash;
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+
 import com.example.quickcash.ErrorTypes;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 import java.util.Calendar;
 
@@ -11,6 +15,9 @@ import static org.junit.Assert.*;
 
 public class TaskUnitTest {
     TaskViewModel taskViewModel;
+
+    @Rule
+    public TestRule rule = new InstantTaskExecutorRule();
 
     @Before public void initializeViewModel(){
         taskViewModel = new TaskViewModel();
