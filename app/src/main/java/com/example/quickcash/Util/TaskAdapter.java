@@ -6,74 +6,65 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskViewHolder> {
 
-
-
-public class TaskAdapter extends FirebaseRecyclerAdapter< task, taskAdapter.taskViewholder> {
-
-    public taskAdapter(
-            @NonNull FirebaseRecyclerOptions<task> options)
+    public TaskAdapter(
+            @NonNull FirebaseRecyclerOptions<Task> options)
     {
         super(options);
     }
 
-    // Function to bind the view in Card view(here
-    // "task.xml") iwth data in
-    // model class(here "task.class")
+
+    //Binds data to the holder variables
     @Override
     protected void
-    onBindViewHolder(@NonNull tasksViewholder holder,
-                     int position, @NonNull task model)
+    onBindViewHolder(@NonNull TaskViewHolder holder,
+                     int position, @NonNull Task currentTask)
     {
 
-        // Add firstname from model class (here
-        // "task.class")to appropriate view in Card
-        // view (here "task.xml")
-        holder.firstname.setText(model.getFirstname());
+        holder.description.setText(currentTask.getDescription());
 
-        // Add lastname from model class (here
-        // "task.class")to appropriate view in Card
-        // view (here "task.xml")
-        holder.lastname.setText(model.getLastname());
+        holder.headline.setText(currentTask.getHeadline());
 
-        // Add age from model class (here
-        // "task.class")to appropriate view in Card
-        // view (here "task.xml")
-        holder.age.setText(model.getAge());
+        holder.wage.setText(currentTask.getWage());
+
+        holder.distance.setText(currentTask.getHeadline());
+
+        holder.location.setText(currentTask.getWage());
     }
 
-    // Function to tell the class about the Card view (here
-    // "task.xml")in
-    // which the data will be shown
+  //Attaches card view for individual list items to the adapter
     @NonNull
     @Override
-    public tasksViewholder
+    public TaskViewHolder
     onCreateViewHolder(@NonNull ViewGroup parent,
                        int viewType)
     {
         View view
                 = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.task, parent, false);
-        return new taskAdapter.tasksViewholder(view);
+                .inflate(R.layout.task_list_item, parent, false);
+        return new TaskViewHolder(view);
     }
 
-    // Sub Class to create references of the views in Crad
-    // view (here "task.xml")
-    class tasksViewholder
+    //Updates task list item variables to new data fetched from firebase
+    static class TaskViewHolder
             extends RecyclerView.ViewHolder {
-        TextView firstname, lastname, age;
-        public tasksViewholder(@NonNull View itemView)
+        TextView taskType, wage, description, headline, distance, location;
+        public TaskViewHolder(@NonNull View itemView)
         {
             super(itemView);
+            taskType = itemView.findViewById(R.id.itemTaskType);
+            wage = itemView.findViewById(R.id.itemWage);
+            description = itemView.findViewById(R.id.itemDescription);
+            headline = itemView.findViewById(R.id.itemHeadline);
+            distance = itemView.findViewById(R.id.itemDistance);
+            location = itemView.findViewById(R.id.itemLocation);
 
-            firstname
-                    = itemView.findViewById(R.id.firstname);
-            lastname = itemView.findViewById(R.id.lastname);
-            age = itemView.findViewById(R.id.age);
         }
     }
 }

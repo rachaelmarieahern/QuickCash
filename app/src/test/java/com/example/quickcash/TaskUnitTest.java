@@ -1,5 +1,5 @@
 package com.example.quickcash;
-import com.example.quickcash.Util.ErrorTypes;
+import com.example.quickcash.ErrorTypes;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.Before;

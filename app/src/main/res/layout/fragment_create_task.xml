@@ -16,7 +16,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView24"
+            android:id="@+id/taskBarBackground"
             android:layout_width="538dp"
             android:layout_height="110dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,14 +27,14 @@
             app:srcCompat="@drawable/ic_menubar" />
 
         <ImageView
-            android:id="@+id/imageView26"
+            android:id="@+id/profilePageIcon"
             android:layout_width="49dp"
             android:layout_height="48dp"
             android:layout_marginStart="700dp"
             android:layout_marginEnd="56dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView25"
+            app:layout_constraintEnd_toStartOf="@+id/addTaskIcon"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView10"
             app:layout_constraintTop_toTopOf="@+id/imageView7"
@@ -42,7 +42,7 @@
             app:srcCompat="@drawable/ic_user" />
 
         <ImageView
-            android:id="@+id/imageView27"
+            android:id="@+id/dashboardIcon"
             android:layout_width="50dp"
             android:layout_height="53dp"
             android:layout_marginStart="232dp"
@@ -71,13 +71,13 @@
             app:srcCompat="@drawable/ic_copy" />
 
         <ImageView
-            android:id="@+id/imageView25"
+            android:id="@+id/addTaskIcon"
             android:layout_width="51dp"
             android:layout_height="47dp"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView27"
+            app:layout_constraintEnd_toStartOf="@+id/dashboardIcon"
             app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="@+id/imageView7"
@@ -85,7 +85,7 @@
             app:srcCompat="@drawable/ic_plus" />
 
         <ImageView
-            android:id="@+id/imageView17"
+            android:id="@+id/quickCashLogo"
             android:layout_width="259dp"
             android:layout_height="72dp"
             android:layout_marginStart="76dp"
@@ -108,7 +108,7 @@
             android:ems="10"
             android:includeFontPadding="false"
             android:inputType="date"
-            app:layout_constraintBottom_toTopOf="@+id/imageView24"
+            app:layout_constraintBottom_toTopOf="@+id/taskBarBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/startviewstatic"
@@ -182,7 +182,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+            app:layout_constraintTop_toBottomOf="@+id/quickCashLogo" />
 
         <EditText
             android:id="@+id/Description"
@@ -226,7 +226,7 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:text="@={viewModel.wage}"
-            app:layout_constraintBottom_toTopOf="@+id/imageView24"
+            app:layout_constraintBottom_toTopOf="@+id/taskBarBackground"
             app:layout_constraintEnd_toStartOf="@+id/editTextDate3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2"

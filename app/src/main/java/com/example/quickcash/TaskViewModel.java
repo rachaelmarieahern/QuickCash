@@ -42,6 +42,8 @@ public class TaskViewModel extends ViewModel implements Observable {
     public String wage = "";
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    @Bindable
+    public MutableLiveData<Boolean> addTaskNavigate = new MutableLiveData<>();
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
@@ -150,4 +152,5 @@ public class TaskViewModel extends ViewModel implements Observable {
             }
         });
     }
+
 }

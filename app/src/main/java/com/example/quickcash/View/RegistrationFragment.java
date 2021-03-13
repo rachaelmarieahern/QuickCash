@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.quickcash.databinding.FragmentDashboardBinding;
 import com.example.quickcash.databinding.FragmentRegistrationBinding;
 
 import android.view.LayoutInflater;
@@ -35,13 +36,15 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
-        FragmentRegistrationBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_registration);
-        binding.setViewModel(viewModel);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        FragmentRegistrationBinding binding =FragmentRegistrationBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
+
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {
@@ -52,7 +55,7 @@ public class RegistrationFragment extends Fragment {
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
 
-        return inflater.inflate(R.layout.fragment_registration, container, false);
+        return binding.getRoot();
     }
 
     @Override
