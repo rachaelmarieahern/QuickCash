@@ -6,7 +6,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.quickcash.Util.ErrorTypes;
 import com.example.quickcash.View.MainActivity;
 
 import org.junit.Rule;
@@ -42,7 +41,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if username is Invalid
     @Test
     public void checkIfSignUpUserNameIsInvalid() {
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hello@dal.ca"));
         onView(withId(R.id.usernameText)).perform(typeText(""));
@@ -54,7 +52,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if email is inValid
     @Test
     public void checkIfSignUpEmailIsInvalid() {
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("Hello.Live@live.com.ca"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
@@ -66,7 +63,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests if password is less than six chars/invalid
     @Test
     public void checkIfPassIsLessSixChar() {
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hello@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
@@ -78,8 +74,7 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests Creating a new client user
     //User must not exist in FB authentication & Realtime DB for test to pass
     @Test
-    public void creatingNewClientUser() { //TODO: insert assert test
-        onView(withId(R.id.loginNavButton)).perform(click());
+    public void creatingNewClientUser() {
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloMan"));
@@ -91,7 +86,6 @@ public class ExampleInstrumentedTest {
     //User must not exist in FB authentication & Realtime DB for test to pass
     @Test
     public void creatingNewHelperUser() { //TODO: insert assert test
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.registerButton)).perform(click());
         onView(withId(R.id.emailText)).perform(typeText("hellowoman@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloWoman"));
@@ -103,7 +97,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests Login with no correctly formatted email credential
     @Test
     public void badCredEmailUser() { //TODO: insert assert test
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.loginEmailText)).perform(typeText("helloman@@@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
@@ -112,8 +105,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests Login with not correctly formatted pass credential
     @Test
     public void badCredPassUser() { //TODO: insert assert test
-
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sd34"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
@@ -122,8 +113,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests Login with invalid email credential
     @Test
     public void invalidEmailUser() { //TODO: insert assert test
-
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.loginEmailText)).perform(typeText("helan@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
@@ -132,8 +121,6 @@ public class ExampleInstrumentedTest {
     //US-5: AT 1 - Tests Login with invalid password credential
     @Test
     public void invalidPassUser() { //TODO: insert assert test
-
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf2dssd34"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
@@ -143,8 +130,6 @@ public class ExampleInstrumentedTest {
     //User must exist in FB authentication & Realtime DB for test to pass
     @Test
     public void validLoginUser() { //TODO: insert assert test
-
-        onView(withId(R.id.loginNavButton)).perform(click());
         onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());

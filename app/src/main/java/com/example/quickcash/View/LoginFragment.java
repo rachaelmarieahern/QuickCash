@@ -36,11 +36,10 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        FragmentLoginBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_login);
+        FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 
-
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return binding.getRoot();
     }
 
     @Override

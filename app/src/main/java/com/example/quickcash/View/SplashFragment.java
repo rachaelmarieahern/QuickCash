@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
@@ -34,7 +35,7 @@ public class SplashFragment extends Fragment {
     FirebaseAuth DBAuth;
     FirebaseUser user;
     boolean loggedIn = false;
-
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class SplashFragment extends Fragment {
 
             rotateAnimation();
 
+            this.view=view;
+
         DBAuth = FirebaseAuth.getInstance();
         user = DBAuth.getCurrentUser();
         //TODO: Set user logged in variable once gotten from Tom
@@ -66,6 +69,7 @@ public class SplashFragment extends Fragment {
             }
         }, 5000);
     }
+
 
     public void redirect(View view) {
         if (loggedIn) {

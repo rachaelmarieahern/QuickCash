@@ -1,6 +1,4 @@
 package com.example.quickcash;
-import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
@@ -10,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.Task;
-import com.example.quickcash.Util.ErrorTypes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -18,8 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -37,15 +34,32 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public Date startDate, endDate;
     @Bindable
+    public String startDateString, endDateString;
+    @Bindable
+    public int projectDays, projectHours, projectMinutes;
+    @Bindable
     public boolean urgent;
     @Bindable
     public double longitude, latitude;
     @Bindable
     public String wage = "";
     @Bindable
-    public int projectHours,projectMinutes, projectDays;
-    @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    @Bindable
+    public MutableLiveData<Boolean> addTaskNavigate = new MutableLiveData<>();
+
+    public TaskViewModel(){
+        headLine = "";
+        description = "";
+        startDateString = "";
+        endDateString = "";
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2000,0,0);
+        startDate = calendar.getTime();
+        calendar.set(2020,0,0);
+        endDate = calendar.getTime();
+        wage = "0.00";
+    }
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
@@ -53,7 +67,7 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
 
-    enum TaskType{computerRepair, yardwork, dogWalking, babysitting, errands}
+    enum TaskType{cleaning, gardening, housework, labour, babysitting}
     //UPDATE
     public List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
 
@@ -62,7 +76,11 @@ public class TaskViewModel extends ViewModel implements Observable {
      */
     public void addTaskClicked(){
         errors.clear(); //clear error variable
-        validateInfo(); //confirm the inputted username, password, and email are correctly formatted
+         //confirm the inputted username, password, and email are correctly formatted
+        if(validateDateStrings())
+            {setDates();}
+        validateInfo();
+
 
         if(errors.isEmpty()){ //no errors found!
             addTaskToDB(); //add user to DB
@@ -89,7 +107,15 @@ public class TaskViewModel extends ViewModel implements Observable {
             if (errors.contains(ErrorTypes.invalidDateRange)){
                 errorMessage = errorMessage.concat("\nEnd date must be after start date");
             }
-           //toastMessage.setValue(errorMessage);
+
+            if (errors.contains(ErrorTypes.invalidStartDateString)) {
+                errorMessage = errorMessage.concat("\nPlease enter valid start date formats");
+            }
+
+            if (errors.contains(ErrorTypes.invalidEndDateString)){
+                    errorMessage = errorMessage.concat("\nPlease enter valid end date formats");
+            }
+         // toastMessage.setValue(errorMessage);
         }
     }
 
@@ -111,10 +137,19 @@ public class TaskViewModel extends ViewModel implements Observable {
         if (headLine.length()==0 ||  wage.length()==0){
             errors.add(ErrorTypes.requiredFieldsBlank);
         }
+    }
 
-        if(startDate == null || endDate == null){
-            errors.add(ErrorTypes.datesBlank);
+    public boolean validateDateStrings(){
+        boolean valid = true;
+        if(!startDateString.matches("^(0?[1-9]|[12][0-9]|3[01])[/\\-](0?[1-9]|1[012])[/\\-]\\d{4}$")){
+            errors.add(ErrorTypes.invalidStartDateString);
+            valid = false;
         }
+        if(!endDateString.matches("(0?[1-9]|[12][0-9]|3[01])[/\\-](0?[1-9]|1[012])[/\\-]\\d{4}$")){
+            errors.add(ErrorTypes.invalidEndDateString);
+            valid = false;
+        }
+        return valid;
     }
 
     public void addTaskToDB(){
@@ -138,6 +173,24 @@ public class TaskViewModel extends ViewModel implements Observable {
         }
     }
 
+    public void setDates() {
+        int startDay = Integer.parseInt(startDateString.substring(0, 2))-1;
+        int startMonth = Integer.parseInt(startDateString.substring(3,5))-1;
+        int startYear = Integer.parseInt(startDateString.substring(6,10));
+
+        int endDay = Integer.parseInt(endDateString.substring(0, 2))-1;
+        int endMonth = Integer.parseInt(endDateString.substring(3,5))-1;
+        int endYear = Integer.parseInt(endDateString.substring(6,10));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(startYear, startMonth, startDay);
+        startDate = calendar.getTime();
+        calendar.set(endYear, endMonth, endDay);
+        endDate = calendar.getTime();
+
+        toastMessage.setValue(startDate.toString() + endDate.toString());
+        }
+
     public void getTaskFromDB(int taskID){
         //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
         DB = FirebaseDatabase.getInstance();
@@ -154,4 +207,5 @@ public class TaskViewModel extends ViewModel implements Observable {
             }
         });
     }
+
 }
