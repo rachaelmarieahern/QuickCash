@@ -44,6 +44,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView taskListRecyclerView;
     TaskAdapter taskAdapter;
     FirebaseRecyclerOptions<Task> options;
+    FragmentDashboardBinding binding;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -71,23 +72,24 @@ public class DashboardFragment extends Fragment {
         //Adding the adapter to the recyclerview
         taskListRecyclerView.setAdapter(taskAdapter);
 
-        //Setting viewModel to be scoped to entire nav graph
-//        NavController navController = Navigation.findNavController(view);
-//        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
-//        viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
+//        Setting viewModel to be scoped to entire nav graph
 
-        viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
 
         //Binding viewmodel
-        FragmentDashboardBinding binding =  FragmentDashboardBinding.inflate(inflater, container, false);
-        binding.setViewModel(viewModel);
-
+        binding =  FragmentDashboardBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        NavController navController = Navigation.findNavController(view);
+        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
+        viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
+
+        binding.setViewModel(viewModel);
+
         //Navigation to Add Tasjs Page
         NavDirections actionDashboardToCreateTasks = DashboardFragmentDirections.dashboardToCreateTask();
         FloatingActionButton goToAddTasksButton = (FloatingActionButton) getView().findViewById(R.id.goToAddTaskButton);

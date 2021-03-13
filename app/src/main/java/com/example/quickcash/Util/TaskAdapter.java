@@ -28,13 +28,9 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
     {
 
         holder.description.setText(currentTask.getDescription());
-
         holder.headline.setText(currentTask.getHeadline());
-
         holder.wage.setText(currentTask.getWage());
-
         holder.distance.setText(currentTask.getHeadline());
-
         holder.location.setText(currentTask.getWage());
     }
 

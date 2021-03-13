@@ -45,6 +45,7 @@ public class CreateTaskFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(view);
         ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
+
         viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
         FragmentCreateTaskBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_create_task);
         binding.setViewModel(viewModel);

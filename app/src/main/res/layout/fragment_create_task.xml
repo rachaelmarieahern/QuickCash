@@ -116,24 +116,26 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextDate3"
+                        android:id="@+id/startDateEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="dd/mm/yy"
+                        android:hint="@string/dd_mm_yyyy"
+                        android:text="@={viewModel.startDateString}"
                         android:includeFontPadding="false"
                         android:inputType="date" />
 
                     <EditText
-                        android:id="@+id/editTextDate2"
+                        android:id="@+id/endDateEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="dd/mm/yy"
+                        android:text="@={viewModel.endDateString}"
+                        android:hint="@string/dd_mm_yyyy"
                         android:inputType="date" />
 
                 </LinearLayout>
