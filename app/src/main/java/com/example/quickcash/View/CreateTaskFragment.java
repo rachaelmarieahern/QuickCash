@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,22 +19,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.R;
-import com.example.quickcash.TaskViewModel;
-import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentCreateTaskBinding;
 
 
 public class CreateTaskFragment extends Fragment{
-    TaskViewModel viewModel;
+    AddTaskViewModel viewModel;
 
     public CreateTaskFragment() {
         //Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class CreateTaskFragment extends Fragment{
         NavController navController = Navigation.findNavController(view);
         ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
 
-        viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
+        viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(AddTaskViewModel.class);
         FragmentCreateTaskBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_create_task);
         binding.setViewModel(viewModel);
         final Observer<String> toastObserver = new Observer<String>() {

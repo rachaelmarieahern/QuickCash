@@ -5,4 +5,11 @@
     <string name="login">login</string>
     <string name="add_task_button">add task button</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="HEADLINE_KEY">HEADLINE_KEY</string>
+    <string name="DESCRIPTION_KEY">DESCRIPTION_KEY</string>
+    <string name="LOCATION_KEY">LOCATION_KEY</string>
+    <string name="URGENCY_KEY">URGENCY_KEY</string>
+    <string name="WAGE_KEY">WAGE_KEY</string>
+    <string name="START_DATE_KEY">START_DATE_KEY</string>
+    <string name="END_DATE_KEY">END_DATE_KEY</string>
 </resources>

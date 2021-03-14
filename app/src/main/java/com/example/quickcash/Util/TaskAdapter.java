@@ -1,9 +1,14 @@
 package com.example.quickcash.Util;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Model.Task;
@@ -12,10 +17,18 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskViewHolder> {
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Context context;
+    NavController navController;
 
     public TaskAdapter(
-            @NonNull FirebaseRecyclerOptions<Task> options) {
+            @NonNull FirebaseRecyclerOptions<Task> options, Context context, NavController navController) {
         super(options);
+        this.context = context;
+        this.navController = navController;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        editor = sharedPreferences.edit();
     }
 
     //Attaches card view for individual list items to the adapter
@@ -36,7 +49,21 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         holder.headline.setText(currentTask.getHeadline());
         holder.wage.setText(currentTask.getWage());
         holder.distance.setText(currentTask.getHeadline());
+
         holder.location.setText(currentTask.getWage());
+
+        holder.itemView.findViewById(R.id.list_item).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                putString(R.string.DESCRIPTION_KEY, currentTask.getDescription());
+                putString(R.string.HEADLINE_KEY, currentTask.getHeadline());
+                putString(R.string.WAGE_KEY, currentTask.getWage());
+                putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
+                putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
+                navController.navigate(R.id.action_dashboardFragment_to_fragment_specific_task_view);
+            }
+        });
+
     }
 
 
@@ -54,6 +81,13 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             location = itemView.findViewById(R.id.itemLocation);
         }
     }
+
+    public void putString(int keyID, String taskString){
+        editor.putString(context.getResources().getString(keyID), taskString);
+        editor.apply();
+    }
+
+
 }
 
 

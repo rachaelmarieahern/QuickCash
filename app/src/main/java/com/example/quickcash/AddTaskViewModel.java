@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class TaskViewModel extends ViewModel implements Observable {
+public class AddTaskViewModel extends ViewModel implements Observable {
 
     //DB connections
     public FirebaseDatabase DB;
@@ -47,7 +47,7 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<Boolean> successfulTask = new MutableLiveData<>();
 
-    public TaskViewModel(){
+    public AddTaskViewModel(){
         headLine = "";
         description = "";
         startDateString = "";
