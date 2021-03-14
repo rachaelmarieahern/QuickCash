@@ -71,7 +71,7 @@ public class SplashFragment extends Fragment {
             public void run() {
                 redirect(view);
             }
-        }, 5000);
+        }, 3000);
     }
 
 

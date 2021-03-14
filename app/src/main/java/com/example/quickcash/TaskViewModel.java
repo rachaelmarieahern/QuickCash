@@ -27,7 +27,6 @@ public class TaskViewModel extends ViewModel implements Observable {
     public FirebaseDatabase DB;
     public DatabaseReference tasks;
     public FirebaseAuth DBAuth;
-    String message; //message to display when successfully/unsuccessfully adding tasks
 
     @Bindable
     public String headLine, description;
@@ -46,13 +45,15 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
     @Bindable
-    public MutableLiveData<Boolean> addTaskNavigate = new MutableLiveData<>();
+    public MutableLiveData<Boolean> successfulTask = new MutableLiveData<>();
 
     public TaskViewModel(){
         headLine = "";
         description = "";
         startDateString = "";
         endDateString = "";
+        urgent = false;
+        successfulTask.setValue(false);
         Calendar calendar = Calendar.getInstance();
         calendar.set(2000,0,0);
         startDate = calendar.getTime();
@@ -89,11 +90,11 @@ public class TaskViewModel extends ViewModel implements Observable {
         if(!errors.isEmpty()){ //error is found in username, pass, and/or email
             String errorMessage = "";
             if (errors.contains(ErrorTypes.invalidHeadline)){
-                errorMessage = errorMessage.concat("\nHeadline contains too many characters!");
+                errorMessage = errorMessage.concat("\nHeadline must contain at most 40 characters");
             }
 
             if (errors.contains(ErrorTypes.invalidDescription)){
-                errorMessage = errorMessage.concat("\nDescription contains too few characters!");
+                errorMessage = errorMessage.concat("\nDescription must contain at least 20 characters");
             }
 
             if (errors.contains(ErrorTypes.invalidWage)){
@@ -109,12 +110,13 @@ public class TaskViewModel extends ViewModel implements Observable {
             }
 
             if (errors.contains(ErrorTypes.invalidStartDateString)) {
-                errorMessage = errorMessage.concat("\nPlease enter valid start date formats");
+                errorMessage = errorMessage.concat("\nPlease enter dd/mm/yyyy format on start date");
             }
 
             if (errors.contains(ErrorTypes.invalidEndDateString)){
-                    errorMessage = errorMessage.concat("\nPlease enter valid end date formats");
+                    errorMessage = errorMessage.concat("\nPlease enter dd/mm/yyyy format on end date");
             }
+            errorMessage = errorMessage.substring(1);
           toastMessage.setValue(errorMessage);
         }
     }
@@ -163,10 +165,11 @@ public class TaskViewModel extends ViewModel implements Observable {
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
-                    if (addTask.isSuccessful()) { //if the task is successfully added to FB RT DB
-                        message = "Task Successfully added to DB";
+                    if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                        toastMessage.setValue("Task Successfully added to DB");
+                        successfulTask.setValue(true);
                     } else {
-                        message = "Error! " + Objects.requireNonNull(addTask.getException()).getMessage();
+                        toastMessage.setValue("Error! " + Objects.requireNonNull(addTask.getException()).getMessage());
                     }
                 }
             });
@@ -187,8 +190,6 @@ public class TaskViewModel extends ViewModel implements Observable {
         startDate = calendar.getTime();
         calendar.set(endYear, endMonth, endDay);
         endDate = calendar.getTime();
-
-        toastMessage.setValue(startDate.toString() + endDate.toString());
         }
 
     public void getTaskFromDB(int taskID){

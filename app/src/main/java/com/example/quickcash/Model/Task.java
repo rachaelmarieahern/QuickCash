@@ -12,6 +12,8 @@ public class Task {
     private int projectDays, projectHours, projectMinutes;
 
 
+    public Task(){}
+
     public Task(String headLine, String description, Date startDate, Date endDate, boolean urgent,
                 double longitude, double latitude, String wage, int projectDays, int projectHours, int projectMinutes) {
         this.headline = headLine;

@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_specific_task_view"
-        android:name="com.example.quickcash.SpecificTaskFragment"
+        android:name="com.example.quickcash.View.SpecificTaskFragment"
         android:label="fragment_specific_task_view"
         tools:layout="@layout/fragment_specific_task_view" />
 </navigation>

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.quickcash.R;
 import com.example.quickcash.TaskViewModel;
+import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentCreateTaskBinding;
 
 
@@ -57,6 +59,19 @@ public class CreateTaskFragment extends Fragment{
             }
         };
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
+
+
+        NavDirections actionCreateToDashboard = CreateTaskFragmentDirections.createTaskToDashboard();
+
+        final Observer<Boolean> successObserver = new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable final Boolean success) {
+                if(success) {
+                    onStop();
+                }
+            }
+        };
+        viewModel.successfulTask.observe(getViewLifecycleOwner(), successObserver);
     }
 }
 
