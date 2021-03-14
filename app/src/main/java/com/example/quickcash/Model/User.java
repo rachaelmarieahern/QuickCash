@@ -1,24 +1,24 @@
 package com.example.quickcash.Model;
 
 public class User {
-    public String Username, userType, email;
+    public String username, userType, email;
 
     public User(){
 
     }
 
     public User(String uName, String userType, String email){
-        this.Username = uName;
+        this.username = uName;
         this.userType = userType;
         this.email = email;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getEmail() {

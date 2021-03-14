@@ -16,6 +16,9 @@
         <action
             android:id="@+id/dashboardToCreateTask"
             app:destination="@id/createTaskFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_fragment_specific_task_view"
+            app:destination="@id/fragment_specific_task_view" />
     </fragment>
 
     <fragment
@@ -67,5 +70,9 @@
         android:id="@+id/fragment_specific_task_view"
         android:name="com.example.quickcash.View.SpecificTaskFragment"
         android:label="fragment_specific_task_view"
-        tools:layout="@layout/fragment_specific_task_view" />
+        tools:layout="@layout/fragment_specific_task_view" >
+        <action
+            android:id="@+id/action_fragment_specific_task_view_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>
