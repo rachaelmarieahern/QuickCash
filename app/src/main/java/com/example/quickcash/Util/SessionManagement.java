@@ -36,4 +36,5 @@ public class SessionManagement {
     public FirebaseUser getUser() {
         return user;
     }
+
 }
