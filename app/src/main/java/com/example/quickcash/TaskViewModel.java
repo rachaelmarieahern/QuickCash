@@ -39,7 +39,7 @@ public class TaskViewModel extends ViewModel implements Observable {
     @Bindable
     public boolean urgent;
     @Bindable
-    public double longitude, latitude;
+    public double latitude, longitude;
     @Bindable
     public String wage = "";
     @Bindable
