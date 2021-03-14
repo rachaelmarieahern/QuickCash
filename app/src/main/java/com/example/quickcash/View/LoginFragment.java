@@ -2,6 +2,7 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -38,14 +39,16 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        inflater.inflate(R.layout.fragment_login, container, false);
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
@@ -72,7 +75,6 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean register) {
-                createSession();
                 Navigation.findNavController(view).navigate(actionLoginToRegistration);
             }
         };

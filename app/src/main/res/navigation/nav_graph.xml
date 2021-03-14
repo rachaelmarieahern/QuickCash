@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_fragment_specific_task_view"
             app:destination="@id/fragment_specific_task_view" />
+        <action
+            android:id="@+id/dashboardToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment

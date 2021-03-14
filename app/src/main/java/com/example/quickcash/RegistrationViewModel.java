@@ -1,8 +1,13 @@
 package com.example.quickcash;
 
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -20,10 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistrationViewModel extends ViewModel implements Observable {
+public class RegistrationViewModel extends AndroidViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
     public FirebaseUser user = null;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
 
     @Bindable
@@ -34,9 +42,12 @@ public class RegistrationViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
 
-    public RegistrationViewModel() {
+    public RegistrationViewModel(Application application) {
+        super(application);
         DBAuth = FirebaseAuth.getInstance();
         user = null;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        editor = sharedPreferences.edit();
     }
 
     enum userType {HELPER, CLIENT}
@@ -70,7 +81,7 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                 password = ""; //reset password
             }
 
-           //toastMessage.setValue(errorMessage);
+           toastMessage.setValue(errorMessage);
         }
 
     }
@@ -126,6 +137,8 @@ public class RegistrationViewModel extends ViewModel implements Observable {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> setUNType) {
                                     if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
+                                        editor.putBoolean("LOGGED_IN", true);
+                                        editor.apply();
                                         validLogin.setValue(true);
                                     } else {
                                         toastMessage.setValue( "Error! " +

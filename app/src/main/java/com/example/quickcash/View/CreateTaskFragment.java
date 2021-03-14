@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,39 +19,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.R;
-import com.example.quickcash.TaskViewModel;
-import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentCreateTaskBinding;
+import com.example.quickcash.databinding.FragmentDashboardBinding;
 
 
 public class CreateTaskFragment extends Fragment{
-    TaskViewModel viewModel;
+    AddTaskViewModel viewModel;
 
     public CreateTaskFragment() {
         //Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        inflater.inflate(R.layout.fragment_create_task, container, false);
         //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_task, container, false);
+        viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
+        FragmentCreateTaskBinding binding = FragmentCreateTaskBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavController navController = Navigation.findNavController(view);
-        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
-
-        viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
-        FragmentCreateTaskBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_create_task);
-        binding.setViewModel(viewModel);
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {
@@ -67,7 +67,7 @@ public class CreateTaskFragment extends Fragment{
             @Override
             public void onChanged(@Nullable final Boolean success) {
                 if(success) {
-                    onStop();
+                    Navigation.findNavController(view).navigate(actionCreateToDashboard);
                 }
             }
         };

@@ -1,8 +1,13 @@
 package com.example.quickcash;
 
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,10 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class LoginViewModel extends ViewModel implements Observable {
+public class LoginViewModel extends AndroidViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
     public FirebaseUser user;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+
 
     @Bindable
     public String email = "", password= "";
@@ -29,12 +38,13 @@ public class LoginViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
 
-    Boolean _validLogin = false;
 
-
-    public LoginViewModel() {
+    public LoginViewModel(Application application) {
+        super(application);
         DBAuth = FirebaseAuth.getInstance();
         user = null;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        editor = sharedPreferences.edit();
     }
 
     //DB connection
@@ -53,6 +63,8 @@ public class LoginViewModel extends ViewModel implements Observable {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
                     if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
+                        editor.putBoolean("LOGGED_IN", true);
+                        editor.apply();
                         validLogin.setValue(true);
                     } else { //email and un did not match in DB
                         toastMessage.setValue("Error! Incorrect email and/or password");

@@ -1,26 +1,32 @@
 package com.example.quickcash;
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import android.app.Application;
+import android.content.Context;
 
-import com.example.quickcash.ErrorTypes;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
+import org.junit.runner.RunWith;
+import org.junit.runner.manipulation.Ordering;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class TaskUnitTest {
-    TaskViewModel taskViewModel;
+    AddTaskViewModel taskViewModel;
 
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
     @Before public void initializeViewModel(){
-        taskViewModel = new TaskViewModel();
+        //Application mockApplication = mock(Application.class);
+        taskViewModel = new AddTaskViewModel();
         taskViewModel.description = "";
         taskViewModel.headLine = "";
         taskViewModel.wage = "25";
