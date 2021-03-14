@@ -13,6 +13,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.quickcash.LoginViewModel;
+import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 import com.example.quickcash.databinding.FragmentRegistrationBinding;
 
@@ -24,11 +26,19 @@ import android.widget.Toast;
 import com.example.quickcash.R;
 import com.example.quickcash.RegistrationViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
 public class RegistrationFragment extends Fragment {
     RegistrationViewModel viewModel;
+    FirebaseAuth DBAuth;
+    FirebaseUser userLoggedIn;
+    SessionManagement session;
+
+    public SessionManagement getSession() {
+        return session;
+    }
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -70,10 +80,18 @@ public class RegistrationFragment extends Fragment {
         final Observer<Boolean> validObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean validLogin) {
+                createSession();
                 Navigation.findNavController(view).navigate(actionRegisterToDashboard);
             }
         };
 
         viewModel.validLogin.observe(getViewLifecycleOwner(), validObserver);
+    }
+
+    public void createSession() {
+        DBAuth = FirebaseAuth.getInstance();
+        userLoggedIn = DBAuth.getCurrentUser();
+        session = new SessionManagement(getActivity().getApplicationContext());
+        session.saveSession(userLoggedIn);
     }
 }

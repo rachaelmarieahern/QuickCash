@@ -36,7 +36,7 @@
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_exclamation_mark_in_a_circle"
-            android:visibility="@{viewModel.urgent?8:0}"
+            android:visibility="@{viewModel.urgent?0:8}"
             app:layout_constraintBottom_toTopOf="@+id/descriptionView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/headlineView"

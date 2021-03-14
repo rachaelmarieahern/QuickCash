@@ -8,33 +8,17 @@ import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
 import androidx.lifecycle.AndroidViewModel;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import java.util.Calendar;
-import java.util.Date;
 
     public class SpecificTaskViewModel extends AndroidViewModel implements Observable {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
 
-        //DB connections
-        public FirebaseDatabase DB;
-        public DatabaseReference tasks;
-        public FirebaseAuth DBAuth;
-
         @Bindable
         public String headLine, description;
         @Bindable
-        public Date startDate, endDate;
-        @Bindable
-        public String startDateString, endDateString;
-        @Bindable
-        public int projectDays, projectHours, projectMinutes;
+        public String rawStartDateString, rawEndDateString, startDateString, endDateString;
         @Bindable
         public boolean urgent;
-        @Bindable
-        public double latitude, longitude;
         @Bindable
         public String wage = "";
 
@@ -43,23 +27,10 @@ import java.util.Date;
             description = getString(R.string.DESCRIPTION_KEY, "No Description Found");
             headLine = getString(R.string.HEADLINE_KEY, "No Headline Found");
             wage = getString(R.string.WAGE_KEY, "No Wage Found");
-            startDateString = getString(R.string.START_DATE_KEY, "No Start Date Found");
-            endDateString = getString(R.string.END_DATE_KEY, "No End Date Found");
+            rawStartDateString = getString(R.string.START_DATE_KEY, "No Start Date Found");
+            rawEndDateString = getString(R.string.END_DATE_KEY, "No End Date Found");
         }
 
-        public void resetValues() {
-            headLine = "";
-            description = "";
-            startDateString = "";
-            endDateString = "";
-            urgent = false;
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(2000, 0, 0);
-            startDate = calendar.getTime();
-            calendar.set(2020, 0, 0);
-            endDate = calendar.getTime();
-            wage = "0.00";
-        }
 
 
 
@@ -71,9 +42,9 @@ import java.util.Date;
         public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
         }
 
-
         public void parseDates() {
-
+            //TODO Parse raw date strings to make display-able strings
+            //endDateString = rawEndDateString (modified)
         }
 
 
@@ -81,5 +52,4 @@ import java.util.Date;
             return sharedPreferences.getString(getApplication().getResources().getString(keyID), defaultString);
         }
 
-        enum TaskType {cleaning, gardening, housework, labour, babysitting}
     }

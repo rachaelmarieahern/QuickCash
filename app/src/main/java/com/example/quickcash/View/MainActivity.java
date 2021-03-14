@@ -7,8 +7,10 @@ import androidx.navigation.NavGraph;
 import androidx.navigation.NavInflater;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -21,11 +23,13 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     boolean loggedIn;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -34,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+            onBackPressed();
+            return true;
+        }
     }
 }

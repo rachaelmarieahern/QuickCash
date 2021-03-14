@@ -1,5 +1,6 @@
 package com.example.quickcash.View;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,8 @@ public class DashboardFragment extends Fragment {
         TaskAdapter taskAdapter;
         FirebaseRecyclerOptions<Task> options;
         FragmentDashboardBinding binding;
+        SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
 
         public DashboardFragment() {
             // Required empty public constructor
@@ -42,7 +46,9 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -51,7 +57,9 @@ public class DashboardFragment extends Fragment {
             // Inflate the layout for this fragment
             inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+            viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
             binding =  FragmentDashboardBinding.inflate(inflater, container, false);
+            binding.setViewModel(viewModel);
             return binding.getRoot();
         }
 
@@ -74,11 +82,9 @@ public class DashboardFragment extends Fragment {
             //Adding the adapter to the recyclerview
             taskListRecyclerView.setAdapter(taskAdapter);
 
-            viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
 
-            binding.setViewModel(viewModel);
 
-            //Navigation to Add Tasjs Page
+            //Navigation to Add Tasks Page
             NavDirections actionDashboardToCreateTasks = DashboardFragmentDirections.dashboardToCreateTask();
             FloatingActionButton goToAddTasksButton = (FloatingActionButton) getView().findViewById(R.id.goToAddTaskButton);
 
@@ -86,6 +92,19 @@ public class DashboardFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Navigation.findNavController(view).navigate(actionDashboardToCreateTasks);
+                }
+            });
+
+            //Logout and navigate to login page
+            NavDirections actionDashboardToLogin = DashboardFragmentDirections.dashboardToLogin();
+            FloatingActionButton logOutButton = (FloatingActionButton) getView().findViewById(R.id.logOutButton);
+
+            logOutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editor.putBoolean("LOGGED_IN", false);
+                    editor.apply();
+                    Navigation.findNavController(view).navigate(actionDashboardToLogin);
                 }
             });
         }

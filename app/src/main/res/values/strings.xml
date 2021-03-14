@@ -12,4 +12,5 @@
     <string name="WAGE_KEY">WAGE_KEY</string>
     <string name="START_DATE_KEY">START_DATE_KEY</string>
     <string name="END_DATE_KEY">END_DATE_KEY</string>
+    <string name="logout_button">logout button</string>
 </resources>

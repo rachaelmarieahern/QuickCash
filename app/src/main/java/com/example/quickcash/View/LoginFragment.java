@@ -41,7 +41,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -74,7 +74,6 @@ public class LoginFragment extends Fragment {
         final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean register) {
-                createSession();
                 Navigation.findNavController(view).navigate(actionLoginToRegistration);
             }
         };

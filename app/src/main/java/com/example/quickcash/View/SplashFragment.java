@@ -1,5 +1,6 @@
 package com.example.quickcash.View;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashFragment extends Fragment {
 
+    SharedPreferences sharedPreferences;
     Animation rotateAnimation;
     ImageView imageView;
     FirebaseAuth DBAuth;
@@ -42,6 +45,7 @@ public class SplashFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
     }
 
     @Override
@@ -63,9 +67,8 @@ public class SplashFragment extends Fragment {
         DBAuth = FirebaseAuth.getInstance();
         user = DBAuth.getCurrentUser();
 
-        if(user != null) {
-            loggedIn = true;
-        }
+        loggedIn = sharedPreferences.getBoolean("LOGGED_IN", false);
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
