@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentCreateTaskBinding;
+import com.example.quickcash.databinding.FragmentDashboardBinding;
 
 
 public class CreateTaskFragment extends Fragment{
@@ -42,7 +43,7 @@ public class CreateTaskFragment extends Fragment{
         inflater.inflate(R.layout.fragment_create_task, container, false);
         //Inflate the layout for this fragment
         viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
-        FragmentCreateTaskBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_create_task);
+        FragmentCreateTaskBinding binding = FragmentCreateTaskBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
         return binding.getRoot();
     }

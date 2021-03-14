@@ -77,7 +77,7 @@ public class DashboardFragment extends Fragment {
             //Finding the recyclerview
             taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
             //Setting the layout of the recyclerview to Linear
-            taskListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            taskListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true));
             taskListRecyclerView.setHasFixedSize(true);
             //Adding the adapter to the recyclerview
             taskListRecyclerView.setAdapter(taskAdapter);

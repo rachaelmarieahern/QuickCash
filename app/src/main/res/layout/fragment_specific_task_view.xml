@@ -31,17 +31,14 @@
             android:id="@+id/imageView4"
             android:layout_width="62dp"
             android:layout_height="50dp"
-            android:layout_marginStart="290dp"
-            android:layout_marginTop="144dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="20dp"
             android:src="@drawable/ic_exclamation_mark_in_a_circle"
             android:visibility="@{viewModel.urgent?0:8}"
-            app:layout_constraintBottom_toTopOf="@+id/descriptionView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/headlineView"
+            app:layout_constraintHorizontal_bias="0.84"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/endDateView"
@@ -49,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="113dp"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="148dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.endDateString}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,27 +71,25 @@
             android:id="@+id/descriptionView"
             android:layout_width="325dp"
             android:layout_height="118dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
             android:text="@{viewModel.description}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.34"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.357" />
+            app:layout_constraintVertical_bias="0.43" />
 
         <TextView
             android:id="@+id/headlineView"
             android:layout_width="262dp"
             android:layout_height="40dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="66dp"
-            android:layout_marginEnd="28dp"
             android:layout_marginBottom="20dp"
             android:text="@{viewModel.headLine}"
             app:layout_constraintBottom_toTopOf="@+id/descriptionView"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
             app:layout_constraintVertical_bias="0.0" />

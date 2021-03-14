@@ -29,6 +29,7 @@ import androidx.lifecycle.AndroidViewModel;
             wage = getString(R.string.WAGE_KEY, "No Wage Found");
             rawStartDateString = getString(R.string.START_DATE_KEY, "No Start Date Found");
             rawEndDateString = getString(R.string.END_DATE_KEY, "No End Date Found");
+            urgent = sharedPreferences.getBoolean("URGENT", false);
         }
 
 
@@ -44,7 +45,8 @@ import androidx.lifecycle.AndroidViewModel;
 
         public void parseDates() {
             //TODO Parse raw date strings to make display-able strings
-            //endDateString = rawEndDateString (modified)
+            endDateString = rawEndDateString;
+            startDateString = rawStartDateString;
         }
 
 

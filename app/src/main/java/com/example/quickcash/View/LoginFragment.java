@@ -48,6 +48,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        inflater.inflate(R.layout.fragment_login, container, false);
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);

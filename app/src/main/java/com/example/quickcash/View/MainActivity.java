@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean loggedIn;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -42,4 +41,3 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
-}

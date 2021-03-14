@@ -60,6 +60,8 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
                 putString(R.string.WAGE_KEY, currentTask.getWage());
                 putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
                 putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
+                editor.putBoolean("URGENT", currentTask.isUrgent());
+                editor.apply();
                 navController.navigate(R.id.action_dashboardFragment_to_fragment_specific_task_view);
             }
         });

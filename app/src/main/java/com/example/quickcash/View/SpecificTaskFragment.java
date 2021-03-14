@@ -36,6 +36,8 @@ public class SpecificTaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        inflater.inflate(R.layout.fragment_specific_task_view, container, false);
+
         binding = FragmentSpecificTaskViewBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(SpecificTaskViewModel.class);
         binding.setViewModel(viewModel);
