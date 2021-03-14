@@ -192,19 +192,29 @@ public class TaskViewModel extends ViewModel implements Observable {
         endDate = calendar.getTime();
         }
 
-    public void getTaskFromDB(int taskID){
+    public void getTaskFromDB(String taskID){
         //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
         DB = FirebaseDatabase.getInstance();
-        tasks = DB.getReference("TASKS");
+        tasks = DB.getReference().child("TASKS").child(taskID);
         tasks.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                
+                headLine = snapshot.child("headline").getValue().toString();
+                description = snapshot.child("description").getValue().toString();
+                startDate = (Date) snapshot.child("startDate").getChildren();
+                endDate = (Date) snapshot.child("endDate").getChildren();
+                latitude = (double) snapshot.child("latitude").getValue();
+                longitude = (double) snapshot.child("longitude").getValue();
+                projectDays = (int) snapshot.child("projectDays").getValue();
+                projectHours = (int) snapshot.child("projectHours").getValue();
+                projectMinutes = (int) snapshot.child("projectMinutes").getValue();
+                urgent = (boolean) snapshot.child("urgent").getValue();
+                wage = snapshot.child("wage").getValue().toString();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                toastMessage.setValue("Error! " + error);
             }
         });
     }

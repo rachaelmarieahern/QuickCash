@@ -120,8 +120,5 @@ public class TaskUnitTest {
         taskViewModel.projectDays = 321;
         taskViewModel.projectHours = 0;
         taskViewModel.projectMinutes = 0;
-
-        //sign in as helloman and add task to DB
-        //taskViewModel.addTaskToDB();
     }
 }
