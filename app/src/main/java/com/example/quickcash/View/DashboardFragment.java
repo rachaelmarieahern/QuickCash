@@ -73,9 +73,7 @@ public class DashboardFragment extends Fragment {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-            NavController navController = Navigation.findNavController(view);
-            ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.nav_graph);
-            viewModel = new ViewModelProvider(store, getDefaultViewModelProviderFactory()).get(TaskViewModel.class);
+            viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
 
             binding.setViewModel(viewModel);
 

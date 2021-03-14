@@ -52,6 +52,7 @@ public class TaskViewModel extends ViewModel implements Observable {
         description = "";
         startDateString = "";
         endDateString = "";
+        urgent = false;
         successfulTask.setValue(false);
         Calendar calendar = Calendar.getInstance();
         calendar.set(2000,0,0);
