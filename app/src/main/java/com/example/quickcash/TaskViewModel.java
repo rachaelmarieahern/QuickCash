@@ -90,11 +90,11 @@ public class TaskViewModel extends ViewModel implements Observable {
         if(!errors.isEmpty()){ //error is found in username, pass, and/or email
             String errorMessage = "";
             if (errors.contains(ErrorTypes.invalidHeadline)){
-                errorMessage = errorMessage.concat("\nHeadline contains too many characters!");
+                errorMessage = errorMessage.concat("\nHeadline must contain at most 40 characters");
             }
 
             if (errors.contains(ErrorTypes.invalidDescription)){
-                errorMessage = errorMessage.concat("\nDescription contains too few characters!");
+                errorMessage = errorMessage.concat("\nDescription must contain at least 20 characters");
             }
 
             if (errors.contains(ErrorTypes.invalidWage)){
@@ -110,12 +110,13 @@ public class TaskViewModel extends ViewModel implements Observable {
             }
 
             if (errors.contains(ErrorTypes.invalidStartDateString)) {
-                errorMessage = errorMessage.concat("\nPlease enter valid start date formats");
+                errorMessage = errorMessage.concat("\nPlease enter dd/mm/yyyy format on start date");
             }
 
             if (errors.contains(ErrorTypes.invalidEndDateString)){
-                    errorMessage = errorMessage.concat("\nPlease enter valid end date formats");
+                    errorMessage = errorMessage.concat("\nPlease enter dd/mm/yyyy format on end date");
             }
+            errorMessage = errorMessage.substring(1);
           toastMessage.setValue(errorMessage);
         }
     }

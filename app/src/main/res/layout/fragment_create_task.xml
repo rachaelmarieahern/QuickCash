@@ -47,6 +47,18 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/HeadLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:gravity="bottom"
+                        android:hint="Enter a headline"
+                        android:inputType="textPersonName"
+                        android:text="@={viewModel.headLine}" />
+
+                    <EditText
                         android:id="@+id/Description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -58,18 +70,6 @@
                         android:hint="Enter a description"
                         android:inputType="textMultiLine|textPersonName"
                         android:text="@={viewModel.description}" />
-
-                    <EditText
-                        android:id="@+id/HeadLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="2"
-                        android:ems="10"
-                        android:gravity="bottom"
-                        android:hint="Enter a headline"
-                        android:inputType="textPersonName"
-                        android:text="@={viewModel.headLine}" />
                 </LinearLayout>
 
                 <CheckBox
