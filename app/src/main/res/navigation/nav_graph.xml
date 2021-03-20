@@ -36,6 +36,9 @@
             <action
                 android:id="@+id/helperDashboardToNotifications"
                 app:destination="@id/helperNotifications" />
+            <action
+                android:id="@+id/helperDashboardToMyProfile"
+                app:destination="@id/helperMyProfileFragment" />
         </fragment>
         <fragment
             android:id="@+id/helperNotifications"
@@ -66,6 +69,15 @@
             <action
                 android:id="@+id/clientProfileToTaskDetail"
                 app:destination="@id/helperTaskDetail" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperMyProfileFragment"
+            android:name="com.example.quickcash.View.HelperMyProfileFragment"
+            android:label="fragment_helper_my_profile"
+            tools:layout="@layout/fragment_helper_my_profile" >
+            <action
+                android:id="@+id/helperMyProfileToDashboard"
+                app:destination="@id/helperDashboard" />
         </fragment>
     </navigation>
     <navigation android:id="@+id/loginGraph"
