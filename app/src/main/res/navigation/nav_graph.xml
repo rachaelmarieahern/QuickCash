@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.quickcash.View.splashFragment"
+        android:name="com.example.quickcash.View.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -64,7 +64,7 @@
             android:label="fragment_registration"
             tools:layout="@layout/fragment_registration">
             <action
-                android:id="@+id/action_registrationFragment_to_splashFragment"
+                android:id="@+id/registrationToSplash"
                 app:destination="@id/splashFragment" />
         </fragment>
         <fragment
@@ -74,6 +74,9 @@
             <action
                 android:id="@+id/loginToHelperClientInfo"
                 app:destination="@id/helperInformationFragment" />
+            <action
+                android:id="@+id/loginToSplash"
+                app:destination="@id/splashFragment" />
         </fragment>
         <fragment
             android:id="@+id/helperInformationFragment"
@@ -114,6 +117,9 @@
             <action
                 android:id="@+id/clientDashboardToSplash"
                 app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/clientDashboardToCreateTask"
+                app:destination="@id/createTaskFragment2" />
         </fragment>
         <fragment
             android:id="@+id/clientSpecificTaskFragment"
@@ -131,6 +137,14 @@
             tools:layout="@layout/fragment_client_notification" >
             <action
                 android:id="@+id/clientNotificationToDashboard"
+                app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/createTaskFragment2"
+            android:name="com.example.quickcash.View.CreateTaskFragment"
+            android:label="CreateTaskFragment" >
+            <action
+                android:id="@+id/createTaskToClientDashboard"
                 app:destination="@id/clientDashboardFragment" />
         </fragment>
     </navigation>

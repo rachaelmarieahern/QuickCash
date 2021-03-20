@@ -5,12 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -22,7 +19,6 @@ import android.widget.Toast;
 import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentCreateTaskBinding;
-import com.example.quickcash.databinding.FragmentDashboardBinding;
 
 
 public class CreateTaskFragment extends Fragment{
@@ -61,13 +57,12 @@ public class CreateTaskFragment extends Fragment{
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
 
-        NavDirections actionCreateToDashboard = CreateTaskFragmentDirections.createTaskToDashboard();
-
+        NavDirections actionCreateToClientDashboard = CreateTaskFragmentDirections.createTaskToClientDashboard();
         final Observer<Boolean> successObserver = new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable final Boolean success) {
                 if(success) {
-                    Navigation.findNavController(view).navigate(actionCreateToDashboard);
+                    Navigation.findNavController(view).navigate(actionCreateToClientDashboard);
                 }
             }
         };

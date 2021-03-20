@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.quickcash.R;
 import com.example.quickcash.SpecificTaskViewModel;
-import com.example.quickcash.databinding.FragmentSpecificTaskViewBinding;
+import com.example.quickcash.databinding.FragmentSpecificTaskViewHelperBinding;
 
 public class HelperSpecificTaskFragment extends Fragment {
     SpecificTaskViewModel viewModel;
-    FragmentSpecificTaskViewBinding binding;
+    FragmentSpecificTaskViewHelperBinding binding;
 
 
     public HelperSpecificTaskFragment() {
@@ -37,7 +37,7 @@ public class HelperSpecificTaskFragment extends Fragment {
         // Inflate the layout for this fragment
         inflater.inflate(R.layout.fragment_specific_task_view_helper, container, false);
 
-        binding = FragmentSpecificTaskViewBinding.inflate(inflater, container, false);
+        binding = FragmentSpecificTaskViewHelperBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(SpecificTaskViewModel.class);
         binding.setViewModel(viewModel);
 

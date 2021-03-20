@@ -22,7 +22,7 @@ import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
 import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.Util.TaskAdapter;
-import com.example.quickcash.databinding.FragmentDashboardBinding;
+import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,7 +34,7 @@ public class HelperDashboardFragment extends Fragment {
         private RecyclerView taskListRecyclerView;
         TaskAdapter taskAdapter;
         FirebaseRecyclerOptions<Task> options;
-        FragmentDashboardBinding binding;
+        FragmentHelperDashboardBinding binding;
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
 
@@ -57,7 +57,7 @@ public class HelperDashboardFragment extends Fragment {
             inflater.inflate(R.layout.fragment_helper_dashboard, container, false);
 
             viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
-            binding =  FragmentDashboardBinding.inflate(inflater, container, false);
+            binding = FragmentHelperDashboardBinding.inflate(inflater, container, false);
             binding.setViewModel(viewModel);
             return binding.getRoot();
         }
@@ -82,20 +82,8 @@ public class HelperDashboardFragment extends Fragment {
             taskListRecyclerView.setAdapter(taskAdapter);
 
 
-
-            //Navigation to Add Tasks Page
-            NavDirections actionDashboardToCreateTasks = DashboardFragmentDirections.dashboardToCreateTask();
-            FloatingActionButton goToAddTasksButton = (FloatingActionButton) getView().findViewById(R.id.goToAddTaskButton);
-
-            goToAddTasksButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view).navigate(actionDashboardToCreateTasks);
-                }
-            });
-
-            //Logout and navigate to login page
-            NavDirections actionDashboardToLogin = DashboardFragmentDirections.dashboardToLogin();
+            //Logout and navigate to splash page
+            NavDirections actionDashboardToLogin = HelperDashboardFragmentDirections.helperDashboardToSplash();
             FloatingActionButton logOutButton = (FloatingActionButton) getView().findViewById(R.id.logOutButton);
 
             logOutButton.setOnClickListener(new View.OnClickListener() {

@@ -80,8 +80,9 @@ public class SplashFragment extends Fragment {
 
 
     public void redirect(View view) {
+        //TODO Redirect properly
         if (loggedIn) {
-            NavDirections actionSplashToDashboard = SplashFragmentDirections.splashToDashboard();
+            NavDirections actionSplashToDashboard = SplashFragmentDirections.splashToHelperDashboard();
             //Navigate to dashboard page
             Navigation.findNavController(view).navigate(actionSplashToDashboard);
         } else {
