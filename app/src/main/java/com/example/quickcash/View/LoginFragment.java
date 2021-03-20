@@ -70,7 +70,7 @@ public class LoginFragment extends Fragment {
         };
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
-        NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToSplash();
+        NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegister();
 
         final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
             @Override

@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +26,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class SplashFragment extends Fragment {
@@ -38,6 +45,7 @@ public class SplashFragment extends Fragment {
     FirebaseAuth DBAuth;
     FirebaseUser user;
     boolean loggedIn = false;
+    boolean client = false;
     View view;
 
 
@@ -69,6 +77,28 @@ public class SplashFragment extends Fragment {
 
         loggedIn = sharedPreferences.getBoolean("LOGGED_IN", false);
 
+        if (user!=null) {
+            String uid = user.getUid();
+
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference uidRef = rootRef.child("CLIENTS").child(uid);
+
+            ValueEventListener eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    client = dataSnapshot.exists();
+                    Log.d("Testing: ", "client?" + client);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            };
+
+            uidRef.addListenerForSingleValueEvent(eventListener);
+        }
+
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -81,15 +111,21 @@ public class SplashFragment extends Fragment {
 
     public void redirect(View view) {
         //TODO Redirect properly
-        if (loggedIn) {
-            NavDirections actionSplashToDashboard = SplashFragmentDirections.splashToHelperDashboard();
-            //Navigate to dashboard page
-            Navigation.findNavController(view).navigate(actionSplashToDashboard);
-        } else {
+        if (!loggedIn) {
             NavDirections actionSplashToLogin = SplashFragmentDirections.splashToLogin();
             //Navigate to login page
             Navigation.findNavController(view).navigate(actionSplashToLogin);
-
+        } else {
+            if (loggedIn && !client) {
+                NavDirections actionSplashToHelperDashboard = SplashFragmentDirections.splashToHelperDashboard();
+                //Navigate to dashboard page
+                Navigation.findNavController(view).navigate(actionSplashToHelperDashboard);
+            }
+            if (loggedIn && client) {
+                NavDirections actionSplashToClientDashboard = SplashFragmentDirections.SplashToClientDashboard();
+                //Navigate to dashboard page
+                Navigation.findNavController(view).navigate(actionSplashToClientDashboard);
+            }
         }
     }
 
