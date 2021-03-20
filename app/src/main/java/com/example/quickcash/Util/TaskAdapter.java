@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Model.Task;
@@ -62,7 +61,7 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
                 putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
                 editor.putBoolean("URGENT", currentTask.isUrgent());
                 editor.apply();
-                navController.navigate(R.id.action_dashboardFragment_to_fragment_specific_task_view);
+                navController.navigate(R.id.helperDashboardToTaskDetail);
             }
         });
 

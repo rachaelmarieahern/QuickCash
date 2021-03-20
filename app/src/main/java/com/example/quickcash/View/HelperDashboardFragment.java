@@ -25,11 +25,10 @@ import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class DashboardFragment extends Fragment {
+public class HelperDashboardFragment extends Fragment {
 
         AddTaskViewModel viewModel;
         private RecyclerView taskListRecyclerView;
@@ -39,7 +38,7 @@ public class DashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
 
-        public DashboardFragment() {
+        public HelperDashboardFragment() {
             // Required empty public constructor
         }
 
@@ -55,7 +54,7 @@ public class DashboardFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Inflate the layout for this fragment
-            inflater.inflate(R.layout.fragment_dashboard, container, false);
+            inflater.inflate(R.layout.fragment_helper_dashboard, container, false);
 
             viewModel = new ViewModelProvider(this).get(AddTaskViewModel.class);
             binding =  FragmentDashboardBinding.inflate(inflater, container, false);

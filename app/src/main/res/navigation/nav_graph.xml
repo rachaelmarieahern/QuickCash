@@ -6,76 +6,93 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.quickcash.View.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_dashboardFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/dashboardToCreateTask"
-            app:destination="@id/createTaskFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_fragment_specific_task_view"
-            app:destination="@id/fragment_specific_task_view" />
-        <action
-            android:id="@+id/dashboardToLogin"
-            app:destination="@id/loginFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.example.quickcash.View.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
-        <action
-            android:id="@+id/registrationToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.quickcash.View.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.quickcash.View.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/loginToRegistration"
-            app:destination="@id/registrationFragment" />
-        <action
-            android:id="@+id/loginToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.quickcash.View.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/splashToLogin"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginGraph" />
         <action
-            android:id="@+id/splashToDashboard"
-            app:destination="@id/dashboardFragment" />
+            android:id="@+id/splashToHelperDashboard"
+            app:destination="@id/helperGraph" />
     </fragment>
-    <fragment
-        android:id="@+id/createTaskFragment"
-        android:name="com.example.quickcash.View.CreateTaskFragment"
-        android:label="CreateTaskFragment" >
-        <action
-            android:id="@+id/createTaskToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_specific_task_view"
-        android:name="com.example.quickcash.View.SpecificTaskFragment"
-        android:label="fragment_specific_task_view"
-        tools:layout="@layout/fragment_specific_task_view" >
-        <action
-            android:id="@+id/action_fragment_specific_task_view_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
+    <navigation android:id="@+id/helperGraph"
+        app:startDestination="@id/helperDashboard">
+        <fragment
+            android:id="@+id/helperDashboard"
+            android:name="com.example.quickcash.View.HelperDashboardFragment"
+            android:label="fragment_dashboard"
+            tools:layout="@layout/fragment_helper_dashboard">
+            <action
+                android:id="@+id/helperDashboardToTaskDetail"
+                app:destination="@id/helperTaskDetail" />
+            <action
+                android:id="@+id/helperDashboardToSplash"
+                app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/helperDashboardToNotifications"
+                app:destination="@id/helperNotifications" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperNotifications"
+            android:name="com.example.quickcash.View.HelperNotificationFragment"
+            android:label="fragment_helper_notification"
+            tools:layout="@layout/fragment_helper_notification">
+            <action
+                android:id="@+id/action_helperNotificationFragment_to_helperDashboard"
+                app:destination="@id/helperDashboard" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperTaskDetail"
+            android:name="com.example.quickcash.View.HelperSpecificTaskFragment"
+            android:label="fragment_specific_task_view"
+            tools:layout="@layout/fragment_specific_task_view_helper">
+            <action
+                android:id="@+id/helperTaskDetailToDashboard"
+                app:destination="@id/helperDashboard" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/loginGraph"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.example.quickcash.View.RegistrationFragment"
+            android:label="fragment_registration"
+            tools:layout="@layout/fragment_registration">
+            <action
+                android:id="@+id/action_registrationFragment_to_splashFragment"
+                app:destination="@id/splashFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.example.quickcash.View.LoginFragment"
+            android:label="LoginFragment">
+            <action
+                android:id="@+id/loginToHelperClientInfo"
+                app:destination="@id/helperInformationFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperInformationFragment"
+            android:name="com.example.quickcash.View.HelperInformationFragment"
+            android:label="helperInformationFragment">
+            <action
+                android:id="@+id/helperToRegistration"
+                app:destination="@id/registrationFragment" />
+            <action
+                android:id="@+id/helperInfoToClientInfo"
+                app:destination="@id/clientInformationFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientInformationFragment"
+            android:name="com.example.quickcash.View.ClientInformationFragment"
+            android:label="clientInformationFragment">
+            <action
+                android:id="@+id/clientToRegistration"
+                app:destination="@id/registrationFragment" />
+            <action
+                android:id="@+id/clientInfoToHelperInfo"
+                app:destination="@id/helperInformationFragment" />
+        </fragment>
+    </navigation>
 </navigation>
