@@ -54,6 +54,18 @@
             <action
                 android:id="@+id/helperTaskDetailToDashboard"
                 app:destination="@id/helperDashboard" />
+            <action
+                android:id="@+id/helperTaskDetailToClientProfile"
+                app:destination="@id/clientProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientProfileFragment"
+            android:name="com.example.quickcash.View.ClientProfileFragment"
+            android:label="fragment_client_profile"
+            tools:layout="@layout/fragment_client_profile" >
+            <action
+                android:id="@+id/clientProfileToTaskDetail"
+                app:destination="@id/helperTaskDetail" />
         </fragment>
     </navigation>
     <navigation android:id="@+id/loginGraph"
@@ -119,7 +131,10 @@
                 app:destination="@id/splashFragment" />
             <action
                 android:id="@+id/clientDashboardToCreateTask"
-                app:destination="@id/createTaskFragment2" />
+                app:destination="@id/createTaskFragment" />
+            <action
+                android:id="@+id/clientDashboardToMyProfile"
+                app:destination="@id/clientMyProfileFragment" />
         </fragment>
         <fragment
             android:id="@+id/clientSpecificTaskFragment"
@@ -138,14 +153,35 @@
             <action
                 android:id="@+id/clientNotificationToDashboard"
                 app:destination="@id/clientDashboardFragment" />
+            <action
+                android:id="@+id/clientNotificationToHelperProfile"
+                app:destination="@id/helperProfile" />
         </fragment>
         <fragment
-            android:id="@+id/createTaskFragment2"
+            android:id="@+id/createTaskFragment"
             android:name="com.example.quickcash.View.CreateTaskFragment"
             android:label="CreateTaskFragment" >
             <action
                 android:id="@+id/createTaskToClientDashboard"
                 app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientMyProfileFragment"
+            android:name="com.example.quickcash.View.ClientMyProfileFragment"
+            android:label="fragment_client_my_profile"
+            tools:layout="@layout/fragment_client_my_profile" >
+            <action
+                android:id="@+id/clientMyProfileToDashboard"
+                app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperProfile"
+            android:name="com.example.quickcash.View.HelperProfileFragment"
+            android:label="fragment_helper_other_profile"
+            tools:layout="@layout/fragment_helper_profile" >
+            <action
+                android:id="@+id/helperProfileToNotification"
+                app:destination="@id/clientNotificationFragment" />
         </fragment>
     </navigation>
 </navigation>
