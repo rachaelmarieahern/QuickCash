@@ -6,76 +6,197 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.quickcash.View.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_dashboardFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/dashboardToCreateTask"
-            app:destination="@id/createTaskFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_fragment_specific_task_view"
-            app:destination="@id/fragment_specific_task_view" />
-        <action
-            android:id="@+id/dashboardToLogin"
-            app:destination="@id/loginFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.example.quickcash.View.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
-        <action
-            android:id="@+id/registrationToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.quickcash.View.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.quickcash.View.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/loginToRegistration"
-            app:destination="@id/registrationFragment" />
-        <action
-            android:id="@+id/loginToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.quickcash.View.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/splashToLogin"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginGraph" />
         <action
-            android:id="@+id/splashToDashboard"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/createTaskFragment"
-        android:name="com.example.quickcash.View.CreateTaskFragment"
-        android:label="CreateTaskFragment" >
+            android:id="@+id/splashToHelperDashboard"
+            app:destination="@id/helperGraph" />
         <action
-            android:id="@+id/createTaskToDashboard"
-            app:destination="@id/dashboardFragment" />
+            android:id="@+id/SplashToClientDashboard"
+            app:destination="@id/clientGraph" />
     </fragment>
-    <fragment
-        android:id="@+id/fragment_specific_task_view"
-        android:name="com.example.quickcash.View.SpecificTaskFragment"
-        android:label="fragment_specific_task_view"
-        tools:layout="@layout/fragment_specific_task_view" >
-        <action
-            android:id="@+id/action_fragment_specific_task_view_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
-    </fragment>
+    <navigation android:id="@+id/helperGraph"
+        app:startDestination="@id/helperDashboard">
+        <fragment
+            android:id="@+id/helperDashboard"
+            android:name="com.example.quickcash.View.HelperDashboardFragment"
+            android:label="fragment_dashboard"
+            tools:layout="@layout/fragment_helper_dashboard">
+            <action
+                android:id="@+id/helperDashboardToTaskDetail"
+                app:destination="@id/helperTaskDetail" />
+            <action
+                android:id="@+id/helperDashboardToSplash"
+                app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/helperDashboardToNotifications"
+                app:destination="@id/helperNotifications" />
+            <action
+                android:id="@+id/helperDashboardToMyProfile"
+                app:destination="@id/helperMyProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperNotifications"
+            android:name="com.example.quickcash.View.HelperNotificationFragment"
+            android:label="fragment_helper_notification"
+            tools:layout="@layout/fragment_helper_notification">
+            <action
+                android:id="@+id/helperNotificationToDashboard"
+                app:destination="@id/helperDashboard" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperTaskDetail"
+            android:name="com.example.quickcash.View.HelperSpecificTaskFragment"
+            android:label="fragment_specific_task_view"
+            tools:layout="@layout/fragment_specific_task_view_helper">
+            <action
+                android:id="@+id/helperTaskDetailToDashboard"
+                app:destination="@id/helperDashboard" />
+            <action
+                android:id="@+id/helperTaskDetailToClientProfile"
+                app:destination="@id/clientProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientProfileFragment"
+            android:name="com.example.quickcash.View.ClientProfileFragment"
+            android:label="fragment_client_profile"
+            tools:layout="@layout/fragment_client_profile" >
+            <action
+                android:id="@+id/clientProfileToTaskDetail"
+                app:destination="@id/helperTaskDetail" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperMyProfileFragment"
+            android:name="com.example.quickcash.View.HelperMyProfileFragment"
+            android:label="fragment_helper_my_profile"
+            tools:layout="@layout/fragment_helper_my_profile" >
+            <action
+                android:id="@+id/helperMyProfileToDashboard"
+                app:destination="@id/helperDashboard" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/loginGraph"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.example.quickcash.View.RegistrationFragment"
+            android:label="fragment_registration"
+            tools:layout="@layout/fragment_registration">
+            <action
+                android:id="@+id/registrationToSplash"
+                app:destination="@id/splashFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.example.quickcash.View.LoginFragment"
+            android:label="LoginFragment">
+            <action
+                android:id="@+id/loginToHelperClientInfo"
+                app:destination="@id/helperInformationFragment" />
+            <action
+                android:id="@+id/loginToSplash"
+                app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/loginToRegister"
+                app:destination="@id/registrationFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperInformationFragment"
+            android:name="com.example.quickcash.View.HelperInformationFragment"
+            android:label="helperInformationFragment">
+            <action
+                android:id="@+id/helperToRegistration"
+                app:destination="@id/registrationFragment" />
+            <action
+                android:id="@+id/helperInfoToClientInfo"
+                app:destination="@id/clientInformationFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientInformationFragment"
+            android:name="com.example.quickcash.View.ClientInformationFragment"
+            android:label="clientInformationFragment">
+            <action
+                android:id="@+id/clientToRegistration"
+                app:destination="@id/registrationFragment" />
+            <action
+                android:id="@+id/clientInfoToHelperInfo"
+                app:destination="@id/helperInformationFragment" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/clientGraph"
+        app:startDestination="@id/clientDashboardFragment">
+        <fragment
+            android:id="@+id/clientDashboardFragment"
+            android:name="com.example.quickcash.View.ClientDashboardFragment"
+            android:label="fragment_client_dashboard"
+            tools:layout="@layout/fragment_client_dashboard" >
+            <action
+                android:id="@+id/clientDashboardToTaskDetail"
+                app:destination="@id/clientSpecificTaskFragment" />
+            <action
+                android:id="@+id/clientDashboardtoNotification"
+                app:destination="@id/clientNotificationFragment" />
+            <action
+                android:id="@+id/clientDashboardToSplash"
+                app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/clientDashboardToCreateTask"
+                app:destination="@id/createTaskFragment" />
+            <action
+                android:id="@+id/clientDashboardToMyProfile"
+                app:destination="@id/clientMyProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientSpecificTaskFragment"
+            android:name="com.example.quickcash.View.ClientSpecificTaskFragment"
+            android:label="fragment_client_specific_task"
+            tools:layout="@layout/fragment_client_specific_task" >
+            <action
+                android:id="@+id/clientTaskDetailToDashboard"
+                app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientNotificationFragment"
+            android:name="com.example.quickcash.View.ClientNotificationFragment"
+            android:label="fragment_client_notification"
+            tools:layout="@layout/fragment_client_notification" >
+            <action
+                android:id="@+id/clientNotificationToDashboard"
+                app:destination="@id/clientDashboardFragment" />
+            <action
+                android:id="@+id/clientNotificationToHelperProfile"
+                app:destination="@id/helperProfile" />
+        </fragment>
+        <fragment
+            android:id="@+id/createTaskFragment"
+            android:name="com.example.quickcash.View.CreateTaskFragment"
+            android:label="CreateTaskFragment" >
+            <action
+                android:id="@+id/createTaskToClientDashboard"
+                app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/clientMyProfileFragment"
+            android:name="com.example.quickcash.View.ClientMyProfileFragment"
+            android:label="fragment_client_my_profile"
+            tools:layout="@layout/fragment_client_my_profile" >
+            <action
+                android:id="@+id/clientMyProfileToDashboard"
+                app:destination="@id/clientDashboardFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/helperProfile"
+            android:name="com.example.quickcash.View.HelperProfileFragment"
+            android:label="fragment_helper_other_profile"
+            tools:layout="@layout/fragment_helper_profile" >
+            <action
+                android:id="@+id/helperProfileToNotification"
+                app:destination="@id/clientNotificationFragment" />
+        </fragment>
+    </navigation>
 </navigation>

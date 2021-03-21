@@ -11,17 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.SpecificTaskViewModel;
-import com.example.quickcash.databinding.FragmentSpecificTaskViewBinding;
+import com.example.quickcash.databinding.FragmentSpecificTaskViewHelperBinding;
 
-public class SpecificTaskFragment extends Fragment {
+public class HelperSpecificTaskFragment extends Fragment {
     SpecificTaskViewModel viewModel;
-    FragmentSpecificTaskViewBinding binding;
+    FragmentSpecificTaskViewHelperBinding binding;
 
 
-    public SpecificTaskFragment() {
+    public HelperSpecificTaskFragment() {
         // Required empty public constructor
     }
 
@@ -36,9 +35,9 @@ public class SpecificTaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        inflater.inflate(R.layout.fragment_specific_task_view, container, false);
+        inflater.inflate(R.layout.fragment_specific_task_view_helper, container, false);
 
-        binding = FragmentSpecificTaskViewBinding.inflate(inflater, container, false);
+        binding = FragmentSpecificTaskViewHelperBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(SpecificTaskViewModel.class);
         binding.setViewModel(viewModel);
 

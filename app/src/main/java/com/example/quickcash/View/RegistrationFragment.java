@@ -2,20 +2,15 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.Util.SessionManagement;
-import com.example.quickcash.databinding.FragmentDashboardBinding;
 import com.example.quickcash.databinding.FragmentRegistrationBinding;
 
 import android.view.LayoutInflater;
@@ -56,7 +51,7 @@ public class RegistrationFragment extends Fragment {
         inflater.inflate(R.layout.fragment_registration, container, false);
 
         viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
-        FragmentRegistrationBinding binding =FragmentRegistrationBinding.inflate(inflater, container, false);
+        FragmentRegistrationBinding binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 
         final Observer<String> toastObserver = new Observer<String>() {
@@ -76,7 +71,7 @@ public class RegistrationFragment extends Fragment {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToDashboard();
+        NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToSplash();
 
 
         final Observer<Boolean> validObserver = new Observer<Boolean>() {
