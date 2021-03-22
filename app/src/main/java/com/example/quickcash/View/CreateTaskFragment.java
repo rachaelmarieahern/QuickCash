@@ -47,6 +47,8 @@ public class CreateTaskFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //TODO: Add adapter to addTaskTypeSpinner here
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {

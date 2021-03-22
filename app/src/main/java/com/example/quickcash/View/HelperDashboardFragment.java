@@ -37,6 +37,7 @@ public class HelperDashboardFragment extends Fragment {
         FragmentHelperDashboardBinding binding;
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
+        String taskTypeFilterText;
 
         public HelperDashboardFragment() {
             // Required empty public constructor
@@ -66,6 +67,11 @@ public class HelperDashboardFragment extends Fragment {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
+
+            //TODO: Attach adapter to taskFilteringSpinner here
+            //TODO: Add an adapter onItemSelected listener here to update the String taskTypeFilterText
+
+
 
             Query query = FirebaseDatabase.getInstance().
                     getReference().child("TASKS");
