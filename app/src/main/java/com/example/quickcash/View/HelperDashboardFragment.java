@@ -17,9 +17,12 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
@@ -33,6 +36,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HelperDashboardFragment extends Fragment {
@@ -44,15 +49,7 @@ public class HelperDashboardFragment extends Fragment {
         FragmentHelperDashboardBinding binding;
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
-        String taskTypeFilterText;
         Query baseQuery;
-
-
-        //Retrieving tasks from DB in spinner
-        DatabaseReference databaseReference;
-        ValueEventListener listener;
-        ArrayList<String> list;
-        ArrayAdapter<Task> taskList;
 
 
         public HelperDashboardFragment() {
@@ -84,10 +81,21 @@ public class HelperDashboardFragment extends Fragment {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-            //TODO: Attach adapter to taskFilteringSpinner here
-            //TODO: Add an adapter onItemSelected listener here to update the String taskTypeFilterText, then call updateRecyclerView(newString)
+            baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS");
+            Spinner taskFilter = (Spinner) getView().findViewById(R.id.taskFilteringSpinner);
+            taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    TextView taskType = (TextView) view;
+                    String taskText = taskType.getText().toString();
+                    updateRecyclerView(taskText);
+                }
 
-            Query baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS");
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             //Getting the query from Firebase
             options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();

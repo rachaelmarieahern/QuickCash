@@ -14,6 +14,9 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quickcash.AddTaskViewModel;
@@ -48,7 +51,20 @@ public class CreateTaskFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO: Add adapter to addTaskTypeSpinner here
+        Spinner taskFilter = (Spinner) getView().findViewById(R.id.addTaskTypeSpinner);
+        taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                TextView taskType = (TextView) view;
+                viewModel.taskType = taskType.getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         final Observer<String> toastObserver = new Observer<String>() {
             @Override
             public void onChanged(@Nullable final String newToast) {
