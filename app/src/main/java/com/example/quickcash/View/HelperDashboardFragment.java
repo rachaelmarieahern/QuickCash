@@ -17,6 +17,9 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
@@ -25,8 +28,12 @@ import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class HelperDashboardFragment extends Fragment {
 
@@ -38,6 +45,13 @@ public class HelperDashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
         String taskTypeFilterText;
+
+        //Retrieving tasks from DB in spinner
+        DatabaseReference databaseReference;
+        ValueEventListener listener;
+        ArrayList<String> list;
+        ArrayAdapter<Task> taskList;
+
 
         public HelperDashboardFragment() {
             // Required empty public constructor
@@ -72,12 +86,10 @@ public class HelperDashboardFragment extends Fragment {
             //TODO: Add an adapter onItemSelected listener here to update the String taskTypeFilterText
 
 
-
-            Query query = FirebaseDatabase.getInstance().
-                    getReference().child("TASKS");
             //Getting the query from Firebase
+            Query query = FirebaseDatabase.getInstance().getReference().child("TASKS");
             options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(query, Task.class).build();
-            //Instaniating the adapter
+            //Instantiating the adapter
             taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
             //Finding the recyclerview
             taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
@@ -102,4 +114,7 @@ public class HelperDashboardFragment extends Fragment {
             });
         }
 
+        public void fetchTaskData() {
+
+        }
     }
