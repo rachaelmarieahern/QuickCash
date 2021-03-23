@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -30,6 +33,7 @@ public class RegistrationFragment extends Fragment {
     FirebaseAuth DBAuth;
     FirebaseUser userLoggedIn;
     SessionManagement session;
+    NavController navController;
 
     public SessionManagement getSession() {
         return session;
@@ -48,9 +52,10 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        inflater.inflate(R.layout.fragment_registration, container, false);
-
-        viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_registration, container, false);
+        navController = Navigation.findNavController(requireActivity(), R.id.fragment);
+        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.loginGraph);
+        viewModel = new ViewModelProvider(store).get(RegistrationViewModel.class);
         FragmentRegistrationBinding binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 

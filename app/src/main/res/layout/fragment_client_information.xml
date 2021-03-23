@@ -34,11 +34,12 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
-                    android:text="Client and Helper"
+                    android:text="Client"
                     android:textColor="@color/quickcashgreen"
-                    android:textSize="20dp" />
+                    android:textSize="40dp" />
 
                 <TextView
+                    android:onClick="@{()->viewModel.clientToHelperSelected()}"
                     android:id="@+id/employee2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -107,12 +108,12 @@
 
 
         <Button
-            android:id="@+id/chooseRoleButton2"
+            android:id="@+id/chooseClientRoleButton"
             style="@style/classic_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-
+            android:onClick="@{() -> viewModel.typeSelected(false)}"
             android:text="choose this role"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"

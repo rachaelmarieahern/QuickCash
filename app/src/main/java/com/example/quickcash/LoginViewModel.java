@@ -28,7 +28,7 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> registrationNavigate = new MutableLiveData<>();
+    public MutableLiveData<Boolean> navToInfo = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
 
@@ -66,7 +66,7 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     }
 
     public void goToRegistration(){
-        registrationNavigate.setValue(true);
+        navToInfo.setValue(true);
     }
 
 

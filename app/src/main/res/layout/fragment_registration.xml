@@ -28,6 +28,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/displayUserType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.userTypeMessage}" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailField"
                     android:layout_width="match_parent"
@@ -96,26 +102,6 @@
                         android:text="@={viewModel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/userTypeHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Select Your User Type"
-                    android:textColor="@color/quickcashgreen"
-                    android:textSize="25dp" />
-
-                <ToggleButton
-                    android:id="@+id/roleSelector"
-                    style="@style/classic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:checked="@={viewModel.helperSelected}"
-                    android:gravity="center|center_horizontal|center_vertical"
-                    android:textOff="client"
-                    android:textOn="helper"
-                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/signupButton"
@@ -140,7 +126,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/logoqc_foreground" />
- />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

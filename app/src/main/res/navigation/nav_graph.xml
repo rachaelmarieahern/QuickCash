@@ -101,9 +101,6 @@
             <action
                 android:id="@+id/loginToSplash"
                 app:destination="@id/splashFragment" />
-            <action
-                android:id="@+id/loginToRegister"
-                app:destination="@id/registrationFragment" />
         </fragment>
         <fragment
             android:id="@+id/helperInformationFragment"
