@@ -2,13 +2,12 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -25,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class HelperInformationFragment extends Fragment {
     RegistrationViewModel viewModel;
-    NavController navController;
     FragmentHelperInformationBinding binding;
 
     public HelperInformationFragment() {
@@ -41,9 +39,7 @@ public class HelperInformationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        navController = Navigation.findNavController(requireActivity(), R.id.fragment);
-        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.loginGraph);
-        viewModel = new ViewModelProvider(store).get(RegistrationViewModel.class);
+        viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
         binding = FragmentHelperInformationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 
@@ -53,6 +49,16 @@ public class HelperInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
+        NavDirections actionHelperInfoToLogin = HelperInformationFragmentDirections.helperInfoToLogin();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(view).navigate(actionHelperInfoToLogin);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), callback);
+
 
         NavDirections actionHelperToRegistration = HelperInformationFragmentDirections.helperToRegistration();
 

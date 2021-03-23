@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -24,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class ClientInformationFragment extends Fragment {
     RegistrationViewModel viewModel;
-    NavController navController;
     FragmentClientInformationBinding binding;
 
     public ClientInformationFragment() {
@@ -40,9 +40,7 @@ public class ClientInformationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        navController = Navigation.findNavController(requireActivity(), R.id.fragment);
-        ViewModelStoreOwner store = navController.getViewModelStoreOwner(R.id.loginGraph);
-        viewModel = new ViewModelProvider(store).get(RegistrationViewModel.class);
+        viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
         binding = FragmentClientInformationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 
@@ -53,6 +51,17 @@ public class ClientInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
+        NavDirections actionClientInfoToLogin = ClientInformationFragmentDirections.client;
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(view).navigate(actionClientInfoToLogin);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), callback);
+
+
 
         NavDirections actionClientToRegistration = ClientInformationFragmentDirections.clientToRegistration();
 
@@ -77,11 +86,5 @@ public class ClientInformationFragment extends Fragment {
         viewModel.navToHelper.observe(getViewLifecycleOwner(), helperObserver);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        binding = null;
-    }
 
 }

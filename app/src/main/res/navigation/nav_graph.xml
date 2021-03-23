@@ -90,6 +90,9 @@
             <action
                 android:id="@+id/registrationToSplash"
                 app:destination="@id/splashFragment" />
+            <action
+                android:id="@+id/registrationToClientInfo"
+                app:destination="@id/clientInformationFragment" />
         </fragment>
         <fragment
             android:id="@+id/loginFragment"
@@ -112,6 +115,9 @@
             <action
                 android:id="@+id/helperInfoToClientInfo"
                 app:destination="@id/clientInformationFragment" />
+            <action
+                android:id="@+id/helperInfoToLogin"
+                app:destination="@id/loginFragment" />
         </fragment>
         <fragment
             android:id="@+id/clientInformationFragment"
@@ -123,6 +129,9 @@
             <action
                 android:id="@+id/clientInfoToHelperInfo"
                 app:destination="@id/helperInformationFragment" />
+            <action
+                android:id="@+id/clientInfoToLogin"
+                app:destination="@id/loginFragment" />
         </fragment>
     </navigation>
     <navigation android:id="@+id/clientGraph"

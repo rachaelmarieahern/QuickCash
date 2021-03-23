@@ -1,10 +1,12 @@
 package com.example.quickcash;
 
+import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -18,10 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistrationViewModel extends ViewModel implements Observable {
+public class RegistrationViewModel extends AndroidViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
     public FirebaseUser user = null;
+    private final SharedPreferences sharedPreferences;
+    private final SharedPreferences.Editor editor;
+
 
 
     @Bindable
@@ -41,8 +46,12 @@ public class RegistrationViewModel extends ViewModel implements Observable {
     @Bindable
     public MutableLiveData<Boolean> navToHelper = new MutableLiveData<Boolean>();
 
-    public RegistrationViewModel() {
+    public RegistrationViewModel(Application application) {
+        super(application);
         DBAuth = FirebaseAuth.getInstance();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        editor = sharedPreferences.edit();
+        userTypeMessage.setValue(sharedPreferences.getString("USER_TYPE", ""));
     }
 
     enum userType {HELPER, CLIENT}
@@ -86,11 +95,13 @@ public class RegistrationViewModel extends ViewModel implements Observable {
     public void typeSelected(boolean helper){
         if (helper) {
             userTypeSelection = userType.HELPER;
+            editor.putString("USER_TYPE", "You are registering as a " + userTypeSelection.toString() + ".\nClick the back button to change your user type.");
         }
         else {
             userTypeSelection = userType.CLIENT;
+            editor.putString("USER_TYPE", "You are registering as a " + userTypeSelection.toString() + ".\nClick the back button to change your user type.");
         }
-        userTypeMessage.setValue("You are registering as a " + userTypeSelection.toString() + ".\nClick the back button to change your user type.");
+        editor.apply();
         navToRegistration.setValue(true);
     }
 
