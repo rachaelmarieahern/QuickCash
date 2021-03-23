@@ -38,6 +38,8 @@ public class HelperDashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
         String taskTypeFilterText;
+        Query baseQuery;
+
 
         public HelperDashboardFragment() {
             // Required empty public constructor
@@ -69,14 +71,14 @@ public class HelperDashboardFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
 
             //TODO: Attach adapter to taskFilteringSpinner here
-            //TODO: Add an adapter onItemSelected listener here to update the String taskTypeFilterText
+            //TODO: Add an adapter onItemSelected listener here to update the String taskTypeFilterText, then call updateRecyclerView(newString)
 
 
 
             Query query = FirebaseDatabase.getInstance().
                     getReference().child("TASKS");
             //Getting the query from Firebase
-            options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(query, Task.class).build();
+            options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
             //Instaniating the adapter
             taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
             //Finding the recyclerview
@@ -100,6 +102,14 @@ public class HelperDashboardFragment extends Fragment {
                     Navigation.findNavController(view).navigate(actionDashboardToLogin);
                 }
             });
+        }
+
+    public void updateRecyclerView(String taskTypeFilterText){
+        //Creating a new query based on the task type selected
+        Query newQuery = baseQuery.orderByChild("taskType").equalTo(taskTypeFilterText);
+        //Updating the recyclerview adapter with the new query
+        FirebaseRecyclerOptions<Task> newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(newQuery, Task.class).build();
+        taskAdapter.updateOptions(newOptions);
         }
 
     }
