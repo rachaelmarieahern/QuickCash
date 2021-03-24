@@ -35,7 +35,7 @@ public class AddTaskViewModel extends ViewModel implements Observable {
     @Bindable
     public String startDateString, endDateString;
     @Bindable
-    public int projectDays, projectHours, projectMinutes;
+    public String taskType;
     @Bindable
     public boolean urgent;
     @Bindable
@@ -68,8 +68,8 @@ public class AddTaskViewModel extends ViewModel implements Observable {
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
 
-    enum TaskType{cleaning, gardening, housework, labour, babysitting}
-    //UPDATE
+
+
     public List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
 
     /**
@@ -161,7 +161,7 @@ public class AddTaskViewModel extends ViewModel implements Observable {
             DB = FirebaseDatabase.getInstance();
             tasks = DB.getReference();
             Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
-                    latitude, wage.trim(), projectDays, projectHours, projectMinutes);
+                    latitude, wage.trim(), taskType.trim());
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
@@ -191,32 +191,5 @@ public class AddTaskViewModel extends ViewModel implements Observable {
         calendar.set(endYear, endMonth, endDay);
         endDate = calendar.getTime();
         }
-
-    public void getTaskFromDB(String taskID){
-        //TODO: Donovon you can add functionality here to get a task object from firebase and store the elements in these variables
-        DB = FirebaseDatabase.getInstance();
-        tasks = DB.getReference().child("TASKS").child(taskID);
-        tasks.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                headLine = snapshot.child("headline").getValue().toString();
-                description = snapshot.child("description").getValue().toString();
-                startDate = (Date) snapshot.child("startDate").getChildren();
-                endDate = (Date) snapshot.child("endDate").getChildren();
-                latitude = (double) snapshot.child("latitude").getValue();
-                longitude = (double) snapshot.child("longitude").getValue();
-                projectDays = (int) snapshot.child("projectDays").getValue();
-                projectHours = (int) snapshot.child("projectHours").getValue();
-                projectMinutes = (int) snapshot.child("projectMinutes").getValue();
-                urgent = (boolean) snapshot.child("urgent").getValue();
-                wage = snapshot.child("wage").getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                toastMessage.setValue("Error! " + error);
-            }
-        });
-    }
 
 }

@@ -7,15 +7,15 @@ public class Task {
     private Date startDate;
     private Date endDate;
     private String wage;
+    private String taskType;
     private boolean urgent;
     private double longitude, latitude;
-    private int projectDays, projectHours, projectMinutes;
 
 
     public Task(){}
 
     public Task(String headLine, String description, Date startDate, Date endDate, boolean urgent,
-                double longitude, double latitude, String wage, int projectDays, int projectHours, int projectMinutes) {
+                double longitude, double latitude, String wage, String taskType) {
         this.headline = headLine;
         this.description = description;
         this.startDate = startDate;
@@ -24,16 +24,12 @@ public class Task {
         this.longitude = longitude;
         this.latitude = latitude;
         this.wage = wage;
-        this.projectDays = projectDays;
-        this.projectHours = projectHours;
-        this.projectMinutes = projectMinutes;
+        this.taskType = taskType;
     }
 
     //getters
-    public int getProjectMinutes() { return projectMinutes; }
-    public int getProjectHours() { return projectHours; }
-    public int getProjectDays() { return projectDays; }
     public String getWage() { return wage; }
+    public String getTaskType() {return taskType;}
     public Date getEndDate() { return endDate; }
     public Date getStartDate() { return startDate; }
     public String getDescription() { return description; }
@@ -43,12 +39,10 @@ public class Task {
     public double getLatitude() { return latitude; }
 
     //setters
-    public void setProjectDays(int projectDays) { this.projectDays = projectDays; }
-    public void setProjectHours(int projectHours) { this.projectHours = projectHours; }
-    public void setProjectMinutes(int projectMinutes) { this.projectMinutes = projectMinutes; }
     public void setHeadline(String headline) { this.headline = headline; }
     public void setDescription(String description) { this.description = description; }
     public void setStartDate(Date startDate) { this.startDate = startDate; }
+    public void setTaskType(String taskType) {this.taskType = taskType;}
     public void setEndDate(Date endDate) { this.endDate = endDate; }
     public void setWage(String wage) { this.wage = wage; }
     public void setUrgent(boolean urgent) { this.urgent = urgent; }
