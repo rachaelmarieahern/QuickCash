@@ -1,13 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.ClientDashboardFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Client Dashboard" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/logOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/quickcashwhite"
+                android:clickable="true"
+                android:contentDescription="@string/logout_button"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+                app:layout_constraintVertical_bias="0.1"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+            <Button
+                android:id="@+id/clientMyProfileButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Profile" />
+
+            <Button
+                android:id="@+id/addTaskButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Task" />
+
+            <Button
+                android:id="@+id/clientTaskDetailButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Task Detail" />
+
+            <Button
+                android:id="@+id/clientNotificationsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notifications" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

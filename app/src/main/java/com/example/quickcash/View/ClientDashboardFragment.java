@@ -1,65 +1,42 @@
 package com.example.quickcash.View;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.quickcash.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ClientDashboardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ClientDashboardFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ClientDashboardFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ClientDashboardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ClientDashboardFragment newInstance(String param1, String param2) {
-        ClientDashboardFragment fragment = new ClientDashboardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -73,16 +50,64 @@ public class ClientDashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        //Navigation to Add Tasks Page
-//        NavDirections actionDashboardToCreateTasks = HelperDashboardFragmentDirections.;
-//        FloatingActionButton goToAddTasksButton = (FloatingActionButton) getView().findViewById(R.id.goToAddTaskButton);
-//
-//        goToAddTasksButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(actionDashboardToCreateTasks);
-//            }
-//        });
+        //Navigation to My Profile Page
+        NavDirections actionDashboardToMyProfile= ClientDashboardFragmentDirections.clientDashboardToMyProfile();
+        Button toMyProfileButton = getView().findViewById(R.id.clientMyProfileButton);
+
+        toMyProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionDashboardToMyProfile);
+            }
+        });
+
+
+        //Navigation to Task Detail page
+        //TODO: Make this work through an adapter instead of a button
+        NavDirections actionDashboardToTaskDetail= ClientDashboardFragmentDirections.clientDashboardToTaskDetail();
+        Button toTaskDetailsButton = getView().findViewById(R.id.clientTaskDetailButton);
+
+        toTaskDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionDashboardToTaskDetail);
+            }
+        });
+
+        //Navigation to Notifications Page
+        NavDirections actionDashboardToNotifications= ClientDashboardFragmentDirections.clientDashboardtoNotification();
+        Button toNotificationsButton = getView().findViewById(R.id.clientNotificationsButton);
+
+        toNotificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionDashboardToNotifications);
+            }
+        });
+
+        //Navigation to Add Tasks Page
+        NavDirections actionDashboardToCreateTasks = ClientDashboardFragmentDirections.clientDashboardToCreateTask();
+        Button goToAddTasksButton =  getView().findViewById(R.id.addTaskButton);
+
+        goToAddTasksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(actionDashboardToCreateTasks);
+            }
+        });
+
+        //Logout and navigate to splash page
+        NavDirections actionDashboardToLogin = ClientDashboardFragmentDirections.clientDashboardToSplash();
+        FloatingActionButton logOutButton = (FloatingActionButton) getView().findViewById(R.id.logOutButton);
+
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putBoolean("LOGGED_IN", false);
+                editor.apply();
+                Navigation.findNavController(view).navigate(actionDashboardToLogin);
+            }
+        });
     }
 
 }

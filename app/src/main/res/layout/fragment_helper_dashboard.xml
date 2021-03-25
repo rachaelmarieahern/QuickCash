@@ -13,43 +13,12 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/goToAddTaskButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:contentDescription="@string/add_task_button"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout3"
-            app:srcCompat="@drawable/ic_plus" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/logOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/quickcashwhite"
-            android:clickable="true"
-            android:contentDescription="@string/logout_button"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.1"
-            app:srcCompat="@android:drawable/ic_delete" />
-
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/taskListRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,27 +35,63 @@
                 android:layout_weight="3"
                 app:srcCompat="@drawable/quickcash_asset_2" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/logOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/quickcashwhite"
+                android:clickable="true"
+                android:contentDescription="@string/logout_button"
+                android:focusable="true"
+                app:srcCompat="@android:drawable/ic_delete" />
+
             <Spinner
                 android:id="@+id/taskFilteringSpinner"
-                android:entries="@array/task_type_array"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3" />
+                android:layout_weight="0"
+                android:entries="@array/task_type_array" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/taskListRecyclerView"
+            <Button
+                android:id="@+id/helperMyProfileButton"
                 android:layout_width="match_parent"
-                android:layout_height="434dp"
-                android:layout_margin="20dp"
-                android:layout_weight="5">
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="My Profile" />
 
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <include
-                android:id="@+id/dashboardTaskBar"
-                layout="@layout/taskbar"/>
+            <Button
+                android:id="@+id/helperNotificationsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Notifications" />
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="5"
+            app:layout_constraintBottom_toTopOf="@+id/dashboardTaskBar"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <include
+            android:id="@+id/dashboardTaskBar"
+            layout="@layout/taskbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
