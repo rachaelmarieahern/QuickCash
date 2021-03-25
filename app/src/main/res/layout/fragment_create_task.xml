@@ -74,8 +74,10 @@
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/addTaskTypeSpinner"
+                    android:entries="@array/task_type_array"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/checkBoxUrgent"
@@ -168,6 +170,7 @@
                     android:onClick="@{()->viewModel.addTaskClicked()}"
                     android:text="add task"
                     android:textSize="20sp" />
+
 
                 <include
                     android:id="@+id/createTaskTaskbar"

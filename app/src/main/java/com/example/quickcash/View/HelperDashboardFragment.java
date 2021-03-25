@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,7 +44,6 @@ import java.util.ArrayList;
 public class HelperDashboardFragment extends Fragment {
 
         AddTaskViewModel viewModel;
-        private RecyclerView taskListRecyclerView;
         TaskAdapter taskAdapter;
         FirebaseRecyclerOptions<Task> options;
         FragmentHelperDashboardBinding binding;
@@ -82,32 +82,65 @@ public class HelperDashboardFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
 
             baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS");
-            Spinner taskFilter = (Spinner) getView().findViewById(R.id.taskFilteringSpinner);
-            taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    TextView taskType = (TextView) view;
-                    String taskText = taskType.getText().toString();
-                    updateRecyclerView(taskText);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
 
             //Getting the query from Firebase
             options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
             //Instantiating the adapter
             taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
             //Finding the recyclerview
-            taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
+            RecyclerView taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true);
+            linearLayoutManager.setStackFromEnd(true);
+
             //Setting the layout of the recyclerview to Linear
-            taskListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true));
+            taskListRecyclerView.setLayoutManager(linearLayoutManager);
             taskListRecyclerView.setHasFixedSize(true);
             //Adding the adapter to the recyclerview
             taskListRecyclerView.setAdapter(taskAdapter);
+
+            Spinner taskFilter = (Spinner) getView().findViewById(R.id.taskFilteringSpinner);
+            taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if(view == null){
+                        return;
+                    }
+                    else {
+                        TextView taskType = (TextView) view;
+                        String taskText = taskType.getText().toString();
+                        updateRecyclerView(taskText);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    taskAdapter.updateOptions(options);
+                }
+            });
+
+
+            //Navigation to My Profile Page
+            NavDirections actionDashboardToMyProfile= HelperDashboardFragmentDirections.helperDashboardToMyProfile();
+            Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
+
+            toMyProfileButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view).navigate(actionDashboardToMyProfile);
+                }
+            });
+
+
+            //Navigation to Notifications Page
+            NavDirections actionDashboardToNotifications= HelperDashboardFragmentDirections.helperDashboardToNotifications();
+            Button toNotificationsButton = getView().findViewById(R.id.helperNotificationsButton);
+
+            toNotificationsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view).navigate(actionDashboardToNotifications);
+                }
+            });
 
 
             //Logout and navigate to splash page
@@ -124,12 +157,17 @@ public class HelperDashboardFragment extends Fragment {
             });
         }
 
-    public void updateRecyclerView(String taskTypeFilterText){
-        //Creating a new query based on the task type selected
-        Query newQuery = baseQuery.orderByChild("taskType").equalTo(taskTypeFilterText);
-        //Updating the recyclerview adapter with the new query
-        FirebaseRecyclerOptions<Task> newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(newQuery, Task.class).build();
-        taskAdapter.updateOptions(newOptions);
+    public void updateRecyclerView(String taskTypeFilterText) {
+        FirebaseRecyclerOptions<Task> newOptions;
+        if (taskTypeFilterText.equals("Select a Task Type")) {
+            newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
+        } else {
+            //Creating a new query based on the task type selected
+            Query newQuery = baseQuery.orderByChild("taskType").equalTo(taskTypeFilterText);
+            //Updating the recyclerview adapter with the new query
+            newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(newQuery, Task.class).build();
         }
+        taskAdapter.updateOptions(newOptions);
+    }
 
     }
