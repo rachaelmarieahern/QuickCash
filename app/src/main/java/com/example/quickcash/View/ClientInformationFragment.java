@@ -52,7 +52,7 @@ public class ClientInformationFragment extends Fragment {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        NavDirections actionClientInfoToLogin = ClientInformationFragmentDirections.client;
+        NavDirections actionClientInfoToLogin = ClientInformationFragmentDirections.clientInfoToLogin();
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
