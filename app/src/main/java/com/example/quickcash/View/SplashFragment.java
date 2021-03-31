@@ -7,12 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
-import androidx.navigation.NavGraph;
-import androidx.navigation.NavInflater;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -22,11 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class SplashFragment extends Fragment {
@@ -66,7 +61,7 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = (ImageView) getView().findViewById(R.id.splashlogo);
+        imageView = getView().findViewById(R.id.splashlogo);
 
             rotateAnimation();
 
@@ -91,7 +86,7 @@ public class SplashFragment extends Fragment {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NotNull DatabaseError databaseError) {
                 }
             };
 
@@ -100,12 +95,7 @@ public class SplashFragment extends Fragment {
 
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                redirect(view);
-            }
-        }, 3000);
+        new Handler().postDelayed(() -> redirect(view), 3000);
     }
 
 

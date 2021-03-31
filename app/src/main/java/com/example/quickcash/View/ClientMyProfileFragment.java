@@ -2,11 +2,8 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 
 import android.view.LayoutInflater;
 import android.view.View;

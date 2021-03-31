@@ -51,7 +51,7 @@ public class CreateTaskFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Spinner taskFilter = (Spinner) getView().findViewById(R.id.addTaskTypeSpinner);
+        Spinner taskFilter = getView().findViewById(R.id.addTaskTypeSpinner);
         taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -65,23 +65,14 @@ public class CreateTaskFragment extends Fragment{
             }
         });
 
-        final Observer<String> toastObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newToast) {
-                Toast.makeText(getActivity().getApplicationContext(), newToast, Toast.LENGTH_LONG).show();
-
-            }
-        };
+        final Observer<String> toastObserver = newToast -> Toast.makeText(getActivity().getApplicationContext(), newToast, Toast.LENGTH_LONG).show();
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
 
         NavDirections actionCreateToClientDashboard = CreateTaskFragmentDirections.createTaskToClientDashboard();
-        final Observer<Boolean> successObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean success) {
-                if(success) {
-                    Navigation.findNavController(view).navigate(actionCreateToClientDashboard);
-                }
+        final Observer<Boolean> successObserver = success -> {
+            if(success) {
+                Navigation.findNavController(view).navigate(actionCreateToClientDashboard);
             }
         };
         viewModel.successfulTask.observe(getViewLifecycleOwner(), successObserver);

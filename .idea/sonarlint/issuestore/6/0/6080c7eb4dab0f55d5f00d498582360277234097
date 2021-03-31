@@ -1,0 +1,54 @@
+
+C
+java:S1604j"(Make this anonymous inner class a lambda(…ñµÖÿÿÿÿÿ
+G
+java:S1172†"0Remove this unused method parameter "ViewModel".(«Ê¡ÿ
+Q
+java:S1481B"6Remove this unused "viewModelHeadLine" local variable.(êùÆ¯ùÿÿÿÿ
+T
+java:S1481¢"=Remove this unused "viewModelStartDateString" local variable.(ê‘Ô§
+D
+java:S1604‚"(Make this anonymous inner class a lambda(»Òªûÿÿÿÿ
+K
+java:S1066İ"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+D
+java:S1905f")Remove this unnecessary cast to "String".(“šÜÉøÿÿÿÿ
+O
+java:S1481,"9Remove this unused "viewModelDescription" local variable.(…Ş·Ü
+g
+java:S1301€"KReplace this "switch" statement by "if" statements to increase readability.(‰¬›Áÿÿÿÿÿ
+C
+java:S1604R"(Make this anonymous inner class a lambda(à¿©şÿÿÿÿ
+@
+java:S1905–")Remove this unnecessary cast to "String".(üÊİ“
+K
+java:S1066È"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+C
+java:S1604:"(Make this anonymous inner class a lambda(€É£ºÿÿÿÿÿ
+D
+java:S1905N")Remove this unnecessary cast to "String".(÷»®íıÿÿÿÿ
+=	java:S131€""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
+O
+java:S1481r"4Remove this unused "viewModelUrgent" local variable.(¥ªê¤şÿÿÿÿ
+K
+java:S1066ë"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+R
+java:S1481";Remove this unused "viewModelEndDateString" local variable.(í¶æÁ
+K
+java:S1066ä"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+C
+java:S1604""(Make this anonymous inner class a lambda(±•³‘üÿÿÿÿ
+n
+java:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(îÑšåûÿÿÿÿ
+H
+java:S1481Z"2Remove this unused "viewModelWage" local variable.(°ÎãÕ
+K
+java:S1066Ö"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+E
+java:S1905®")Remove this unnecessary cast to "String".(ù¥¨ùÿÿÿÿ
+K
+java:S1066Ï"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+?
+java:S19056")Remove this unnecessary cast to "String".(û“èÜ
+?
+java:S1604š"(Make this anonymous inner class a lambda(´‹íÕ

@@ -16,10 +16,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskViewHolder> {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-    Context context;
-    NavController navController;
+    final SharedPreferences sharedPreferences;
+    final SharedPreferences.Editor editor;
+    final Context context;
+    final NavController navController;
 
     public TaskAdapter(
             @NonNull FirebaseRecyclerOptions<Task> options, Context context, NavController navController) {
@@ -51,18 +51,15 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
 
         holder.location.setText(currentTask.getWage());
 
-        holder.itemView.findViewById(R.id.list_item).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                putString(R.string.DESCRIPTION_KEY, currentTask.getDescription());
-                putString(R.string.HEADLINE_KEY, currentTask.getHeadline());
-                putString(R.string.WAGE_KEY, currentTask.getWage());
-                putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
-                putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
-                editor.putBoolean("URGENT", currentTask.isUrgent());
-                editor.apply();
-                navController.navigate(R.id.helperDashboardToTaskDetail);
-            }
+        holder.itemView.findViewById(R.id.list_item).setOnClickListener(v -> {
+            putString(R.string.DESCRIPTION_KEY, currentTask.getDescription());
+            putString(R.string.HEADLINE_KEY, currentTask.getHeadline());
+            putString(R.string.WAGE_KEY, currentTask.getWage());
+            putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
+            putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
+            editor.putBoolean("URGENT", currentTask.isUrgent());
+            editor.apply();
+            navController.navigate(R.id.helperDashboardToTaskDetail);
         });
 
     }
@@ -70,7 +67,12 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
 
     //Updates task list item variables to new data fetched from firebase
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView taskType, wage, description, headline, distance, location;
+        final TextView taskType;
+        final TextView wage;
+        final TextView description;
+        final TextView headline;
+        final TextView distance;
+        final TextView location;
         public TaskViewHolder(@NonNull View itemView)
         {
             super(itemView);

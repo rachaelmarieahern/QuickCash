@@ -42,12 +42,7 @@ public class ClientNotificationFragment extends Fragment {
         NavDirections actionNotificationToHelperProfile = ClientNotificationFragmentDirections.clientNotificationToHelperProfile();
         Button toHelperProfileButton = getView().findViewById(R.id.clientToHelperProfileButton);
 
-        toHelperProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(actionNotificationToHelperProfile);
-            }
-        });
+        toHelperProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionNotificationToHelperProfile));
 
     }
 }

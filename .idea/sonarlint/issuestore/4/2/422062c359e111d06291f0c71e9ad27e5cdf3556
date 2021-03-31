@@ -1,0 +1,29 @@
+
+I
+java:S1199ù"-Extract this nested code block into a method.(·ÿ½äûÿÿÿÿ
+C
+java:S16049"(Make this anonymous inner class a lambda(æ¸Ûôşÿÿÿÿ
+L
+java:S1172"0Remove this unused method parameter "ViewModel".(è¼àÖşÿÿÿÿ
+I
+java:S1481)"3Remove this unused "viewModelEmail" local variable.(Å©¿
+8	java:S131ç""Add a default case to this switch.(Òóæ
+?
+java:S19055")Remove this unnecessary cast to "String".(é™Ê¿
+=	java:S131—""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
+g
+java:S1301—"KReplace this "switch" statement by "if" statements to increase readability.(‰¬›Áÿÿÿÿÿ
+Q
+java:S1481C"6Remove this unused "viewModelPassword" local variable.(Çè«±ûÿÿÿÿ
+>
+java:S1604!"(Make this anonymous inner class a lambda(¬İé¶
+b
+java:S1301ç"KReplace this "switch" statement by "if" statements to increase readability.(Òóæ
+K
+java:S1066Ã"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+I
+java:S1199è"-Extract this nested code block into a method.(ğÁ–Óûÿÿÿÿ
+D
+java:S1905M")Remove this unnecessary cast to "String".(Š‚‘ìÿÿÿÿÿ
+K
+java:S1066Ê"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ

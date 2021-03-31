@@ -54,12 +54,9 @@ public class RegistrationFragment extends Fragment {
         FragmentRegistrationBinding binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
 
-        final Observer<String> toastObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newToast) {
-                if (!newToast.equals(""))
-                Toast.makeText(getActivity().getApplicationContext(), newToast,Toast.LENGTH_LONG).show();
-            }
+        final Observer<String> toastObserver = newToast -> {
+            if (!newToast.equals(""))
+            Toast.makeText(getActivity().getApplicationContext(), newToast,Toast.LENGTH_LONG).show();
         };
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
@@ -74,12 +71,9 @@ public class RegistrationFragment extends Fragment {
         NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToSplash();
 
 
-        final Observer<Boolean> validObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean validLogin) {
-                createSession();
-                Navigation.findNavController(view).navigate(actionRegisterToDashboard);
-            }
+        final Observer<Boolean> validObserver = validLogin -> {
+            createSession();
+            Navigation.findNavController(view).navigate(actionRegisterToDashboard);
         };
 
         viewModel.validLogin.observe(getViewLifecycleOwner(), validObserver);

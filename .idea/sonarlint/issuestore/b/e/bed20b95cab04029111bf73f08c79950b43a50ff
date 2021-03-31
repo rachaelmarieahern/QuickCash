@@ -1,0 +1,21 @@
+
+T
+java:S18742"9Remove this use of "PreferenceManager"; it is deprecated.(¡é‚ìùÿÿÿÿ
+>
+java:S1170)"!Make this final field static too.(¦ÒËÊ8¾“èÊˆ/
+
+java:S1186Ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ş„ê³üÿÿÿÿ
+U
+java:S1128"8Remove this unused import 'androidx.annotation.NonNull'.(ˆÛúÜ8©ãïÊˆ/
+[
+java:S1128">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8©ãïÊˆ/
+n
+java:S1128"LRemove this unused import 'com.google.android.gms.tasks.OnCompleteListener'.(Çğ¸Òÿÿÿÿÿ8©ãïÊˆ/
+^
+java:S18742"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(¡é‚ìùÿÿÿÿ
+F
+java:S14811")Remove this unused "user" local variable.(ñåÄí8ê¢åÊˆ/
+\
+java:S1128"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8©ãïÊˆ/
+
+java:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ó¢ª…üÿÿÿÿ
