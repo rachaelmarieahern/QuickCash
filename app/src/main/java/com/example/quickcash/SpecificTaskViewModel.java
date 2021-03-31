@@ -11,14 +11,22 @@ import androidx.lifecycle.AndroidViewModel;
 
     public class SpecificTaskViewModel extends AndroidViewModel implements Observable {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
 
         @Bindable
-        public String headLine, description;
+        public final String headLine;
         @Bindable
-        public String rawStartDateString, rawEndDateString, startDateString, endDateString;
+        public final String description;
         @Bindable
-        public boolean urgent;
+        public final String rawStartDateString;
+        @Bindable
+        public final String rawEndDateString;
+        @Bindable
+        public String startDateString;
+        @Bindable
+        public String endDateString;
+        @Bindable
+        public final boolean urgent;
         @Bindable
         public String wage = "";
 

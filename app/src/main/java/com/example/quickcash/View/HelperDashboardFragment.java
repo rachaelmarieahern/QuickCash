@@ -17,11 +17,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,14 +29,8 @@ import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class HelperDashboardFragment extends Fragment {
 
@@ -98,12 +89,11 @@ public class HelperDashboardFragment extends Fragment {
             //Adding the adapter to the recyclerview
             taskListRecyclerView.setAdapter(taskAdapter);
 
-            Spinner taskFilter = (Spinner) getView().findViewById(R.id.taskFilteringSpinner);
+            Spinner taskFilter = getView().findViewById(R.id.taskFilteringSpinner);
             taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if(view == null){
-                        return;
                     }
                     else {
                         TextView taskType = (TextView) view;
@@ -123,37 +113,24 @@ public class HelperDashboardFragment extends Fragment {
             NavDirections actionDashboardToMyProfile= HelperDashboardFragmentDirections.helperDashboardToMyProfile();
             Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
 
-            toMyProfileButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view).navigate(actionDashboardToMyProfile);
-                }
-            });
+            toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
 
 
             //Navigation to Notifications Page
             NavDirections actionDashboardToNotifications= HelperDashboardFragmentDirections.helperDashboardToNotifications();
             Button toNotificationsButton = getView().findViewById(R.id.helperNotificationsButton);
 
-            toNotificationsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view).navigate(actionDashboardToNotifications);
-                }
-            });
+            toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
 
 
             //Logout and navigate to splash page
             NavDirections actionDashboardToLogin = HelperDashboardFragmentDirections.helperDashboardToSplash();
-            FloatingActionButton logOutButton = (FloatingActionButton) getView().findViewById(R.id.logOutButton);
+            FloatingActionButton logOutButton = getView().findViewById(R.id.logOutButton);
 
-            logOutButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    editor.putBoolean("LOGGED_IN", false);
-                    editor.apply();
-                    Navigation.findNavController(view).navigate(actionDashboardToLogin);
-                }
+            logOutButton.setOnClickListener(v -> {
+                editor.putBoolean("LOGGED_IN", false);
+                editor.apply();
+                Navigation.findNavController(view).navigate(actionDashboardToLogin);
             });
         }
 

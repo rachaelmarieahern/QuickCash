@@ -4,46 +4,40 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.quickcash.View.LoginFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginViewModel extends AndroidViewModel implements Observable {
 
-    public FirebaseAuth DBAuth;
-    public FirebaseUser user;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    private final FirebaseAuth DBAuth;
+    private final SharedPreferences.Editor editor;
 
 
 
     @Bindable
-    public String email = "", password= "";
+    public String email = "";
+    @Bindable
+    public String password= "";
 
     @Bindable
-    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> registrationNavigate = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
 
 
     public LoginViewModel(Application application) {
         super(application);
         DBAuth = FirebaseAuth.getInstance();
-        user = null;
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+        FirebaseUser user = null;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
         editor = sharedPreferences.edit();
     }
 
@@ -59,16 +53,13 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
                 !passwordCred.matches("[A-Za-z0-9_]{6,15}")){
             toastMessage.setValue("Error! Your credentials are not formatted correctly");
           } else {
-            DBAuth.signInWithEmailAndPassword(emailCred, passwordCred).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> LoginAttempt) {
-                    if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
-                        editor.putBoolean("LOGGED_IN", true);
-                        editor.apply();
-                        validLogin.setValue(true);
-                    } else { //email and un did not match in DB
-                        toastMessage.setValue("Error! Incorrect email and/or password");
-                    }
+            DBAuth.signInWithEmailAndPassword(emailCred, passwordCred).addOnCompleteListener(LoginAttempt -> {
+                if (LoginAttempt.isSuccessful()) { //if the email and un match in DB
+                    editor.putBoolean("LOGGED_IN", true);
+                    editor.apply();
+                    validLogin.setValue(true);
+                } else { //email and un did not match in DB
+                    toastMessage.setValue("Error! Incorrect email and/or password");
                 }
             });
         }

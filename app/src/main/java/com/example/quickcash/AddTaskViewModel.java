@@ -1,6 +1,5 @@
 package com.example.quickcash;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
@@ -8,13 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.Task;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,27 +18,30 @@ import java.util.Objects;
 
 public class AddTaskViewModel extends ViewModel implements Observable {
 
-    //DB connections
-    public FirebaseDatabase DB;
-    public DatabaseReference tasks;
-    public FirebaseAuth DBAuth;
-
     @Bindable
-    public String headLine, description;
+    public String headLine;
     @Bindable
-    public Date startDate, endDate;
+    public String description;
     @Bindable
-    public String startDateString, endDateString;
+    public Date startDate;
+    @Bindable
+    public Date endDate;
+    @Bindable
+    public String startDateString;
+    @Bindable
+    public String endDateString;
     @Bindable
     public String taskType;
     @Bindable
     public boolean urgent;
     @Bindable
-    public double latitude, longitude;
+    public double latitude;
+    @Bindable
+    public double longitude;
     @Bindable
     public String wage = "";
     @Bindable
-    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> successfulTask = new MutableLiveData<>();
 
@@ -70,7 +68,7 @@ public class AddTaskViewModel extends ViewModel implements Observable {
 
 
 
-    public List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
+    List<ErrorTypes> errors = new ArrayList<>();
 
     /**
      * When the user clicks the sign up button on the register page
@@ -155,22 +153,19 @@ public class AddTaskViewModel extends ViewModel implements Observable {
     }
 
     public void addTaskToDB(){
-        DBAuth = FirebaseAuth.getInstance();
+        FirebaseAuth DBAuth = FirebaseAuth.getInstance();
         DBAuth.signInWithEmailAndPassword("helloman@live.com", "sdf234");
         if (DBAuth.getCurrentUser() != null) {
-            DB = FirebaseDatabase.getInstance();
-            tasks = DB.getReference();
+            FirebaseDatabase DB = FirebaseDatabase.getInstance();
+            DatabaseReference tasks = DB.getReference();
             Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
                     latitude, wage.trim(), taskType.trim());
-            tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> addTask) {
-                    if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
-                        toastMessage.setValue("Task Successfully added to DB");
-                        successfulTask.setValue(true);
-                    } else {
-                        toastMessage.setValue("Error! " + Objects.requireNonNull(addTask.getException()).getMessage());
-                    }
+            tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(addTask -> {
+                if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
+                    toastMessage.setValue("Task Successfully added to DB");
+                    successfulTask.setValue(true);
+                } else {
+                    toastMessage.setValue("Error! " + Objects.requireNonNull(addTask.getException()).getMessage());
                 }
             });
         }

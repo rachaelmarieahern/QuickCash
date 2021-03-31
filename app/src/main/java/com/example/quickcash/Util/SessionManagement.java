@@ -2,17 +2,13 @@ package com.example.quickcash.Util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.example.quickcash.Model.User;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SessionManagement {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-    String SHARED_PREF_NAME = "session";
-    String SESSION_KEY = "session_user";
+    final SharedPreferences sharedPreferences;
+    final SharedPreferences.Editor editor;
+    final String SHARED_PREF_NAME = "session";
+    final String SESSION_KEY = "session_user";
     FirebaseUser user;
     String UserId;
 

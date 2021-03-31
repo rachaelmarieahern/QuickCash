@@ -1,0 +1,62 @@
+
+P
+java:S3516¾"9Refactor this method to not always return the same value.(ƒÃ¬†
+H
+java:S1199^"-Extract this nested code block into a method.(“Ìˆµşÿÿÿÿ
+I
+java:S1199"-Extract this nested code block into a method.(Æñú–úÿÿÿÿ
+H
+java:S1199j"-Extract this nested code block into a method.(øï‡Àûÿÿÿÿ
+D
+java:S1199²"-Extract this nested code block into a method.(Äƒ˜®
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(šÆ¿ˆıÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ôİÕıÿÿÿÿ
+C
+java:S1199v"-Extract this nested code block into a method.(ı®˜õ
+D
+java:S1199š"-Extract this nested code block into a method.(ˆ„´¯
+I
+java:S1199‚"-Extract this nested code block into a method.(•Ÿ©Âüÿÿÿÿ
+I
+java:S1199 "-Extract this nested code block into a method.(“ºæíıÿÿÿÿ
+g
+java:S1301È"KReplace this "switch" statement by "if" statements to increase readability.(”€üÿÿÿÿ
+`	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(¡şøÿÿÿÿ
+u
+java:S1488Ù"^Immediately return this expression instead of assigning it to the temporary variable "tmpVal".(·‘Ç
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(”ñ¯íùÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(Ãş”«ıÿÿÿÿ
+g
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(úĞÔ
+H
+java:S1199p"-Extract this nested code block into a method.(Ùêøÿÿÿÿ
+I
+java:S1199ˆ"-Extract this nested code block into a method.(ïéÏ ûÿÿÿÿ
+g
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ú®Ú±
+D
+java:S1199¬"-Extract this nested code block into a method.(õÏ­
+D
+java:S1199”"-Extract this nested code block into a method.(ã‚„
+u
+java:S2293ß"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ë˜›Ûûÿÿÿÿ
+m
+java:S3776V"RRefactor this method to reduce its Cognitive Complexity from 50 to the 15 allowed.(åİï’ÿÿÿÿÿ
+D	java:S108È")Either remove or fill this block of code.(”€üÿÿÿÿ
+p
+java:S2293å"YReplace the type specification in this constructor call with the diamond operator ("<>").(†ÏŞ„
+a	java:S112Æ"FDefine and throw a dedicated exception instead of using a generic one.(¡şøÿÿÿÿ
+p
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¡ŞµÕ
+H
+java:S1199d"-Extract this nested code block into a method.(ëìùÀùÿÿÿÿ
+D
+java:S1199¦"-Extract this nested code block into a method.(şˆ¬Ç
+<	java:S131]""Add a default case to this switch.(”€üÿÿÿÿ
+=	java:S131È""Add a default case to this switch.(”€üÿÿÿÿ
+C
+java:S1199|"-Extract this nested code block into a method.(Æ’Üö

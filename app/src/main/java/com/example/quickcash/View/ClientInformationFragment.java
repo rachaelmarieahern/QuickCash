@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.quickcash.R;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class ClientInformationFragment extends Fragment {
 
@@ -32,7 +34,7 @@ public class ClientInformationFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
     }

@@ -1,21 +1,11 @@
 package com.example.quickcash;
 
-import android.app.Application;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.User;
-import com.example.quickcash.View.LoginFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,33 +15,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistrationViewModel extends AndroidViewModel implements Observable {
+public class RegistrationViewModel extends ViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
     public FirebaseUser user = null;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
 
 
     @Bindable
     public String username = "", email = "", password= "";
     @Bindable
     public boolean helperSelected = false;
-    public MutableLiveData<String> toastMessage = new MutableLiveData<String>();
+    public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> validLogin = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
 
-    public RegistrationViewModel(Application application) {
-        super(application);
+    public RegistrationViewModel() {
         DBAuth = FirebaseAuth.getInstance();
         user = null;
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
-        editor = sharedPreferences.edit();
     }
 
     enum userType {HELPER, CLIENT}
-    List<ErrorTypes> errors = new ArrayList<ErrorTypes>();
+    List<ErrorTypes> errors = new ArrayList<>();
     userType userTypeSelection = userType.CLIENT;
 
     /**
@@ -81,7 +65,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 password = ""; //reset password
             }
 
-           toastMessage.setValue(errorMessage);
+           //toastMessage.setValue(errorMessage);
         }
 
     }
@@ -122,34 +106,26 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      */
     public void registerWithDB() {
         DBAuth = FirebaseAuth.getInstance();
-        DBAuth.createUserWithEmailAndPassword(email.trim(), password.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> createUNPass) {
-                if (createUNPass.isSuccessful()) { //if adding user to DB was successful
-                    DB = FirebaseDatabase.getInstance();
-                    users = DB.getReference("CLIENTS"); //the user is a client
-                    if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
-                        users = DB.getReference("HELPERS");
-                    //create user in FB auth
-                    User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim());
-                    users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newUser)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> setUNType) {
-                                    if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
-                                        editor.putBoolean("LOGGED_IN", true);
-                                        editor.apply();
-                                        validLogin.setValue(true);
-                                    } else {
-                                        toastMessage.setValue( "Error! " +
-                                                Objects.requireNonNull(setUNType.getException()).getMessage());
-                                    }
-                                }
-                            });
-                } else {
-                    toastMessage.setValue( "Error! "
-                            + Objects.requireNonNull(createUNPass.getException()).getMessage());
-                }
+        DBAuth.createUserWithEmailAndPassword(email.trim(), password.trim()).addOnCompleteListener(createUNPass -> {
+            if (createUNPass.isSuccessful()) { //if adding user to DB was successful
+                DB = FirebaseDatabase.getInstance();
+                users = DB.getReference("CLIENTS"); //the user is a client
+                if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
+                    users = DB.getReference("HELPERS");
+                //create user in FB auth
+                User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim());
+                users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newUser)
+                        .addOnCompleteListener(setUNType -> {
+                            if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
+                                validLogin.setValue(true);
+                            } else {
+                                toastMessage.setValue("Error! " +
+                                        Objects.requireNonNull(setUNType.getException()).getMessage());
+                            }
+                        });
+            } else {
+                toastMessage.setValue( "Error! "
+                        + Objects.requireNonNull(createUNPass.getException()).getMessage());
             }
         });
     }

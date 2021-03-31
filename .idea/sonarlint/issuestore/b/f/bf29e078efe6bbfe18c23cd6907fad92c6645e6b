@@ -1,0 +1,10 @@
+
+F
+java:S1172a"0Remove this unused method parameter "ViewModel".(«Ê¡ÿ
+f
+java:S1301["KReplace this "switch" statement by "if" statements to increase readability.(‰¬›Áÿÿÿÿÿ
+E
+java:S1481m"/Remove this unused "dirtyFlags" local variable.(ŒÐÚ§
+<	java:S131[""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
+S
+java:S1854o">Remove this useless assignment to local variable "dirtyFlags".(«êð/

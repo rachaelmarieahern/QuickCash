@@ -53,12 +53,7 @@ public class HelperSpecificTaskFragment extends Fragment {
         NavDirections actionTaskDetailToClientProfile = HelperSpecificTaskFragmentDirections.helperTaskDetailToClientProfile();
         Button toClientProfileButton = getView().findViewById(R.id.helperToClientProfileButton);
 
-        toClientProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(actionTaskDetailToClientProfile);
-            }
-        });
+        toClientProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionTaskDetailToClientProfile));
 
     }
 }
