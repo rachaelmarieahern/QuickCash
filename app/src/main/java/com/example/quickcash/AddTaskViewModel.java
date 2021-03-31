@@ -68,7 +68,7 @@ public class AddTaskViewModel extends ViewModel implements Observable {
 
 
 
-    private final List<ErrorTypes> errors = new ArrayList<>();
+    List<ErrorTypes> errors = new ArrayList<>();
 
     /**
      * When the user clicks the sign up button on the register page
