@@ -39,10 +39,7 @@
             <action
                 android:id="@+id/helperDashboardToMyProfile"
                 app:destination="@id/helperMyProfileToTaskDetail" />
-            <action
-                android:id="@+id/helperDashboardToMap"
-                app:destination="@id/mapFragment" />
- </fragment>
+        </fragment>
         <fragment
             android:id="@+id/helperNotifications"
             android:name="com.example.quickcash.View.HelperNotificationFragment"
@@ -95,16 +92,6 @@
             android:id="@+id/helperPayPal"
             android:name="com.example.quickcash.View.PayPalActivity"
             android:label="PayPalActivity" />
-
-        <fragment
-            android:id="@+id/mapFragment"
-            android:name="com.example.quickcash.View.MapFragment"
-            android:label="fragment_map"
-            tools:layout="@layout/fragment_map" >
-            <action
-                android:id="@+id/mapToHelperDashboard"
-                app:destination="@id/helperDashboard" />
-        </fragment>
     </navigation>
     <navigation android:id="@+id/loginGraph"
         app:startDestination="@id/loginFragment">
