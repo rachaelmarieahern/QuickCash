@@ -48,6 +48,8 @@ public class ClientMyProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        db = FirebaseDatabase.getInstance();
+        DBAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -66,21 +68,21 @@ public class ClientMyProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").child("author").equalTo(DBAuth.getCurrentUser().getUid());
+        baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("author").equalTo(DBAuth.getCurrentUser().getUid());
 
         //Getting the query from Firebase
         options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
         //Instantiating the adapter
         taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
         //Finding the recyclerview
-        RecyclerView taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
+        RecyclerView clientRecyclerView = getView().findViewById(R.id.clientRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
         linearLayoutManager.setStackFromEnd(true);
 
         //Setting the layout of the recyclerview to Linear
-        taskListRecyclerView.setLayoutManager(linearLayoutManager);
-        taskListRecyclerView.setHasFixedSize(true);
+        clientRecyclerView.setLayoutManager(linearLayoutManager);
+        clientRecyclerView.setHasFixedSize(true);
         //Adding the adapter to the recyclerview
-        taskListRecyclerView.setAdapter(taskAdapter);
+        clientRecyclerView.setAdapter(taskAdapter);
     }
 }

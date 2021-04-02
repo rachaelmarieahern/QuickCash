@@ -65,6 +65,7 @@ public class HelperMyProfileFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(MyProfileViewModel.class);
         FragmentHelperMyProfileBinding binding = FragmentHelperMyProfileBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
+        db = FirebaseDatabase.getInstance();
         DBAuth = FirebaseAuth.getInstance();
         return binding.getRoot();
     }
@@ -73,21 +74,21 @@ public class HelperMyProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").child("applicant").equalTo(DBAuth.getCurrentUser().getUid());
+        baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("applicant").equalTo(DBAuth.getCurrentUser().getUid());
 
         //Getting the query from Firebase
         options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
         //Instantiating the adapter
         taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
         //Finding the recyclerview
-        RecyclerView taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
+        RecyclerView helperRecyclerView = getView().findViewById(R.id.helperRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
         linearLayoutManager.setStackFromEnd(true);
 
         //Setting the layout of the recyclerview to Linear
-        taskListRecyclerView.setLayoutManager(linearLayoutManager);
-        taskListRecyclerView.setHasFixedSize(true);
+        helperRecyclerView.setLayoutManager(linearLayoutManager);
+        helperRecyclerView.setHasFixedSize(true);
         //Adding the adapter to the recyclerview
-        taskListRecyclerView.setAdapter(taskAdapter);
+        helperRecyclerView.setAdapter(taskAdapter);
     }
 }

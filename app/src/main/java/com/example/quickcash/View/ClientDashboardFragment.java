@@ -55,6 +55,8 @@ public class ClientDashboardFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
         editor = sharedPreferences.edit();
+        db = FirebaseDatabase.getInstance();
+        DBAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -104,7 +106,7 @@ public class ClientDashboardFragment extends Fragment {
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -116,6 +118,7 @@ public class ClientDashboardFragment extends Fragment {
                     editor.putString("USER_NAME_KEY", user.username);
                     editor.putFloat("AVERAGE_RATING_KEY", user.avgRating);
                     editor.apply();
+
                 }
             }
         });
