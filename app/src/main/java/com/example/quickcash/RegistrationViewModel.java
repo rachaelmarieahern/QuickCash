@@ -8,7 +8,6 @@ import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import androidx.lifecycle.AndroidViewModel;
 public class RegistrationViewModel extends AndroidViewModel implements Observable {
 
     public FirebaseAuth DBAuth;
@@ -84,7 +88,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 password = ""; //reset password
             }
 
-           //toastMessage.setValue(errorMessage);
+            //toastMessage.setValue(errorMessage);
         }
 
     }
@@ -109,8 +113,9 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
             navToHelper.setValue(true);
     }
 
+
     public void helperToClientSelected(){
-            navToClient.setValue(true);
+        navToClient.setValue(true);
     }
 
     public void validateInfo(){
@@ -144,7 +149,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
                     users = DB.getReference("HELPERS");
                 //create user in FB auth
-                User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim());
+                User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim(), 5);
                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newUser)
                         .addOnCompleteListener(setUNType -> {
                             if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
@@ -173,3 +178,4 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     }
 
 }
+

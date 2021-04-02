@@ -160,12 +160,12 @@ public class AddTaskViewModel extends ViewModel implements Observable {
 
     public void addTaskToDB(){
         FirebaseAuth DBAuth = FirebaseAuth.getInstance();
-        DBAuth.signInWithEmailAndPassword("helloman@live.com", "sdf234");
+       // DBAuth.signInWithEmailAndPassword("helloman@live.com", "sdf234");
         if (DBAuth.getCurrentUser() != null) {
             FirebaseDatabase DB = FirebaseDatabase.getInstance();
             DatabaseReference tasks = DB.getReference();
             Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
-                    latitude, wage.trim(), taskType.trim());
+                    latitude, wage.trim(), taskType.trim(), DBAuth.getCurrentUser().getUid());
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(addTask -> {
                 if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
                     toastMessage.setValue("Task Successfully added to DB");

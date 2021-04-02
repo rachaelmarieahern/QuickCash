@@ -1,4 +1,5 @@
 package com.example.quickcash.Model;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Task {
@@ -11,11 +12,14 @@ public class Task {
     private boolean urgent;
     private double longitude, latitude;
     private String databaseId;
+    private String author;
+    private ArrayList<String> applicants = new ArrayList<String>();
+
 
     public Task(){}
 
     public Task(String headLine, String description, Date startDate, Date endDate, boolean urgent,
-                double longitude, double latitude, String wage, String taskType) {
+                double longitude, double latitude, String wage, String taskType, String author) {
         this.headline = headLine;
         this.description = description;
         this.startDate = startDate;
@@ -25,6 +29,8 @@ public class Task {
         this.latitude = latitude;
         this.wage = wage;
         this.taskType = taskType;
+        this.author = author;
+        this.applicants = null;
     }
 
     //getters
@@ -51,4 +57,20 @@ public class Task {
     public void setLatitude(double latitude) { this.latitude = latitude; }
     public void setTaskDatabaseID(String taskDatabaseID) { this.databaseId = taskDatabaseID; }
 
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public ArrayList<String> getApplicants() {
+        return applicants;
+    }
+
+    public void addApplicant(String applicant) {
+        applicants.add(applicant);
+    }
 }

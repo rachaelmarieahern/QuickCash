@@ -4,15 +4,19 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.quickcash.MyProfileViewModel;
 import com.example.quickcash.R;
-
+import com.example.quickcash.databinding.FragmentClientMyProfileBinding;
 
 public class ClientMyProfileFragment extends Fragment {
+
+    MyProfileViewModel viewModel;
 
 
     public ClientMyProfileFragment() {
@@ -30,7 +34,11 @@ public class ClientMyProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_client_my_profile, container, false);
-    }
+        inflater.inflate(R.layout.fragment_client_my_profile, container, false);
+        viewModel = new ViewModelProvider(this).get(MyProfileViewModel.class);
+        FragmentClientMyProfileBinding binding = FragmentClientMyProfileBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
 
+        return binding.getRoot();
+    }
 }

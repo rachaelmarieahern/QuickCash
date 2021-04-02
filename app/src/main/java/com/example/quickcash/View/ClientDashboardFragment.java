@@ -11,20 +11,38 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.quickcash.AddTaskViewModel;
+import com.example.quickcash.Model.Task;
+import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
+import com.example.quickcash.Util.TaskAdapter;
+import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public class ClientDashboardFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
+    AddTaskViewModel viewModel;
+    TaskAdapter taskAdapter;
+    FirebaseDatabase db;
+    FirebaseRecyclerOptions<Task> options;
+    FragmentHelperDashboardBinding binding;
+    Query baseQuery;
+    FirebaseAuth DBAuth;
 
     public ClientDashboardFragment() {
         // Required empty public constructor
@@ -84,6 +102,29 @@ public class ClientDashboardFragment extends Fragment {
             editor.putBoolean("LOGGED_IN", false);
             editor.apply();
             Navigation.findNavController(view).navigate(actionDashboardToLogin);
+        });
+
+        getUserInfoFromDB(DBAuth.getCurrentUser().getUid());
+
+
+    }
+
+    public void getUserInfoFromDB(String userID) {
+
+        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    User user;
+                    user = task.getResult().getValue(User.class);
+                    editor.putString("USER_EMAIL_KEY", user.email);
+                    editor.putString("USER_NAME_KEY", user.username);
+                    editor.putFloat("AVERAGE_RATING_KEY", user.avgRating);
+                    editor.apply();
+                }
+            }
         });
     }
 
