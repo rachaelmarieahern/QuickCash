@@ -75,13 +75,6 @@ public class ClientDashboardFragment extends Fragment {
         toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
 
 
-        //Navigation to Task Detail page
-        //TODO: Make this work through an adapter instead of a button
-        NavDirections actionDashboardToTaskDetail= ClientDashboardFragmentDirections.clientDashboardToTaskDetail();
-        Button toTaskDetailsButton = getView().findViewById(R.id.clientTaskDetailButton);
-
-        toTaskDetailsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToTaskDetail));
-
         //Navigation to Notifications Page
         NavDirections actionDashboardToNotifications= ClientDashboardFragmentDirections.clientDashboardtoNotification();
         Button toNotificationsButton = getView().findViewById(R.id.clientNotificationsButton);
