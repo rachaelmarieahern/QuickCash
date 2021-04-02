@@ -9,11 +9,13 @@ public class User {
     public User(){
     }
 
-    public User(String uName, String userType, String email, float avgRating){
+    public User(String uName, String userType, String email){
         this.username = uName;
         this.userType = userType;
         this.email = email;
-        this.avgRating = avgRating;
+        this.avgRating = 5;
+        this.numOfRatings = 0;
+        this.sumOfRatings = 0;
     }
 
     public String getUsername() {

@@ -14,6 +14,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import android.widget.Button;
 
 import com.example.quickcash.Model.Application;
 import com.example.quickcash.Model.Task;
+
+import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
 import com.example.quickcash.SpecificTaskViewModel;
 import com.example.quickcash.Util.SessionManagement;
@@ -31,11 +34,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class HelperSpecificTaskFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SpecificTaskViewModel viewModel;
     FragmentSpecificTaskViewHelperBinding binding;
+    FirebaseDatabase db;
+    SharedPreferences.Editor editor;
+
 
     public HelperSpecificTaskFragment() {
         // Required empty public constructor
@@ -46,6 +56,9 @@ public class HelperSpecificTaskFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        db = FirebaseDatabase.getInstance();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -60,10 +73,11 @@ public class HelperSpecificTaskFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         Button apply = getView().findViewById(R.id.ApplyForTaskBtn);
         apply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -86,6 +100,28 @@ public class HelperSpecificTaskFragment extends Fragment {
             }
     });
 
+        NavDirections actionTaskDetailToClientProfile = HelperSpecificTaskFragmentDirections.helperTaskDetailToClientProfile();
+        Button toClientProfileButton = getView().findViewById(R.id.helperToClientProfileButton);
 
-}
+        toClientProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionTaskDetailToClientProfile));
+        getUserInfoFromDB(sharedPreferences.getString("AUTHOR_KEY", ""));
+    }
+
+    public void getUserInfoFromDB(String userID) {
+
+        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    User user;
+                    user = task.getResult().getValue(User.class);
+                    editor.putFloat("SUM_OF_RATINGS", (float) user.sumOfRatings);
+                    editor.putInt("NUM_OF_RATINGS", user.numOfRatings);
+                    editor.apply();
+                }
+            }
+        });
+    }
 }

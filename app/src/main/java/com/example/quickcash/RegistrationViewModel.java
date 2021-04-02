@@ -149,7 +149,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
                     users = DB.getReference("HELPERS");
                 //create user in FB auth
-                User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim(), 5);
+                User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim());
                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newUser)
                         .addOnCompleteListener(setUNType -> {
                             if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
