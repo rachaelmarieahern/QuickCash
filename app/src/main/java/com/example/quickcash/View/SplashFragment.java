@@ -86,6 +86,7 @@ public class SplashFragment extends Fragment {
                     client = dataSnapshot.exists();
                     Log.d("Testing: ", "client?" + client);
                     editor.putBoolean(getResources().getString(R.string.USER_TYPE_KEY), client);
+                    editor.apply();
                 }
 
                 @Override

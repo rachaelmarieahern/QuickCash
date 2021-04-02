@@ -34,13 +34,17 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
-        userID = sharedPreferences.getString("AUTHOR_KEY", "");
-        userTypeBoolean=!(sharedPreferences.getBoolean("USER_TYPE_KEY", false));
+        userTypeBoolean=sharedPreferences.getBoolean("USER_TYPE_KEY", true);
 
-        if (userTypeBoolean){
+        if (!userTypeBoolean){
             userType = "CLIENTS";
+            userID = sharedPreferences.getString("AUTHOR_KEY", "");
         }
-        else userType = "HELPERS";
+        else {userType = "HELPERS";
+            userID = sharedPreferences.getString("APPLICANT_KEY", "vY7fiWHThBcdps4YUItfE1ROrIt1");
+             }
+
+
         sumOfRatings = sharedPreferences.getFloat("SUM_OF_RATINGS", 0);
         numOfRatings = sharedPreferences.getInt("NUM_OF_RATINGS", 0);
     }
