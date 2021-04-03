@@ -2,11 +2,15 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -30,6 +34,7 @@ public class RegistrationFragment extends Fragment {
     FirebaseAuth DBAuth;
     FirebaseUser userLoggedIn;
     SessionManagement session;
+    NavController navController;
 
     public SessionManagement getSession() {
         return session;
@@ -43,13 +48,14 @@ public class RegistrationFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        inflater.inflate(R.layout.fragment_registration, container, false);
-
         viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
         FragmentRegistrationBinding binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
@@ -67,6 +73,15 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        NavDirections actionRegisterToClientInfo = RegistrationFragmentDirections.registrationToClientInfo();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(view).navigate(actionRegisterToClientInfo);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), callback);
 
         NavDirections actionRegisterToDashboard = RegistrationFragmentDirections.registrationToSplash();
 

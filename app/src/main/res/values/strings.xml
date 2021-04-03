@@ -12,6 +12,17 @@
     <string name="START_DATE_KEY">START_DATE_KEY</string>
     <string name="END_DATE_KEY">END_DATE_KEY</string>
     <string name="logout_button">logout button</string>
+    <string name="requirements">Requirements</string>
+    <string name="helper">Helper</string>
+    <string name="choose_this_role">choose this role</string>
+    <string name="req_bullets">• Verified Account \n • Can be payed for hired services \n • Will not abandon tasks taken</string>
+    <string name="client">Client</string>
+    <string name="help_others_and_get">Help Others and Get $$$</string>
+    <string name="be_your_own_boss">Be Your Own Boss</string>
+    <string name="todo">TODO</string>
+    <string name="as_a_helper_you_set_your_own_hours_and_work_as_little_or_as_much_as_you_like">As a Helper you set your own hours and work as little or as much as you like.</string>
+    <string name="help_people_with_thier_tasks">Help People with thier Tasks</string>
+    <string name="verified_account_n_can_be_payed_for_hired_services_n_will_not_abandon_tasks_taken">• Verified Account \n • Can be payed for hired services \n • Will not abandon tasks taken</string>
 </resources>
 
 <!--TODO: Turn this into a string array: enum TaskType{cleaning, gardening, housework, labour, babysitting}-->

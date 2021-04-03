@@ -65,11 +65,16 @@ public class LoginFragment extends Fragment {
         };
         viewModel.toastMessage.observe(getViewLifecycleOwner(), toastObserver);
 
-        NavDirections actionLoginToRegistration = LoginFragmentDirections.loginToRegister();
+        NavDirections actionLoginToHelperClientInfo= LoginFragmentDirections.loginToHelperClientInfo();
 
-        final Observer<Boolean> registrationObserver = register -> Navigation.findNavController(view).navigate(actionLoginToRegistration);
+        final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable final Boolean register) {
+                Navigation.findNavController(view).navigate(actionLoginToHelperClientInfo);
+            }
+        };
 
-        viewModel.registrationNavigate.observe(getViewLifecycleOwner(), registrationObserver);
+        viewModel.navToInfo.observe(getViewLifecycleOwner(), registrationObserver);
 
 
         NavDirections actionLoginToDashboard = LoginFragmentDirections.loginToSplash();
