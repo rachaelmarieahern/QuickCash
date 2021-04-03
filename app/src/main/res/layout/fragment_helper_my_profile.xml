@@ -38,7 +38,8 @@
                 android:layout_height="30dp"
                 android:paddingStart="85dp"
                 android:text="User Profile"
-                android:textSize="20dp"
+                android:textColor="@color/quickcashgreen"
+                android:textSize="30dp"
                 android:visibility="visible"
                 tools:visibility="visible" />
 
