@@ -24,6 +24,7 @@
     <string name="as_a_helper_you_set_your_own_hours_and_work_as_little_or_as_much_as_you_like">As a Helper you set your own hours and work as little or as much as you like.</string>
     <string name="help_people_with_thier_tasks">Help People with thier Tasks</string>
     <string name="verified_account_n_can_be_payed_for_hired_services_n_will_not_abandon_tasks_taken">• Verified Account \n • Can be payed for hired services \n • Will not abandon tasks taken</string>
+    //API KEY
     <string name="google_map_api_key">AIzaSyCnbZRLNwz_MMjjF4OYxJ2eYBVHAkR_af4</string>
 
 </resources>
