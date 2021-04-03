@@ -30,32 +30,53 @@
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="76dp"
-                android:layout_weight="3"
                 app:srcCompat="@drawable/quickcash_asset_2" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:paddingStart="85dp"
+                android:text="User Profile"
+                android:textSize="20dp"
+                android:visibility="visible"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/userNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.userName}" />
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Bio"
+                android:textColor="#E91E63"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/userEmailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.userEmail}" />
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="A little bit about myself as a helper, I am a retired accountant who has a lot of free time and a passion fo helping my community" />
 
             <TextView
                 android:id="@+id/userRatingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.ratingMessage}" />
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Past Tasks"
+                android:textColor="#E91E63"
+                android:textSize="20dp" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/helperRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="562dp" />
+                android:layout_height="562dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
