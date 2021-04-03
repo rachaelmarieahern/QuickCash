@@ -73,39 +73,39 @@
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/reqs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="30"
-                android:text="• Verified Account \n • Can be payed for hired services \n • Will not abandon tasks taken"
+                android:paddingStart="30dp"
+                android:text="@string/verified_account_n_can_be_payed_for_hired_services_n_will_not_abandon_tasks_taken"
                 android:textColor="#000000"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
-                android:paddingTop="30"
+                android:paddingTop="30dp"
                 android:text="@string/help_others_and_get"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="40"
-                android:text="Help People with thier Tasks"
+                android:paddingStart="40dp"
+                android:text="@string/help_people_with_thier_tasks"
                 android:textColor="#000000"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -117,18 +117,18 @@
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5"
-                android:paddingStart="40"
+                android:padding="5dp"
+                android:paddingStart="40dp"
                 android:text="@string/as_a_helper_you_set_your_own_hours_and_work_as_little_or_as_much_as_you_like"
                 android:textColor="#000000"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -140,7 +140,7 @@
             android:layout_marginBottom="16dp"
             android:onClick="@{() -> viewModel.typeSelected(true)}"
             android:text="@string/choose_this_role"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
