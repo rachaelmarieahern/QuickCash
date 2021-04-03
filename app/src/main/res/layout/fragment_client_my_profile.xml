@@ -25,37 +25,66 @@
 
             <ImageView
                 android:id="@+id/quickCashLogo"
-                android:layout_width="259dp"
-                android:layout_height="72dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="76dp"
                 android:layout_weight="3"
+                android:paddingBottom="20dp"
                 app:srcCompat="@drawable/quickcash_asset_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="424dp"
+                    android:layout_height="100dp"
+                    android:paddingStart="85dp"
+                    android:text="USER PROFILE"
+                    android:textColor="@color/quickcashgreen"
+                    android:textSize="30dp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/userNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.userName}" />
+                android:paddingStart="20dp"
+                android:text="Bio"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/userEmailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.userEmail}" />
+                android:paddingStart="20dp"
+                android:text="A little bit about myself as a client" />
 
             <TextView
                 android:id="@+id/userRatingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.ratingMessage}" />
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Past Tasks"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/clientRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="562dp" />
+                android:layout_height="562dp"
+                android:paddingStart="20dp" />
+
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
