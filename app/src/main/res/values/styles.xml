@@ -12,4 +12,9 @@
         <item name = "android:paddingEnd">10dp</item>
         <item name ="android:layout_margin">10dp</item>
     </style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/quickcashgreen</item>
+        <item name="colorPrimaryDark">@color/quickcashactive</item>
+        <item name="colorAccent">@color/quickcashlightgreen</item>
+    </style>
 </resources>
