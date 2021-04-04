@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.paypalandroid.Config.Config;
+//import com.example.paypalandroid.Config.Config;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -94,29 +94,16 @@ public class PayPal extends AppCompatActivity {
                                 .putExtra("Amount", amount));
                     } catch (JSONException e) {
 
-
                         e.printStackTrace();
-
-
                     }
-
-
                 }
-
 
             } else if (resultCode == Activity.RESULT_CANCELED)
 
-
                 Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-
 
         } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID)
 
-
             Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
-
-
     }
-
-
 }
