@@ -138,7 +138,6 @@ public class HelperDashboardFragment extends Fragment {
 
             toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
 
-
             //Logout and navigate to splash page
             NavDirections actionDashboardToLogin = HelperDashboardFragmentDirections.helperDashboardToSplash();
             FloatingActionButton logOutButton = getView().findViewById(R.id.logOutButton);
