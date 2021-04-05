@@ -1,6 +1,6 @@
 
-`
-java:S18748"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(Ñ‘8ã“ãø‰/
-J	java:S108b")Either remove or fill this block of code.(Œ´§Êùÿÿÿÿ8ã“ãø‰/
-V
-java:S18748"9Remove this use of "PreferenceManager"; it is deprecated.(Ñ‘8ã“ãø‰/
+H	java:S108")Either remove or fill this block of code.(Œ´§Êùÿÿÿÿ8ã“ãø‰/
+^
+java:S1874"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(Ñ‘8ã“ãø‰/
+T
+java:S1874"9Remove this use of "PreferenceManager"; it is deprecated.(Ñ‘8ã“ãø‰/

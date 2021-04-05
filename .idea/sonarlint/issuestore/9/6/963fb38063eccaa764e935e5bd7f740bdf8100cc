@@ -1,10 +1,17 @@
 
-û
-java:S1186I"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(»’Ú‡8«÷£œà/
-ü
-java:S1186∑"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‘∞§¶8ö˝¿Åä/
-o
-java:S3776R"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(òËµ¨8«÷£œà/
-^	java:S125º"<This block of commented-out lines of code should be removed.(≥˜ﬁÇ˚ˇˇˇˇ8◊ù‚Çä/
-£
-java:S1186F"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î—Â¨˝ˇˇˇˇ8«÷£œà/
+°
+java:S1186"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î—Â¨˝ˇˇˇˇ8«÷£œà/
+ú
+java:S1186"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(»’Ú‡8«÷£œà/
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(òËµ¨8«÷£œà/
+U
+java:S1128"8Remove this unused import 'androidx.annotation.NonNull'.(à€˙‹8¿ﬂ∆öä/
+Z
+java:S1128"?Remove this unused import 'com.google.firebase.database.Query'.(˛∂≈Æ8¿ﬂ∆öä/
+a
+java:S1128"FRemove this unused import 'com.google.firebase.database.DataSnapshot'.(˛«åÑ8¿ﬂ∆öä/
+l
+java:S1128"LRemove this unused import 'com.google.firebase.database.ValueEventListener'.(ãﬁ‹ã˝ˇˇˇˇ8¿ﬂ∆öä/
+g
+java:S1128"GRemove this unused import 'com.google.firebase.database.DatabaseError'.(àê‘µ˝ˇˇˇˇ8¿ﬂ∆öä/

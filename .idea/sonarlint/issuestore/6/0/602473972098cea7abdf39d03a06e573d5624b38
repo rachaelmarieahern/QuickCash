@@ -1,24 +1,24 @@
 
-]
-java:S1128";Remove this unused import 'androidx.navigation.Navigation'.(ÄíÚÀÿÿÿÿÿ8Ù÷§ú‰/
 [
-java:S1874F"9Remove this use of "PreferenceManager"; it is deprecated.(Åúç„ûÿÿÿÿ8âÊ™ş‰/
-`
-java:S1128"CRemove this unused import 'com.example.quickcash.Util.TaskAdapter'.(ìÚÃÎ8âÊ™ş‰/
-K
-java:S1128!".Remove this unused import 'java.util.Objects'.(¼¸õ›8†Ê¶ü‰/
-\
-java:S1128	":Remove this unused import 'androidx.databinding.Bindable'.(ÊÍö±ùÿÿÿÿ8Š¶ü‰/
+java:S1128";Remove this unused import 'androidx.navigation.Navigation'.(ÄíÚÀÿÿÿÿÿ8Ù÷§ú‰/
 Z
-java:S1128"=Remove this unused import 'com.example.quickcash.Model.Task'.(ğ¤ÿÀ8¶£ü‰/
-E	java:S108Q")Either remove or fill this block of code.(å¥‡8†Ê¶ü‰/
-[
-java:S1128">Remove this unused import 'androidx.navigation.NavDirections'.(Á¥±8€º¨ú‰/
-f
-java:S1128"IRemove this unused import 'com.example.quickcash.Util.SessionManagement'.(ô†‡Ú8¹ÎÉú‰/
-a
-java:S1128"?Remove this unused import 'androidx.lifecycle.MutableLiveData'.(Íèæâıÿÿÿÿ8Š¶ü‰/
-J
-java:S1604D"(Make this anonymous inner class a lambda(ªš‡øÿÿÿÿ8Íšµú‰/
-e
-java:S1874F"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(Åúç„ûÿÿÿÿ8âÊ™ş‰/
+java:S1128":Remove this unused import 'androidx.databinding.Bindable'.(ÊÍö±ùÿÿÿÿ8Š¶ü‰/
+X
+java:S1128"=Remove this unused import 'com.example.quickcash.Model.Task'.(ğ¤ÿÀ8¶£ü‰/
+C	java:S108")Either remove or fill this block of code.(å¥‡8†Ê¶ü‰/
+_
+java:S1128"?Remove this unused import 'androidx.lifecycle.MutableLiveData'.(Íèæâıÿÿÿÿ8Š¶ü‰/
+Y
+java:S1128">Remove this unused import 'androidx.navigation.NavDirections'.(Á¥±8€º¨ú‰/
+d
+java:S1128"IRemove this unused import 'com.example.quickcash.Util.SessionManagement'.(ô†‡Ú8¹ÎÉú‰/
+Y
+java:S1874"9Remove this use of "PreferenceManager"; it is deprecated.(Åúç„ûÿÿÿÿ8âÊ™ş‰/
+c
+java:S1874"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(Åúç„ûÿÿÿÿ8âÊ™ş‰/
+^
+java:S1128"CRemove this unused import 'com.example.quickcash.Util.TaskAdapter'.(ìÚÃÎ8âÊ™ş‰/
+H
+java:S1604"(Make this anonymous inner class a lambda(ªš‡øÿÿÿÿ8Íšµú‰/
+I
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8†Ê¶ü‰/
