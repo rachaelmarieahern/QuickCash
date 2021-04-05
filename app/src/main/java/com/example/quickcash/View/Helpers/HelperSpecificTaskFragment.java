@@ -31,12 +31,15 @@ import com.example.quickcash.databinding.FragmentSpecificTaskViewHelperBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+<<<<<<< HEAD:app/src/main/java/com/example/quickcash/View/Helpers/HelperSpecificTaskFragment.java
 <<<<<<< HEAD:app/src/main/java/com/example/quickcash/View/HelperSpecificTaskFragment.java
 
 import java.util.Objects;
 
 =======
 >>>>>>> 2107ccf (Added navigation):app/src/main/java/com/example/quickcash/View/Helpers/HelperSpecificTaskFragment.java
+=======
+>>>>>>> 335c6de (Maps Rebase):app/src/main/java/com/example/quickcash/View/HelperSpecificTaskFragment.java
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 

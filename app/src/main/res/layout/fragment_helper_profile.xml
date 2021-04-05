@@ -12,10 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         tools:context=".View.HelperProfileFragment">
 =======
         tools:context=".View.Helpers.HelperMyProfileFragment">
 >>>>>>> 2107ccf (Added navigation)
+=======
+        tools:context=".View.Helpers.HelperMyProfileFragment">
+>>>>>>> 335c6de (Maps Rebase)
 
         <LinearLayout
             android:id="@+id/linearLayout4"
