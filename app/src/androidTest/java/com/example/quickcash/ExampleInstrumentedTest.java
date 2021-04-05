@@ -89,7 +89,7 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.emailText)).perform(typeText("hellowoman@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloWoman"));
         onView(withId(R.id.passwordText)).perform(typeText("qwe567"), closeSoftKeyboard());
-        onView(withId(R.id.roleSelector)).perform(click());
+        //onView(withId(R.id.roleSelector)).perform(click());
         onView(withId(R.id.signupButton)).perform(click());
     }
 
