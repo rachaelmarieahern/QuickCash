@@ -11,9 +11,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".View.ClientProfileFragment">
+        tools:context=".View.ClientMyProfileFragment">
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -22,10 +23,75 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/quickCashLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="76dp"
+                android:paddingBottom="20dp"
+                app:srcCompat="@drawable/quickcash_asset_2" />
+
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="424dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="85dp"
+                android:text="USER PROFILE"
+                android:textColor="@color/quickcashgreen"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/clientNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(Other) Client Profile" />
+                android:paddingStart="20dp"
+                android:text="@{viewModel.userName}"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/clientEmailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="@{viewModel.userEmail}" />
+
+            <TextView
+                android:id="@+id/clientRatingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="@{viewModel.ratingMessage}"/>
+
+            <TextView
+                android:id="@+id/clientBioHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="Bio"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/clientBioTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="A little bit about myself as a client" />
+
+            <TextView
+                android:id="@+id/clientRatingHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="Leave a review out of 5 stars"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
             <RatingBar
@@ -35,11 +101,32 @@
                 android:numStars="5"
                 android:isIndicator="false"/>
 
+
             <Button
                 android:id="@+id/clientPayPalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="payPal" />
+
+            <TextView
+                android:id="@+id/clientPastTasksHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Past Tasks"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/clientRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="328dp"
+                android:paddingStart="20dp" />
+
+
 
         </LinearLayout>
 

@@ -23,6 +23,14 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
     SharedPreferences sharedPreferences;
 
     @Bindable
+    public String userEmail;
+    @Bindable
+    public String userName;
+    @Bindable
+    public String ratingMessage;
+
+
+    @Bindable
     private double avgRating, sumOfRatings;
     private String userID, userType;
     private boolean userTypeBoolean;
@@ -30,6 +38,13 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
 
     public OtherProfileViewModel(Application application){
         super(application);
+
+        userName = sharedPreferences.getString("USER_NAME_KEY", "n/a");
+        userEmail = sharedPreferences.getString("USER_EMAIL_KEY", "n/a");
+        avgRating = sharedPreferences.getFloat("AVERAGE_RATING_KEY", (float) 5.0);
+
+        ratingMessage = "Rating: " + avgRating + "/5";
+
         dbAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference();
