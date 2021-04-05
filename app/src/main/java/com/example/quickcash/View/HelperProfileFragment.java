@@ -8,14 +8,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.Button;
 
 import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
-import com.example.quickcash.databinding.FragmentClientProfileBinding;
 import com.example.quickcash.databinding.FragmentHelperProfileBinding;
 
 public class HelperProfileFragment extends Fragment {
@@ -58,5 +61,14 @@ public class HelperProfileFragment extends Fragment {
             }
         });
 
+        Button payPal = getView().findViewById(R.id.helperPayPalButton);
+        NavDirections goToPaypal = HelperProfileFragmentDirections.clientPayPalHelper();
+
+        payPal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(goToPaypal);
+            }
+        });
     }
 }

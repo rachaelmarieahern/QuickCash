@@ -31,3 +31,7 @@
 
 </resources>
 
+<<<<<<< HEAD
+=======
+    <!--TODO: Turn this into a string array: enum TaskType{cleaning, gardening, housework, labour, babysitting}-->
+>>>>>>> 2313cc0 (Added navigation)

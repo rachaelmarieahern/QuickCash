@@ -34,6 +34,12 @@
                 android:numStars="5"
                 android:isIndicator="false"/>
 
+            <Button
+                android:id="@+id/helperPayPalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="payPal" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
