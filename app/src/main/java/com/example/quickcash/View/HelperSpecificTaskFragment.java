@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
@@ -92,10 +93,9 @@ public class HelperSpecificTaskFragment extends Fragment {
                     applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
                         if (addApplication.isSuccessful()) { //if the task is successfully applied for
                             apply.setEnabled(false);
-                        } else {
-
                         }
                     });
+                    //NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "lemubitA").setSmallIcon();
                 }
             }
     });
