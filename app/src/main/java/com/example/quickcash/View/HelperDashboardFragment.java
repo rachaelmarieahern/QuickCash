@@ -93,7 +93,7 @@ public class HelperDashboardFragment extends Fragment {
             //Getting the query from Firebase
             options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
             //Instantiating the adapter
-            taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
+            taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view), "HelperDashboard");
             //Finding the recyclerview
             RecyclerView taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);

@@ -28,7 +28,7 @@
                 android:text="(Other) Helper Profile" />
 
             <RatingBar
-                android:id="@+id/clientRatingBar"
+                android:id="@+id/helperRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"

@@ -116,8 +116,5 @@ public class TaskUnitTest {
         taskViewModel.latitude = 111.232;
         taskViewModel.longitude = 145.112;
         taskViewModel.wage = "25.00";
-        //taskViewModel.projectDays = 321;
-        //taskViewModel.projectHours = 0;
-        //taskViewModel.projectMinutes = 0;
     }
 }

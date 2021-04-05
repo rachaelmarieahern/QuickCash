@@ -39,6 +39,7 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
         if (!userTypeBoolean){
             userType = "CLIENTS";
             userID = sharedPreferences.getString("AUTHOR_KEY", "");
+            Log.d("Otherprofileviewmodel", "Author = " + userID);
         }
         else {userType = "HELPERS";
             userID = sharedPreferences.getString("APPLICANT_KEY", "vY7fiWHThBcdps4YUItfE1ROrIt1");

@@ -49,7 +49,7 @@ public class HelperProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RatingBar ratingBar = getView().findViewById(R.id.clientRatingBar);
+        RatingBar ratingBar = getView().findViewById(R.id.helperRatingBar);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {

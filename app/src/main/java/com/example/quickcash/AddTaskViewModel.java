@@ -1,6 +1,6 @@
 package com.example.quickcash;
 
-import androidx.annotation.NonNull;
+import android.util.Log;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
@@ -9,12 +9,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.quickcash.Model.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -166,6 +162,7 @@ public class AddTaskViewModel extends ViewModel implements Observable {
             DatabaseReference tasks = DB.getReference();
             Task nTask = new Task(headLine.trim(), description.trim(), startDate, endDate, urgent, longitude,
                     latitude, wage.trim(), taskType.trim(), DBAuth.getCurrentUser().getUid());
+                    Log.d("User?", "Author: " + DBAuth.getCurrentUser().getUid());
             tasks.child("TASKS").push().setValue(nTask).addOnCompleteListener(addTask -> {
                 if (addTask.isSuccessful()) { //if the user is successfully added to FB RT DB
                     toastMessage.setValue("Task Successfully added to DB");

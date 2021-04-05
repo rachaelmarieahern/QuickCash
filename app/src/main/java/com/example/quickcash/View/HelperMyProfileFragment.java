@@ -79,7 +79,7 @@ public class HelperMyProfileFragment extends Fragment {
         //Getting the query from Firebase
         options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
         //Instantiating the adapter
-        taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
+        taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view), "HelperMyProfile");
         //Finding the recyclerview
         RecyclerView helperRecyclerView = getView().findViewById(R.id.helperRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);

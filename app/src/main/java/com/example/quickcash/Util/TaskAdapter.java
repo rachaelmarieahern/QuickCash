@@ -26,14 +26,16 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
     final SharedPreferences.Editor editor;
     final Context context;
     final NavController navController;
+    String startingFrag;
 
     public TaskAdapter(
-            @NonNull FirebaseRecyclerOptions<Task> options, Context context, NavController navController) {
+            @NonNull FirebaseRecyclerOptions<Task> options, Context context, NavController navController, String startingFrag) {
         super(options);
         this.context = context;
         this.navController = navController;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         editor = sharedPreferences.edit();
+        this.startingFrag = startingFrag;
     }
 
     //Attaches card view for individual list items to the adapter
@@ -81,7 +83,15 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             editor.putBoolean("URGENT", currentTask.isUrgent());
             editor.putString("taskDatabaseID", currentTask.getTaskDatabaseID());
             editor.apply();
-            navController.navigate(R.id.helperDashboardToTaskDetail);
+            if(startingFrag.equals("HelperDashboard")) {
+                navController.navigate(R.id.helperDashboardToTaskDetail);
+            }
+            if(startingFrag.equals("ClientMyProfile")){
+                navController.navigate(R.id.clientMyProfileToTaskDetail);
+            }
+            if(startingFrag.equals("HelperMyProfile")){
+                navController.navigate(R.id.helperMyProfileToTaskDetail);
+            }
         });
 
     }
