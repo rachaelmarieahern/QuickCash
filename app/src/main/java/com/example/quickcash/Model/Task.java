@@ -13,7 +13,7 @@ public class Task {
     private double longitude, latitude;
     private String databaseId;
     private String author;
-    private ArrayList<String> applicants = new ArrayList<String>();
+    private ArrayList<Application> applicants = new ArrayList<Application>();
 
 
     public Task(){}
@@ -66,11 +66,11 @@ public class Task {
         this.author = author;
     }
 
-    public ArrayList<String> getApplicants() {
+    public ArrayList<Application> getApplicants() {
         return applicants;
     }
 
-    public void addApplicant(String applicant) {
+    public void addApplicant(Application applicant) {
         applicants.add(applicant);
     }
 }
