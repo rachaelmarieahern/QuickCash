@@ -28,7 +28,6 @@
             </intent-filter>
         </activity>
 
-
         <activity android:name=".View.PayPalActivity">
         </activity>
 
@@ -36,7 +35,6 @@
         <activity
             android:name=".View.MapsActivity">
         </activity>
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

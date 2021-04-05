@@ -11,7 +11,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         tools:context=".View.HelperProfileFragment">
+=======
+        tools:context=".View.Helpers.HelperMyProfileFragment">
+>>>>>>> 335c6de (Maps Rebase)
 
         <LinearLayout
             android:id="@+id/linearLayout4"
