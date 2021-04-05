@@ -89,7 +89,7 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.emailText)).perform(typeText("hellowoman@live.com"));
         onView(withId(R.id.usernameText)).perform(typeText("HelloWoman"));
         onView(withId(R.id.passwordText)).perform(typeText("qwe567"), closeSoftKeyboard());
-        onView(withId(R.id.roleSelector)).perform(click());
+        //onView(withId(R.id.roleSelector)).perform(click());
         onView(withId(R.id.signupButton)).perform(click());
     }
 
@@ -129,6 +129,13 @@ public class ExampleInstrumentedTest {
     //User must exist in FB authentication & Realtime DB for test to pass
     @Test
     public void validLoginUser() { //TODO: insert assert test
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+    }
+
+    @Test
+    public void testSavingDBTaskID() {
         onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());

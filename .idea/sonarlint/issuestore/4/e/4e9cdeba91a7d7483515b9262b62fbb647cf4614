@@ -1,38 +1,38 @@
 
+n
+java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(îÑšåûÿÿÿÿ
+C
+java:S1604Q"(Make this anonymous inner class a lambda(è•³Ôÿÿÿÿÿ
+K
+java:S1066’"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+=	java:S131Ê""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
+K
+java:S1066™"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+Q
+java:S1481C"6Remove this unused "viewModelPassword" local variable.(Çè«±ûÿÿÿÿ
+?
+java:S19055")Remove this unnecessary cast to "String".(é™Ê¿
 K
 java:S1066„"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+K
+java:S1066‹"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+R
+java:S1481["<Remove this unused "viewModelHelperSelected" local variable.(‹¸²¾
+C
+java:S16049"(Make this anonymous inner class a lambda(çª¸Œúÿÿÿÿ
 >
 java:S1604i"(Make this anonymous inner class a lambda(Ñ›Â›
+>
+java:S1604!"(Make this anonymous inner class a lambda(¶Úì¿
+K
+java:S1481s"6Remove this unused "viewModelUsername" local variable.(éı¯C
 D
 java:S1905}")Remove this unnecessary cast to "String".(ËİÕ¬øÿÿÿÿ
 I
 java:S1481)"3Remove this unused "viewModelEmail" local variable.(Å©¿
-K
-java:S1066’"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
->
-java:S1604!"(Make this anonymous inner class a lambda(¶Úì¿
-C
-java:S16049"(Make this anonymous inner class a lambda(çª¸Œúÿÿÿÿ
-G
-java:S1172Ğ"0Remove this unused method parameter "ViewModel".(’€ë¢
-D
-java:S1905M")Remove this unnecessary cast to "String".(Š‚‘ìÿÿÿÿÿ
-K
-java:S1066‹"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
-K
-java:S1066™"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
-?
-java:S19055")Remove this unnecessary cast to "String".(é™Ê¿
-R
-java:S1481["<Remove this unused "viewModelHelperSelected" local variable.(‹¸²¾
 g
 java:S1301Ê"KReplace this "switch" statement by "if" statements to increase readability.(‰¬›Áÿÿÿÿÿ
-=	java:S131Ê""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
-Q
-java:S1481C"6Remove this unused "viewModelPassword" local variable.(Çè«±ûÿÿÿÿ
-C
-java:S1604Q"(Make this anonymous inner class a lambda(è•³Ôÿÿÿÿÿ
-K
-java:S1481s"6Remove this unused "viewModelUsername" local variable.(éı¯C
-n
-java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(îÑšåûÿÿÿÿ
+D
+java:S1905M")Remove this unnecessary cast to "String".(Š‚‘ìÿÿÿÿÿ
+G
+java:S1172Ğ"0Remove this unused method parameter "ViewModel".(’€ë¢
