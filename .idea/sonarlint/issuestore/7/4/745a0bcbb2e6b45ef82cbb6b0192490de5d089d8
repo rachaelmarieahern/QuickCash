@@ -1,18 +1,18 @@
 
+<	java:S131_""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
+K
+java:S1066¶"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
 f
 java:S1301_"KReplace this "switch" statement by "if" statements to increase readability.(‰¬›Áÿÿÿÿÿ
 K
-java:S1066½"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
-K
-java:S1066¶"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+java:S1066Ä"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
 K
 java:S1066¯"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
-<	java:S131_""Add a default case to this switch.(‰¬›Áÿÿÿÿÿ
 K
 java:S1172e"0Remove this unused method parameter "ViewModel".(øŒ°øøÿÿÿÿ
 K
-java:S1066Ä"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
-K
-java:S1066¨"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
+java:S1066½"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ
 n
 java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(îÑšåûÿÿÿÿ
+K
+java:S1066¨"/Merge this if statement with the enclosing one.(¨ø´úÿÿÿÿ

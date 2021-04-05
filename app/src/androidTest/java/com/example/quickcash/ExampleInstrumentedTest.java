@@ -133,4 +133,11 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
     }
+
+    @Test
+    public void testSavingDBTaskID() {
+        onView(withId(R.id.loginEmailText)).perform(typeText("helloman@live.com"));
+        onView(withId(R.id.loginPasswordText)).perform(typeText("sdf234"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+    }
 }

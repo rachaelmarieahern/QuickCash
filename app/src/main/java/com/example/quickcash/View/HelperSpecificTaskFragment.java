@@ -1,28 +1,41 @@
 package com.example.quickcash.View;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.quickcash.Model.Application;
+import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
 import com.example.quickcash.SpecificTaskViewModel;
+import com.example.quickcash.Util.SessionManagement;
+import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentSpecificTaskViewHelperBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class HelperSpecificTaskFragment extends Fragment {
+    SharedPreferences sharedPreferences;
     SpecificTaskViewModel viewModel;
     FragmentSpecificTaskViewHelperBinding binding;
-
 
     public HelperSpecificTaskFragment() {
         // Required empty public constructor
@@ -50,10 +63,29 @@ public class HelperSpecificTaskFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavDirections actionTaskDetailToClientProfile = HelperSpecificTaskFragmentDirections.helperTaskDetailToClientProfile();
-        Button toClientProfileButton = getView().findViewById(R.id.helperToClientProfileButton);
 
-        toClientProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionTaskDetailToClientProfile));
+        Button apply = getView().findViewById(R.id.ApplyForTaskBtn);
+        apply.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                FirebaseAuth DBAuth = FirebaseAuth.getInstance();
+                if (DBAuth.getCurrentUser() != null) {
+                    FirebaseDatabase DB = FirebaseDatabase.getInstance();
+                    DatabaseReference applications = DB.getReference();
+                    String taskID = sharedPreferences.getString("taskDatabaseID", "NO TASK DB FOUND");
+                    String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    Application newApplication = new Application(UserId, "IN PROGRESS", taskID);
+                    applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
+                        if (addApplication.isSuccessful()) { //if the task is successfully applied for
+                            apply.setEnabled(false);
+                        } else {
 
-    }
+                        }
+                    });
+                }
+            }
+    });
+
+
+}
 }

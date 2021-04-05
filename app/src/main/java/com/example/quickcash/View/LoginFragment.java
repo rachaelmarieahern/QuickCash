@@ -26,9 +26,9 @@ public class LoginFragment extends Fragment {
     LoginViewModel viewModel;
     FirebaseAuth DBAuth;
     FirebaseUser userLoggedIn;
-    SessionManagement session;
+    static SessionManagement session;
 
-    public SessionManagement getSession() {
+    public static SessionManagement getSession() {
         return session;
     }
 

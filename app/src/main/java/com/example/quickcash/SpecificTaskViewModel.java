@@ -3,13 +3,15 @@ package com.example.quickcash;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Button;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.navigation.Navigation;
 
-    public class SpecificTaskViewModel extends AndroidViewModel implements Observable {
+public class SpecificTaskViewModel extends AndroidViewModel implements Observable {
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
 
@@ -39,9 +41,6 @@ import androidx.lifecycle.AndroidViewModel;
             rawEndDateString = getString(R.string.END_DATE_KEY, "No End Date Found");
             urgent = sharedPreferences.getBoolean("URGENT", false);
         }
-
-
-
 
         @Override
         public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {

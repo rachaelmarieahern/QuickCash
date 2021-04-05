@@ -1,0 +1,23 @@
+
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(È‘‹´ùÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(Ãþ”«ýÿÿÿÿ
+J
+java:S1874"/Remove this use of "inflate"; it is deprecated.(æ‹´üÿÿÿÿ
+K
+java:S1133$"5Do not forget to remove this deprecated code someday.(”•Ýä
+>
+java:S1123$"(Add the missing @deprecated Javadoc tag.(”•Ýä
+E
+java:S1874+"/Remove this use of "inflate"; it is deprecated.(õÇüÔ
+K
+java:S11337"5Do not forget to remove this deprecated code someday.(”•Ýä
+>
+java:S11237"(Add the missing @deprecated Javadoc tag.(”•Ýä
+G
+java:S1874=",Remove this use of "bind"; it is deprecated.(É­·Ÿûÿÿÿÿ
+P
+java:S1133H"5Do not forget to remove this deprecated code someday.(éÏ´Ðÿÿÿÿÿ
+C
+java:S1123H"(Add the missing @deprecated Javadoc tag.(éÏ´Ðÿÿÿÿÿ
