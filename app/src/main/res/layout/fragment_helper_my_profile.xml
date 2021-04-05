@@ -3,12 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable name="viewModel" type="com.example.quickcash.MyProfileViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".View.HelperMyProfileFragment">
-
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -17,14 +22,139 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/quickCashLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="76dp"
+                android:paddingBottom="20dp"
+                app:srcCompat="@drawable/quickcash_asset_2" />
+
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="424dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="85dp"
+                android:text="USER PROFILE"
+                android:textColor="@color/quickcashgreen"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/helperNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Helper MyProfile" />
+                android:paddingStart="20dp"
+                android:text="@{viewModel.userName}"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/helperEmailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="@{viewModel.userEmail}" />
 
+            <TextView
+                android:id="@+id/helperRatingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="@{viewModel.ratingMessage}"/>
+
+            <TextView
+                android:id="@+id/helperBioHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="Bio"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/helperBioTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:text="A little bit about myself as a helper" />
+
+            <TextView
+                android:id="@+id/helperPastTasksHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Past Tasks"
+                android:textColor="#E91E63"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/helperRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="562dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp" />
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menubar"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/addTaskIcon"
+                android:layout_width="51dp"
+                android:layout_height="47dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/profilePageIcon"
+                app:layout_constraintStart_toEndOf="@+id/dashboardIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_plus" />
+
+            <ImageView
+                android:id="@+id/imageView28"
+                android:layout_width="52dp"
+                android:layout_height="47dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profilePageIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_copy" />
+
+            <ImageView
+                android:id="@+id/dashboardIcon"
+                android:layout_width="50dp"
+                android:layout_height="53dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/addTaskIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_home" />
+
+            <ImageView
+                android:id="@+id/profilePageIcon"
+                android:layout_width="49dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView28"
+                app:layout_constraintStart_toEndOf="@+id/addTaskIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_user" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
+
+
+

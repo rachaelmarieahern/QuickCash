@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +25,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.quickcash.Model.Task;
+import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
 import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HelperDashboardFragment extends Fragment {
 
         AddTaskViewModel viewModel;
         TaskAdapter taskAdapter;
+        FirebaseDatabase db;
         FirebaseRecyclerOptions<Task> options;
         FragmentHelperDashboardBinding binding;
         SharedPreferences sharedPreferences;
@@ -43,7 +55,7 @@ public class HelperDashboardFragment extends Fragment {
         Query baseQuery;
         FirebaseRecyclerOptions<Task> newOptions;
         String taskID;
-
+        FirebaseAuth DBAuth;
 
         public HelperDashboardFragment() {
             // Required empty public constructor
@@ -55,6 +67,8 @@ public class HelperDashboardFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
         editor = sharedPreferences.edit();
+        db = FirebaseDatabase.getInstance();
+        DBAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -79,10 +93,10 @@ public class HelperDashboardFragment extends Fragment {
             //Getting the query from Firebase
             options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
             //Instantiating the adapter
-            taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view));
+            taskAdapter = new TaskAdapter(options, getActivity().getApplicationContext(), Navigation.findNavController(view), "HelperDashboard");
             //Finding the recyclerview
             RecyclerView taskListRecyclerView = getView().findViewById(R.id.taskListRecyclerView);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
             linearLayoutManager.setStackFromEnd(true);
 
             //Setting the layout of the recyclerview to Linear
@@ -95,9 +109,8 @@ public class HelperDashboardFragment extends Fragment {
             taskFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(view == null){
-                    }
-                    else {
+                    if (view == null) {
+                    } else {
                         TextView taskType = (TextView) view;
                         String taskText = taskType.getText().toString();
                         updateRecyclerView(taskText);
@@ -113,14 +126,14 @@ public class HelperDashboardFragment extends Fragment {
             });
 
             //Navigation to My Profile Page
-            NavDirections actionDashboardToMyProfile= HelperDashboardFragmentDirections.helperDashboardToMyProfile();
+            NavDirections actionDashboardToMyProfile = HelperDashboardFragmentDirections.helperDashboardToMyProfile();
             Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
 
             toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
 
 
             //Navigation to Notifications Page
-            NavDirections actionDashboardToNotifications= HelperDashboardFragmentDirections.helperDashboardToNotifications();
+            NavDirections actionDashboardToNotifications = HelperDashboardFragmentDirections.helperDashboardToNotifications();
             Button toNotificationsButton = getView().findViewById(R.id.helperNotificationsButton);
 
             toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
@@ -135,9 +148,34 @@ public class HelperDashboardFragment extends Fragment {
                 editor.apply();
                 Navigation.findNavController(view).navigate(actionDashboardToLogin);
             });
+
+            getUserInfoFromDB(DBAuth.getCurrentUser().getUid());
+
+
         }
 
-    public void updateRecyclerView(String taskTypeFilterText) {
+    public void getUserInfoFromDB(String userID) {
+
+        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    User user;
+                    user = task.getResult().getValue(User.class);
+                    editor.putString("USER_EMAIL_KEY", user.email);
+                    editor.putString("USER_NAME_KEY", user.username);
+                    editor.putFloat("AVERAGE_RATING_KEY", user.avgRating);
+                    editor.apply();
+                }
+            }
+        });
+    }
+
+
+        public void updateRecyclerView(String taskTypeFilterText) {
+        FirebaseRecyclerOptions<Task> newOptions;
         if (taskTypeFilterText.equals("Select a Task Type")) {
             newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
         } else {

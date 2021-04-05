@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".View.ClientDashboardFragment">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
         <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -17,10 +19,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Client Dashboard" />
+            <ImageView
+                android:id="@+id/quickCashLogo"
+                android:layout_width="259dp"
+                android:layout_height="72dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="76dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/quickcash_asset_2" />
+
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/logOutButton"
@@ -51,16 +59,27 @@
                 android:text="Add Task" />
 
             <Button
-                android:id="@+id/clientTaskDetailButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Task Detail" />
-
-            <Button
                 android:id="@+id/clientNotificationsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Notifications" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/taskListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="5">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <include
+                android:id="@+id/dashboardTaskBar"
+                layout="@layout/taskbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

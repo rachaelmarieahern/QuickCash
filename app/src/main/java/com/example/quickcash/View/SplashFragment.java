@@ -35,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 public class SplashFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     Animation rotateAnimation;
     ImageView imageView;
     FirebaseAuth DBAuth;
@@ -49,6 +50,7 @@ public class SplashFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplication());
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -83,6 +85,8 @@ public class SplashFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     client = dataSnapshot.exists();
                     Log.d("Testing: ", "client?" + client);
+                    editor.putBoolean(getResources().getString(R.string.USER_TYPE_KEY), client);
+                    editor.apply();
                 }
 
                 @Override
