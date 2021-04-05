@@ -10,7 +10,7 @@ public class Task {
     private String taskType;
     private boolean urgent;
     private double longitude, latitude;
-
+    private String databaseId;
 
     public Task(){}
 
@@ -37,6 +37,7 @@ public class Task {
     public boolean isUrgent() { return urgent; }
     public double getLongitude() { return longitude; }
     public double getLatitude() { return latitude; }
+    public String getTaskDatabaseID() { return databaseId; }
 
     //setters
     public void setHeadline(String headline) { this.headline = headline; }
@@ -48,5 +49,6 @@ public class Task {
     public void setUrgent(boolean urgent) { this.urgent = urgent; }
     public void setLongitude(double longitude) { this.longitude = longitude; }
     public void setLatitude(double latitude) { this.latitude = latitude; }
+    public void setTaskDatabaseID(String taskDatabaseID) { this.databaseId = taskDatabaseID; }
 
 }

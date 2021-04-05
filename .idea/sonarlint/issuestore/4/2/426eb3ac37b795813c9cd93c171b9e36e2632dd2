@@ -1,0 +1,24 @@
+
+[	java:S107!"AConstructor has 8 parameters, which is greater than 7 authorized.(ğï¡²úÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(È‘‹´ùÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(Ãş”«ıÿÿÿÿ
+J
+java:S18740"/Remove this use of "inflate"; it is deprecated.(æ‹´üÿÿÿÿ
+P
+java:S1133<"5Do not forget to remove this deprecated code someday.(ó²‡©üÿÿÿÿ
+C
+java:S1123<"(Add the missing @deprecated Javadoc tag.(ó²‡©üÿÿÿÿ
+E
+java:S1874C"/Remove this use of "inflate"; it is deprecated.(õÇüÔ
+P
+java:S1133O"5Do not forget to remove this deprecated code someday.(ó²‡©üÿÿÿÿ
+C
+java:S1123O"(Add the missing @deprecated Javadoc tag.(ó²‡©üÿÿÿÿ
+G
+java:S1874U",Remove this use of "bind"; it is deprecated.(É­·Ÿûÿÿÿÿ
+P
+java:S1133`"5Do not forget to remove this deprecated code someday.(‡š”ûÿÿÿÿ
+C
+java:S1123`"(Add the missing @deprecated Javadoc tag.(‡š”ûÿÿÿÿ

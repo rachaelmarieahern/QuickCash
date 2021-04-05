@@ -14,6 +14,12 @@ import com.example.quickcash.Model.Task;
 import com.example.quickcash.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskViewHolder> {
     final SharedPreferences sharedPreferences;
@@ -48,8 +54,22 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         holder.headline.setText(currentTask.getHeadline());
         holder.wage.setText(currentTask.getWage());
         holder.distance.setText(currentTask.getHeadline());
-
         holder.location.setText(currentTask.getWage());
+
+        Query idQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("headline").equalTo(currentTask.getHeadline());
+        idQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot id : snapshot.getChildren()) {
+                    currentTask.setTaskDatabaseID(id.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         holder.itemView.findViewById(R.id.list_item).setOnClickListener(v -> {
             putString(R.string.DESCRIPTION_KEY, currentTask.getDescription());
@@ -58,12 +78,12 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
             putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
             editor.putBoolean("URGENT", currentTask.isUrgent());
+            editor.putString("taskDatabaseID", currentTask.getTaskDatabaseID());
             editor.apply();
             navController.navigate(R.id.helperDashboardToTaskDetail);
         });
 
     }
-
 
     //Updates task list item variables to new data fetched from firebase
     static class TaskViewHolder extends RecyclerView.ViewHolder {

@@ -1,15 +1,15 @@
 
-R
-java:S2589r"7Remove this expression which always evaluates to "true"(ΰμ­¥ύÿÿÿÿ
 Y
 java:S18743"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(Ρ‘
-H
-java:S1135g"2Complete the task associated to this TODO comment.(ϋ«ΰ¨
 —
 java:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÿ…ίρ
+R
+java:S2589r"7Remove this expression which always evaluates to "true"(ΰμ­¥ύÿÿÿÿ
 M
 java:S2589m"7Remove this expression which always evaluates to "true"(υ
 J
 java:S1874b"/Remove this use of "Handler"; it is deprecated.(μµ‹ύÿÿÿÿ
+H
+java:S1135g"2Complete the task associated to this TODO comment.(ϋ«ΰ¨
 O
 java:S18743"9Remove this use of "PreferenceManager"; it is deprecated.(Ρ‘

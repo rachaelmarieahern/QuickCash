@@ -1,0 +1,24 @@
+
+W	java:S107:"BConstructor has 14 parameters, which is greater than 7 authorized.(ÙÃÒ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(È‘‹´ùÿÿÿÿ
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(Ãş”«ıÿÿÿÿ
+J
+java:S1874V"/Remove this use of "inflate"; it is deprecated.(æ‹´üÿÿÿÿ
+P
+java:S1133b"5Do not forget to remove this deprecated code someday.(ÁÑ¿µıÿÿÿÿ
+C
+java:S1123b"(Add the missing @deprecated Javadoc tag.(ÁÑ¿µıÿÿÿÿ
+E
+java:S1874i"/Remove this use of "inflate"; it is deprecated.(õÇüÔ
+P
+java:S1133u"5Do not forget to remove this deprecated code someday.(ÁÑ¿µıÿÿÿÿ
+C
+java:S1123u"(Add the missing @deprecated Javadoc tag.(ÁÑ¿µıÿÿÿÿ
+G
+java:S1874{",Remove this use of "bind"; it is deprecated.(É­·Ÿûÿÿÿÿ
+Q
+java:S1133†"5Do not forget to remove this deprecated code someday.(Æéö»ùÿÿÿÿ
+D
+java:S1123†"(Add the missing @deprecated Javadoc tag.(Æéö»ùÿÿÿÿ

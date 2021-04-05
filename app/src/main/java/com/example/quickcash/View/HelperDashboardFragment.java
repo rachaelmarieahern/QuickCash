@@ -41,6 +41,8 @@ public class HelperDashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
         Query baseQuery;
+        FirebaseRecyclerOptions<Task> newOptions;
+        String taskID;
 
 
         public HelperDashboardFragment() {
@@ -106,8 +108,9 @@ public class HelperDashboardFragment extends Fragment {
                 public void onNothingSelected(AdapterView<?> parent) {
                     taskAdapter.updateOptions(options);
                 }
-            });
 
+
+            });
 
             //Navigation to My Profile Page
             NavDirections actionDashboardToMyProfile= HelperDashboardFragmentDirections.helperDashboardToMyProfile();
@@ -135,7 +138,6 @@ public class HelperDashboardFragment extends Fragment {
         }
 
     public void updateRecyclerView(String taskTypeFilterText) {
-        FirebaseRecyclerOptions<Task> newOptions;
         if (taskTypeFilterText.equals("Select a Task Type")) {
             newOptions = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
         } else {
