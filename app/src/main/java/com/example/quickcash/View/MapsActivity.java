@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_map);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 

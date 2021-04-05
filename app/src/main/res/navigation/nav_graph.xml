@@ -24,7 +24,7 @@
         app:startDestination="@id/helperDashboard">
         <fragment
             android:id="@+id/helperDashboard"
-            android:name="com.example.quickcash.View.HelperDashboardFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperDashboardFragment"
             android:label="fragment_dashboard"
             tools:layout="@layout/fragment_helper_dashboard">
             <action
@@ -39,10 +39,13 @@
             <action
                 android:id="@+id/helperDashboardToMyProfile"
                 app:destination="@id/helperMyProfileToTaskDetail" />
+            <action
+                android:id="@+id/helperDashboardToMaps"
+                app:destination="@id/mapsActivity" />
         </fragment>
         <fragment
             android:id="@+id/helperNotifications"
-            android:name="com.example.quickcash.View.HelperNotificationFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperNotificationFragment"
             android:label="fragment_helper_notification"
             tools:layout="@layout/fragment_helper_notification">
             <action
@@ -51,7 +54,7 @@
         </fragment>
         <fragment
             android:id="@+id/helperTaskDetail"
-            android:name="com.example.quickcash.View.HelperSpecificTaskFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperSpecificTaskFragment"
             android:label="fragment_specific_task_view"
             tools:layout="@layout/fragment_specific_task_view_helper">
             <action
@@ -66,7 +69,7 @@
         </fragment>
         <fragment
             android:id="@+id/clientProfileFragment"
-            android:name="com.example.quickcash.View.ClientProfileFragment"
+            android:name="com.example.quickcash.View.Client.ClientProfileFragment"
             android:label="fragment_client_profile"
             tools:layout="@layout/fragment_client_profile" >
             <action
@@ -78,7 +81,7 @@
         </fragment>
         <fragment
             android:id="@+id/helperMyProfileToTaskDetail"
-            android:name="com.example.quickcash.View.HelperMyProfileFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperMyProfileFragment"
             android:label="fragment_helper_my_profile"
             tools:layout="@layout/fragment_helper_my_profile" >
             <action
@@ -89,9 +92,16 @@
                 app:destination="@id/helperTaskDetail" />
         </fragment>
         <activity
+<<<<<<< HEAD
             android:id="@+id/helperPayPal"
             android:name="com.example.quickcash.View.PayPalActivity"
             android:label="PayPalActivity" />
+=======
+            android:id="@+id/mapsActivity"
+            android:name="com.example.quickcash.View.MapsActivity"
+            android:label="fragment_map"
+            tools:layout="@layout/fragment_map" />
+>>>>>>> 2107ccf (Added navigation)
     </navigation>
         <navigation android:id="@+id/loginGraph"
         app:startDestination="@id/loginFragment">
@@ -120,7 +130,7 @@
         </fragment>
         <fragment
             android:id="@+id/helperInformationFragment"
-            android:name="com.example.quickcash.View.HelperInformationFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperInformationFragment"
             android:label="helperInformationFragment">
             <action
                 android:id="@+id/helperToRegistration"
@@ -134,7 +144,7 @@
         </fragment>
         <fragment
             android:id="@+id/clientInformationFragment"
-            android:name="com.example.quickcash.View.ClientInformationFragment"
+            android:name="com.example.quickcash.View.Client.ClientInformationFragment"
             android:label="clientInformationFragment">
             <action
                 android:id="@+id/clientToRegistration"
@@ -151,7 +161,7 @@
         app:startDestination="@id/clientDashboardFragment">
         <fragment
             android:id="@+id/clientDashboardFragment"
-            android:name="com.example.quickcash.View.ClientDashboardFragment"
+            android:name="com.example.quickcash.View.Client.ClientDashboardFragment"
             android:label="fragment_client_dashboard"
             tools:layout="@layout/fragment_client_dashboard" >
             <action
@@ -172,7 +182,7 @@
         </fragment>
         <fragment
             android:id="@+id/clientSpecificTaskFragment"
-            android:name="com.example.quickcash.View.ClientSpecificTaskFragment"
+            android:name="com.example.quickcash.View.Client.ClientSpecificTaskFragment"
             android:label="fragment_client_specific_task"
             tools:layout="@layout/fragment_client_specific_task" >
             <action
@@ -184,7 +194,7 @@
         </fragment>
         <fragment
             android:id="@+id/clientNotificationFragment"
-            android:name="com.example.quickcash.View.ClientNotificationFragment"
+            android:name="com.example.quickcash.View.Client.ClientNotificationFragment"
             android:label="fragment_client_notification"
             tools:layout="@layout/fragment_client_notification" >
             <action
@@ -196,7 +206,7 @@
         </fragment>
         <fragment
             android:id="@+id/createTaskFragment"
-            android:name="com.example.quickcash.View.CreateTaskFragment"
+            android:name="com.example.quickcash.View.Client.CreateTaskFragment"
             android:label="CreateTaskFragment" >
             <action
                 android:id="@+id/createTaskToClientDashboard"
@@ -204,7 +214,7 @@
         </fragment>
         <fragment
             android:id="@+id/clientMyProfileFragment"
-            android:name="com.example.quickcash.View.ClientMyProfileFragment"
+            android:name="com.example.quickcash.View.Client.ClientMyProfileFragment"
             android:label="fragment_client_my_profile"
             tools:layout="@layout/fragment_client_my_profile" >
             <action
@@ -216,7 +226,7 @@
         </fragment>
         <fragment
             android:id="@+id/helperProfile"
-            android:name="com.example.quickcash.View.HelperProfileFragment"
+            android:name="com.example.quickcash.View.Helpers.HelperProfileFragment"
             android:label="fragment_helper_other_profile"
             tools:layout="@layout/fragment_helper_profile" >
             <action

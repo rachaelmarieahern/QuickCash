@@ -64,6 +64,14 @@
                 android:layout_weight="3"
                 android:text="Notifications" />
 
+
+            <Button
+                android:id="@+id/helperMapButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="View Map" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
