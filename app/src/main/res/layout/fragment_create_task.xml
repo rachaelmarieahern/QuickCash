@@ -15,15 +15,7 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/quickCashLogo"
-            android:layout_width="259dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quickcash_asset_2" />
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -171,12 +163,6 @@
                     android:text="add task"
                     android:textSize="20sp" />
 
-
-                <include
-                    android:id="@+id/createTaskTaskbar"
-                    layout="@layout/taskbar">
-
-                </include>
 
             </LinearLayout>
         </ScrollView>

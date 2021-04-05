@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/clientDashboardFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/createTaskFragment"
+        android:title="Create Task"
+        android:icon="@drawable/ic_plus"/>
+    <item
+        android:id="@+id/clientMyProfileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_user"/>
+    <item
+        android:id="@+id/clientNotificationFragment"
+        android:title="Application"
+        android:icon="@drawable/ic_copy"/>
+</menu>
