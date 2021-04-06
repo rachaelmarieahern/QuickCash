@@ -907,3 +907,5 @@ t
 Dapp/build/intermediates/processed_res/debug/out/output-metadata.json,f\9\f997ed15d9a78060dcc4ef71f4b717cf229d2b45
 n
 >app/src/main/java/com/example/quickcash/Model/Application.java,8\f\8f46c8af5684a17180d6457e40e5cf7be096bc03
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35

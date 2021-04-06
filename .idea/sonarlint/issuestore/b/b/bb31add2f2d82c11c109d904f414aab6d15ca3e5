@@ -1,6 +1,6 @@
 
-V	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8©¼˜Š/
+V	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8¬û¼ Š/
 Y
-java:S1874"9Remove this use of "PreferenceManager"; it is deprecated.(©Ÿşáûÿÿÿÿ8©¼˜Š/
+java:S1874"9Remove this use of "PreferenceManager"; it is deprecated.(©Ÿşáûÿÿÿÿ8¬û¼ Š/
 c
-java:S1874"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(©Ÿşáûÿÿÿÿ8©¼˜Š/
+java:S1874"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(©Ÿşáûÿÿÿÿ8¬û¼ Š/
