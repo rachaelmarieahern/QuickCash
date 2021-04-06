@@ -3,13 +3,11 @@ package com.example.quickcash;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.Button;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.navigation.Navigation;
 
 public class SpecificTaskViewModel extends AndroidViewModel implements Observable {
 
@@ -53,7 +51,6 @@ public class SpecificTaskViewModel extends AndroidViewModel implements Observabl
         }
 
         public void parseDates() {
-            //TODO Parse raw date strings to make display-able strings
             endDateString = rawEndDateString;
             startDateString = rawStartDateString;
         }

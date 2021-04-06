@@ -3,14 +3,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PaymentDetails extends AppCompatActivity {
 
 
-    TextView txtId,txtAmount,txtStatus;
+    TextView txtId;
+    TextView txtAmount;
+    TextView txtStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

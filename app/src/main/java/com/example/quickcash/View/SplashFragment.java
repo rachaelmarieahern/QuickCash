@@ -105,7 +105,6 @@ public class SplashFragment extends Fragment {
 
 
     public void redirect(View view) {
-        //TODO Redirect properly
         if (!loggedIn) {
             NavDirections actionSplashToLogin = SplashFragmentDirections.splashToLogin();
             //Navigate to login page

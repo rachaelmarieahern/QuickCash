@@ -1,5 +1,4 @@
 package com.example.quickcash.Model;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Task {
@@ -10,7 +9,8 @@ public class Task {
     private String wage;
     private String taskType;
     private boolean urgent;
-    private double longitude, latitude;
+    private double longitude;
+    private double latitude;
     private String databaseId;
     private String author;
     private String applicant;

@@ -1,7 +1,10 @@
 package com.example.quickcash.Model;
 
 public class User {
-    private String username, userType, email, token;
+    private String username;
+    private String userType;
+    private String email;
+    private String token;
     private float sumOfRatings;
     private float avgRating;
     private int numOfRatings;

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -31,17 +30,10 @@ import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HelperDashboardFragment extends Fragment {
 
@@ -53,8 +45,6 @@ public class HelperDashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
         Query baseQuery;
-        FirebaseRecyclerOptions<Task> newOptions;
-        String taskID;
         FirebaseAuth DBAuth;
 
         public HelperDashboardFragment() {

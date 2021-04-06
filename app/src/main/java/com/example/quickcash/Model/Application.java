@@ -2,7 +2,9 @@ package com.example.quickcash.Model;
 
 public class Application {
 
-    private String applicantID, applicationStatus, taskID;
+    private String applicantID;
+    private String applicationStatus;
+    private String taskID;
 
     public Application (){}
 

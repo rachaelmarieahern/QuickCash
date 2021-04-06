@@ -4,16 +4,12 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.quickcash.Model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,20 +28,24 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
 
 
     @Bindable
-    public String username = "", email = "", password= "";
+    public String username = "";
+    @Bindable
+    public String email = "";
+    @Bindable
+    public String password= "";
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
 
     @Bindable
-    public MutableLiveData<String> userTypeMessage = new MutableLiveData<String>();
+    public MutableLiveData<String> userTypeMessage = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToRegistration = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToRegistration = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToClient = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToClient = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToHelper = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToHelper = new MutableLiveData<>();
 
     public RegistrationViewModel(Application application) {
         super(application);
@@ -56,7 +56,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     }
 
     List<ErrorTypes> errors = new ArrayList<>();
-    private String userType = "";
 
     /**
      * When the user clicks the sign up button on the register page
@@ -91,6 +90,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      * Defines the type of user to create: Client or Helper
      */
     public void typeSelected(boolean helper){
+        String userType;
         if (helper) {
             userType = "HELPER";
         }

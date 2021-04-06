@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,11 +28,7 @@ import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
 
 import com.example.quickcash.Model.Task;
-import com.example.quickcash.MyProfileViewModel;
-import com.example.quickcash.OtherProfileViewModel;
-import com.example.quickcash.R;
 import com.example.quickcash.Util.TaskAdapter;
-import com.example.quickcash.databinding.FragmentClientMyProfileBinding;
 
 import com.example.quickcash.databinding.FragmentClientProfileBinding;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;

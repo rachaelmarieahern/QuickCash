@@ -22,7 +22,6 @@ import android.widget.RatingBar;
 import android.widget.Button;
 
 import com.example.quickcash.Model.Task;
-import com.example.quickcash.MyProfileViewModel;
 import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
 
