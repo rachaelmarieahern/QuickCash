@@ -91,6 +91,7 @@ public class SplashFragment extends Fragment {
 
                 @Override
                 public void onCancelled(@NotNull DatabaseError databaseError) {
+                    //method is used for when there is a database error
                 }
             };
 

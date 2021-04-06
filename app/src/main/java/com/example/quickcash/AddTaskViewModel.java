@@ -63,10 +63,14 @@ public class AddTaskViewModel extends ViewModel implements Observable {
     }
 
     @Override
-    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        //method is used for navigation
+    }
 
     @Override
-    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        //method is used for navigation
+    }
 
 
 

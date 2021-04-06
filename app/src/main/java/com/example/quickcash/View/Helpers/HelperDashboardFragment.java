@@ -153,30 +153,22 @@ public class HelperDashboardFragment extends Fragment {
             Button goToMaps =  getView().findViewById(R.id.helperMapButton);
             NavDirections actionGoToMaps = HelperDashboardFragmentDirections.helperDashboardToMaps();
 
-            goToMaps.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view).navigate(actionGoToMaps);
-                }
-            });
+            goToMaps.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionGoToMaps));
 
         }
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    User user;
-                    user = task.getResult().getValue(User.class);
-                    editor.putString("USER_EMAIL_KEY", user.getEmail());
-                    editor.putString("USER_NAME_KEY", user.getUsername());
-                    editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
-                    editor.apply();
-                }
+        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                User user;
+                user = task.getResult().getValue(User.class);
+                editor.putString("USER_EMAIL_KEY", user.getEmail());
+                editor.putString("USER_NAME_KEY", user.getUsername());
+                editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
+                editor.apply();
             }
         });
     }

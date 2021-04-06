@@ -70,7 +70,7 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //method is used for when the database encounters an error
             }
         });
 

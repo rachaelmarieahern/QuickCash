@@ -54,11 +54,11 @@ public class MyProfileViewModel extends AndroidViewModel implements Observable {
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 }
