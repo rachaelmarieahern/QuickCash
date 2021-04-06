@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".View.ClientMyProfileFragment">
+        tools:context=".View.ClientProfileFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -121,7 +121,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/clientRecyclerView"
+                android:id="@+id/otherClientRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="328dp"
                 android:paddingStart="20dp" />

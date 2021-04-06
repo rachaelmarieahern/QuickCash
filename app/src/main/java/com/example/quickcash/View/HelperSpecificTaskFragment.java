@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
@@ -88,6 +89,7 @@ public class HelperSpecificTaskFragment extends Fragment {
                     DatabaseReference applications = DB.getReference();
                     String taskID = sharedPreferences.getString("taskDatabaseID", "NO TASK DB FOUND");
                     String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                     Application newApplication = new Application(UserId, "IN PROGRESS", taskID);
                     applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
                         if (addApplication.isSuccessful()) { //if the task is successfully applied for
@@ -95,10 +97,11 @@ public class HelperSpecificTaskFragment extends Fragment {
                         } else {
 
                         }
+                        DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
                     });
                 }
             }
-    });
+        });
 
         NavDirections actionTaskDetailToClientProfile = HelperSpecificTaskFragmentDirections.helperTaskDetailToClientProfile();
         Button toClientProfileButton = getView().findViewById(R.id.helperToClientProfileButton);
@@ -119,9 +122,12 @@ public class HelperSpecificTaskFragment extends Fragment {
                     user = task.getResult().getValue(User.class);
                     editor.putFloat("SUM_OF_RATINGS", (float) user.sumOfRatings);
                     editor.putInt("NUM_OF_RATINGS", user.numOfRatings);
+                    editor.putString("USER_NAME_KEY", user.username);
+                    editor.putString("USER_EMAIL_KEY", user.email);
                     editor.apply();
                 }
             }
         });
     }
+
 }

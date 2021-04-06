@@ -13,7 +13,7 @@ public class Task {
     private double longitude, latitude;
     private String databaseId;
     private String author;
-    private ArrayList<String> applicants = new ArrayList<String>();
+    private String applicant;
 
 
     public Task(){}
@@ -30,7 +30,7 @@ public class Task {
         this.wage = wage;
         this.taskType = taskType;
         this.author = author;
-        this.applicants = null;
+        this.applicant = null;
     }
 
     //getters
@@ -66,11 +66,11 @@ public class Task {
         this.author = author;
     }
 
-    public ArrayList<String> getApplicants() {
-        return applicants;
+    public String getApplicant() {
+        return applicant;
     }
 
-    public void addApplicant(String applicant) {
-        applicants.add(applicant);
+    public void setApplicant(String applicant) {
+        this.applicant = applicant;
     }
 }

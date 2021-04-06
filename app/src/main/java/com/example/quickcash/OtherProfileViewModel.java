@@ -29,8 +29,6 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
     @Bindable
     public String ratingMessage;
 
-
-    @Bindable
     private double avgRating, sumOfRatings;
     private String userID, userType;
     private boolean userTypeBoolean;
@@ -39,30 +37,32 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
     public OtherProfileViewModel(Application application){
         super(application);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+
         userName = sharedPreferences.getString("USER_NAME_KEY", "n/a");
         userEmail = sharedPreferences.getString("USER_EMAIL_KEY", "n/a");
-        avgRating = sharedPreferences.getFloat("AVERAGE_RATING_KEY", (float) 5.0);
+
+        sumOfRatings = sharedPreferences.getFloat("SUM_OF_RATINGS", 0);
+        numOfRatings = sharedPreferences.getInt("NUM_OF_RATINGS", 0);
+
+        avgRating = sumOfRatings/numOfRatings;
 
         ratingMessage = "Rating: " + avgRating + "/5";
 
         dbAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
         userTypeBoolean=sharedPreferences.getBoolean("USER_TYPE_KEY", true);
 
         if (!userTypeBoolean){
             userType = "CLIENTS";
             userID = sharedPreferences.getString("AUTHOR_KEY", "");
-            Log.d("Otherprofileviewmodel", "Author = " + userID);
         }
         else {userType = "HELPERS";
             userID = sharedPreferences.getString("APPLICANT_KEY", "vY7fiWHThBcdps4YUItfE1ROrIt1");
              }
 
 
-        sumOfRatings = sharedPreferences.getFloat("SUM_OF_RATINGS", 0);
-        numOfRatings = sharedPreferences.getInt("NUM_OF_RATINGS", 0);
     }
 
     public void ratingSubmitted(double currentRating){
