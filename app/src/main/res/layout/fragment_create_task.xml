@@ -156,7 +156,7 @@
                     android:id="@+id/addTaskButton"
                     style="@style/classic_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="30dp"
                     android:onClick="@{()->viewModel.addTaskClicked()}"

@@ -75,11 +75,6 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <include
-                android:id="@+id/dashboardTaskBar"
-                layout="@layout/taskbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

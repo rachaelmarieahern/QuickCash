@@ -107,7 +107,7 @@
                     android:id="@+id/signupButton"
                     style="@style/classic_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="42dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:onClick="@{() -> viewModel.signUpClicked()}"
                     android:text="sign up"
