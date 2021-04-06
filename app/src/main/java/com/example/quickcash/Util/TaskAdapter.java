@@ -85,22 +85,21 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             editor.putBoolean("URGENT", currentTask.isUrgent());
             editor.putString("taskDatabaseID", currentTask.getTaskDatabaseID());
             editor.apply();
-            if(startingFrag.equals("HelperDashboard")) {
+            if (startingFrag.equals("HelperDashboard")) {
                 navController.navigate(R.id.helperDashboardToTaskDetail);
             }
-            if(startingFrag.equals("ClientMyProfile")){
+            if (startingFrag.equals("ClientMyProfile")) {
                 navController.navigate(R.id.clientMyProfileToTaskDetail);
             }
-            if(startingFrag.equals("HelperMyProfile")){
+            if (startingFrag.equals("HelperMyProfile")) {
                 navController.navigate(R.id.helperMyProfileToTaskDetail);
             }
 
+        });
         if(currentTask.isUrgent()) {
             holder.urgency.setVisibility(View.VISIBLE);
         }
         else holder.urgency.setVisibility(View.GONE);
-
-        });
 
     }
 
@@ -110,9 +109,8 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
         final TextView wage;
         final TextView description;
         final TextView headline;
-        final TextView distance;
         final TextView location;
-        ImageView urgency, map, details;
+        ImageView urgency;
         public TaskViewHolder(@NonNull View itemView)
         {
             super(itemView);
@@ -120,11 +118,8 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             wage = itemView.findViewById(R.id.itemWage);
             description = itemView.findViewById(R.id.itemDescription);
             headline = itemView.findViewById(R.id.itemHeadline);
-            distance = itemView.findViewById(R.id.itemDistance);
             location = itemView.findViewById(R.id.itemLocation);
             urgency = itemView.findViewById(R.id.urgencyIndicator);
-            map = itemView.findViewById(R.id.viewMapButton);
-            details = itemView.findViewById(R.id.viewDetailsButton);
         }
     }
 
