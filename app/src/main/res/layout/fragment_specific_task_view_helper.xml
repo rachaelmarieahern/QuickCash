@@ -14,7 +14,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".View.HelperSpecificTaskFragment">
+        tools:context=".View.Helpers.HelperSpecificTaskFragment">
 
         <Button
             android:id="@+id/ApplyForTaskBtn"

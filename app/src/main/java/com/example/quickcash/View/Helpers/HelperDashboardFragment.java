@@ -1,4 +1,4 @@
-package com.example.quickcash.View;
+package com.example.quickcash.View.Helpers;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -164,6 +164,15 @@ public class HelperDashboardFragment extends Fragment {
 
             getUserInfoFromDB(DBAuth.getCurrentUser().getUid());
 
+            Button goToMaps =  getView().findViewById(R.id.helperMapButton);
+            NavDirections actionGoToMaps = HelperDashboardFragmentDirections.helperDashboardToMaps();
+
+            goToMaps.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view).navigate(actionGoToMaps);
+                }
+            });
 
         }
 

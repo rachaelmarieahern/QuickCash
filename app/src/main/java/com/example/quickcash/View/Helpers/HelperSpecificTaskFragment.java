@@ -1,4 +1,4 @@
-package com.example.quickcash.View;
+package com.example.quickcash.View.Helpers;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,24 +23,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.quickcash.Model.Application;
-import com.example.quickcash.Model.Task;
 
 import com.example.quickcash.Model.User;
 import com.example.quickcash.R;
 import com.example.quickcash.SpecificTaskViewModel;
-import com.example.quickcash.Util.SessionManagement;
-import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentSpecificTaskViewHelperBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Objects;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 public class HelperSpecificTaskFragment extends Fragment {
     SharedPreferences sharedPreferences;

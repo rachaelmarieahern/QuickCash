@@ -1,4 +1,4 @@
-package com.example.quickcash.View;
+package com.example.quickcash.View.Client;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

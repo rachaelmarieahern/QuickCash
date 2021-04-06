@@ -1,4 +1,4 @@
-package com.example.quickcash.View;
+package com.example.quickcash.View.Helpers;
 
 import android.os.Bundle;
 
