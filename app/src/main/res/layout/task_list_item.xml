@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_margin="10dp"
         android:foreground="@drawable/ic_asset_2"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,60 +23,83 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="165dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/itemHeadline"
-                    android:layout_width="175dp"
-                    android:layout_height="51dp"
-                    android:padding="10dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:padding="10dp"
+                    tools:text="headline" />
 
                 <TextView
                     android:id="@+id/itemWage"
-                    android:layout_width="167dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp" />
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    tools:text="wage" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/itemDescription"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:padding="10dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/itemDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_weight="3"
+                    android:padding="10dp"
+                    tools:text="description" />
+
+                <ImageView
+                    android:id="@+id/urgencyIndicator"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|clip_vertical|end"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/quickcashgreen"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/ic_exclamation_mark_in_a_circle" />
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="339dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/itemLocation"
-                    android:layout_width="182dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp" />
+                    android:layout_weight="2"
+                    android:padding="10dp"
+                    tools:text="location" />
 
                 <TextView
                     android:id="@+id/itemTaskType"
-                    android:layout_width="185dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp" />
+                    android:layout_weight="2"
+                    android:padding="10dp"
+                    tools:text="task type" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/itemDistance"
-                android:layout_width="159dp"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textAlignment="viewStart" />
-
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

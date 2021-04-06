@@ -93,7 +93,7 @@
             android:name="com.example.quickcash.View.PayPalActivity"
             android:label="PayPalActivity" />
     </navigation>
-    <navigation android:id="@+id/loginGraph"
+        <navigation android:id="@+id/loginGraph"
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/registrationFragment"
