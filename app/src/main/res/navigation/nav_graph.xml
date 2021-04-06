@@ -92,25 +92,16 @@
                 app:destination="@id/helperTaskDetail" />
         </fragment>
         <activity
-<<<<<<< HEAD
+
             android:id="@+id/helperPayPal"
             android:name="com.example.quickcash.View.PayPalActivity"
             android:label="PayPalActivity" />
-<<<<<<< HEAD
 
         <activity
-=======
-=======
->>>>>>> 335c6de (Maps Rebase)
             android:id="@+id/mapsActivity"
             android:name="com.example.quickcash.View.MapsActivity"
             android:label="fragment_map"
             tools:layout="@layout/fragment_map" />
-<<<<<<< HEAD
-
-=======
->>>>>>> 2107ccf (Added navigation)
->>>>>>> 335c6de (Maps Rebase)
     </navigation>
         <navigation android:id="@+id/loginGraph"
         app:startDestination="@id/loginFragment">

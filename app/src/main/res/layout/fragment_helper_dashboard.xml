@@ -50,11 +50,7 @@
                 android:layout_weight="0"
                 android:entries="@array/task_type_array" />
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 335c6de (Maps Rebase)
+
             <Button
                 android:id="@+id/helperMyProfileButton"
                 android:layout_width="match_parent"
@@ -69,21 +65,13 @@
                 android:layout_weight="3"
                 android:text="Notifications" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 335c6de (Maps Rebase)
             <Button
                 android:id="@+id/helperMapButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:text="View Map" />
-<<<<<<< HEAD
 
-=======
->>>>>>> 61f8eae (Added navigation)
->>>>>>> 335c6de (Maps Rebase)
         </LinearLayout>
 
 
