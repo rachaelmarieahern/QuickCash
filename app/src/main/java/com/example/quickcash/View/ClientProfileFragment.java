@@ -9,34 +9,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.ViewModelProvider;
-<<<<<<< HEAD
+
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-=======
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
->>>>>>> b1630f5 (Added recyclerviews to other profile pages)
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-<<<<<<< HEAD
+
 import android.widget.RatingBar;
 import android.widget.Button;
 import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
-=======
+
 import com.example.quickcash.Model.Task;
 import com.example.quickcash.MyProfileViewModel;
 import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentClientMyProfileBinding;
->>>>>>> b1630f5 (Added recyclerviews to other profile pages)
+
 import com.example.quickcash.databinding.FragmentClientProfileBinding;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -94,7 +92,6 @@ public class ClientProfileFragment extends Fragment {
             }
         });
 
-<<<<<<< HEAD
         Button  payPal = getView().findViewById(R.id.clientPayPalButton);
         NavDirections goToPaypal = ClientProfileFragmentDirections.helperPayPalClient();
 
@@ -105,10 +102,7 @@ public class ClientProfileFragment extends Fragment {
             }
         });
 
-    }
 
-}
-=======
             baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("author").
                     equalTo(sharedPreferences.getString("AUTHOR_KEY", ""));
 
@@ -131,4 +125,3 @@ public class ClientProfileFragment extends Fragment {
         }
 
     }
->>>>>>> b1630f5 (Added recyclerviews to other profile pages)
