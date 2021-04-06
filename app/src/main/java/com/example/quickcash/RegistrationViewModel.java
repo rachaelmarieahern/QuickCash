@@ -32,8 +32,6 @@ import android.preference.PreferenceManager;
 import androidx.lifecycle.AndroidViewModel;
 public class RegistrationViewModel extends AndroidViewModel implements Observable {
     //DB connections
-    FirebaseDatabase DB;
-    DatabaseReference users;
     public FirebaseAuth DBAuth;
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
@@ -150,18 +148,20 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
             @Override
             public void onComplete(@NonNull Task<AuthResult> createUNPass) {
                 if (createUNPass.isSuccessful()) { //if adding user to DB was successful
-                    DB = FirebaseDatabase.getInstance();
-                    users = DB.getReference("CLIENTS"); //the user is a client
-                    if (userTypeSelection.toString().equals("HELPER")) //if the user is a helper
-                        users = DB.getReference("HELPERS");
-                    //create user in FB auth
                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User newUser = new User (username.trim(), userTypeSelection.toString().trim(), email.trim(), "token");
-                    users.child(uID).setValue(newUser).addOnCompleteListener(setUNType -> {
+                    User newUser = new User(username.trim(), userTypeSelection.toString().trim(),
+                            email.trim(), 0, 0, 0, "token");
+                    DatabaseReference newRef;
+                    if (userTypeSelection.toString().equals("CLIENT"))
+                        newRef = FirebaseDatabase.getInstance().getReference().child("CLIENTS");
+                    else  //if the user is a helper
+                        newRef = FirebaseDatabase.getInstance().getReference().child("HELPERS");
+                    //create user in FB auth
+                    newRef.child(uID).setValue(newUser).addOnCompleteListener(setUNType -> {
                         if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
                             FirebaseInstallations.getInstance().getToken(true).addOnCompleteListener(task -> {
                                 String token = task.getResult().getToken();
-                                users.child(uID).child("token").setValue(token);
+                                newRef.child(uID).child("token").setValue(token);
                             });//if the user is successfully added to FB RT DB
                             editor.putBoolean("LOGGED_IN", true);
                             editor.apply();

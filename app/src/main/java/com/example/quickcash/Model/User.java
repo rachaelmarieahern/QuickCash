@@ -1,22 +1,21 @@
 package com.example.quickcash.Model;
 
 public class User {
-    public String username, userType, email;
-    public double sumOfRatings;
-    public float avgRating;
-    public int numOfRatings;
-    public String token;
+    private String username, userType, email, token;
+    private float sumOfRatings;
+    private float avgRating;
+    private int numOfRatings;
 
     public User(){
     }
 
-    public User(String uName, String userType, String email, String token){
+    public User(String uName, String userType, String email, float avgRating, int numOfRatings, float sumOfRatings, String token){
         this.username = uName;
         this.userType = userType;
         this.email = email;
-        this.avgRating = 5;
-        this.numOfRatings = 0;
-        this.sumOfRatings = 0;
+        this.avgRating = avgRating;
+        this.numOfRatings = numOfRatings;
+        this.sumOfRatings = sumOfRatings;
         this.token = token;
     }
 
@@ -36,17 +35,19 @@ public class User {
         this.email = email;
     }
 
-    public double getSumOfRatings() {
+    public float getSumOfRatings() {
         return sumOfRatings;
     }
 
-    public void setSumOfRatings(double sumOfRatings) {
+    public void setSumOfRatings(float sumOfRatings) {
         this.sumOfRatings = sumOfRatings;
     }
 
-    public double getAvgRating() {
-        return (sumOfRatings/numOfRatings);
+    public float getAvgRating() {
+        return avgRating;
     }
+
+    public void setAvgRating(float avgRating) { this.avgRating = avgRating; }
 
     public int getNumOfRatings() {
         return numOfRatings;
@@ -63,5 +64,9 @@ public class User {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+    public String getToken() { return token; }
+
+    public void setToken(String token) { this.token = token; }
 
 }

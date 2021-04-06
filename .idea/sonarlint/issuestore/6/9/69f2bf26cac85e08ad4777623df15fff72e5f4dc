@@ -1,19 +1,21 @@
 
-o
-java:S1104"TMake username a static final constant or non-public and provide accessors if needed.(ó×ş‹ÿÿÿÿÿ
->
-java:S1659"#Declare "email" on a separate line.(ó×ş‹ÿÿÿÿÿ
-A
-java:S1659"&Declare "userType" on a separate line.(ó×ş‹ÿÿÿÿÿ
-s
-java:S1104"QMake token a static final constant or non-public and provide accessors if needed.(œ½Ë„ıÿÿÿÿ8¨¾¢Š/
-l
-java:S1104"QMake email a static final constant or non-public and provide accessors if needed.(ó×ş‹ÿÿÿÿÿ
-z
-java:S1104"XMake numOfRatings a static final constant or non-public and provide accessors if needed.(º®àøûÿÿÿÿ8úËæŠ/
-o
-java:S1104"TMake userType a static final constant or non-public and provide accessors if needed.(ó×ş‹ÿÿÿÿÿ
+j
+java:S1104"TMake username a static final constant or non-public and provide accessors if needed.(™ä
+n
+java:S1104"QMake token a static final constant or non-public and provide accessors if needed.(™ä8‚‘Ê¥Š/
 w
 java:S1104"UMake avgRating a static final constant or non-public and provide accessors if needed.(„ ãøÿÿÿÿ8úËæŠ/
 z
+java:S1104"XMake numOfRatings a static final constant or non-public and provide accessors if needed.(º®àøûÿÿÿÿ8úËæŠ/
+@
+java:S1659"#Declare "token" on a separate line.(™ä8‚‘Ê¥Š/
+j
+java:S1104"TMake userType a static final constant or non-public and provide accessors if needed.(™ä
+z
 java:S1104"XMake sumOfRatings a static final constant or non-public and provide accessors if needed.(Ş¼—ïúÿÿÿÿ8úËæŠ/
+<
+java:S1659"&Declare "userType" on a separate line.(™ä
+9
+java:S1659"#Declare "email" on a separate line.(™ä
+g
+java:S1104"QMake email a static final constant or non-public and provide accessors if needed.(™ä
