@@ -57,10 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         setContentView(R.layout.fragment_map);
-<<<<<<< HEAD
 
-=======
->>>>>>> 335c6de (Maps Rebase)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
