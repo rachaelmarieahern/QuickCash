@@ -61,23 +61,13 @@ public class HelperInformationFragment extends Fragment {
 
         NavDirections actionHelperToRegistration = HelperInformationFragmentDirections.helperToRegistration();
 
-        final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean register) {
-                Navigation.findNavController(view).navigate(actionHelperToRegistration);
-            }
-        };
+        final Observer<Boolean> registrationObserver = register -> Navigation.findNavController(view).navigate(actionHelperToRegistration);
 
         viewModel.navToRegistration.observe(getViewLifecycleOwner(), registrationObserver);
 
         NavDirections actionHelperToClient = HelperInformationFragmentDirections.helperInfoToClientInfo();
 
-        final Observer<Boolean> clientObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean otherType) {
-                Navigation.findNavController(view).navigate(actionHelperToClient);
-            }
-        };
+        final Observer<Boolean> clientObserver = otherType -> Navigation.findNavController(view).navigate(actionHelperToClient);
 
         viewModel.navToClient.observe(getViewLifecycleOwner(), clientObserver);
     }

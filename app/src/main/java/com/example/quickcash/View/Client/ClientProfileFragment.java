@@ -84,23 +84,15 @@ public class ClientProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RatingBar ratingBar = getView().findViewById(R.id.clientRatingBar);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingBar.setIsIndicator(true);
-                viewModel.ratingSubmitted(rating);
-            }
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
+            ratingBar1.setIsIndicator(true);
+            viewModel.ratingSubmitted(rating);
         });
 
         Button  payPal = getView().findViewById(R.id.clientPayPalButton);
         NavDirections goToPaypal = ClientProfileFragmentDirections.helperPayPalClient();
 
-        payPal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(goToPaypal);
-            }
-        });
+        payPal.setOnClickListener(v -> Navigation.findNavController(view).navigate(goToPaypal));
 
 
             baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("author").

@@ -74,12 +74,7 @@ public class ClientInformationFragment extends Fragment {
 
         NavDirections actionClientToHelper = ClientInformationFragmentDirections.clientInfoToHelperInfo();
 
-        final Observer<Boolean> helperObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean otherType) {
-                Navigation.findNavController(view).navigate(actionClientToHelper);
-            }
-        };
+        final Observer<Boolean> helperObserver = otherType -> Navigation.findNavController(view).navigate(actionClientToHelper);
 
         viewModel.navToHelper.observe(getViewLifecycleOwner(), helperObserver);
     }

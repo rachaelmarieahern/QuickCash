@@ -74,12 +74,7 @@ public class LoginFragment extends Fragment {
 
         NavDirections actionLoginToHelperClientInfo= LoginFragmentDirections.loginToHelperClientInfo();
 
-        final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean register) {
-                Navigation.findNavController(view).navigate(actionLoginToHelperClientInfo);
-            }
-        };
+        final Observer<Boolean> registrationObserver = register -> Navigation.findNavController(view).navigate(actionLoginToHelperClientInfo);
 
         viewModel.navToInfo.observe(getViewLifecycleOwner(), registrationObserver);
 

@@ -74,12 +74,7 @@ public class PayPalActivity extends AppCompatActivity {
 
 
 
-        payNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processPayment();
-            }
-        });
+        payNow.setOnClickListener(v -> processPayment());
     }
 
 

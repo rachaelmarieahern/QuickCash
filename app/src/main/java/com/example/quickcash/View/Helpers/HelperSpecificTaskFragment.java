@@ -75,24 +75,22 @@ public class HelperSpecificTaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button apply = getView().findViewById(R.id.ApplyForTaskBtn);
-        apply.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                FirebaseAuth DBAuth = FirebaseAuth.getInstance();
-                if (DBAuth.getCurrentUser() != null) {
-                    FirebaseDatabase DB = FirebaseDatabase.getInstance();
-                    DatabaseReference applications = DB.getReference();
-                    String taskID = sharedPreferences.getString("taskDatabaseID", "NO TASK DB FOUND");
-                    String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        apply.setOnClickListener(v -> {
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            FirebaseAuth DBAuth = FirebaseAuth.getInstance();
+            if (DBAuth.getCurrentUser() != null) {
+                FirebaseDatabase DB = FirebaseDatabase.getInstance();
+                DatabaseReference applications = DB.getReference();
+                String taskID = sharedPreferences.getString("taskDatabaseID", "NO TASK DB FOUND");
+                String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                    Application newApplication = new Application(UserId, "IN PROGRESS", taskID);
-                    applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
-                        if (addApplication.isSuccessful()) { //if the task is successfully applied for
-                            apply.setEnabled(false);
-                        }
-                        DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
-                    });
-                }
+                Application newApplication = new Application(UserId, "IN PROGRESS", taskID);
+                applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
+                    if (addApplication.isSuccessful()) { //if the task is successfully applied for
+                        apply.setEnabled(false);
+                    }
+                    DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
+                });
             }
         });
 
@@ -105,18 +103,15 @@ public class HelperSpecificTaskFragment extends Fragment {
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    User user;
-                    user = task.getResult().getValue(User.class);
-                    editor.putFloat("SUM_OF_RATINGS", user.getSumOfRatings());
-                    editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
-                    editor.apply();
-                }
+        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                User user;
+                user = task.getResult().getValue(User.class);
+                editor.putFloat("SUM_OF_RATINGS", user.getSumOfRatings());
+                editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
+                editor.apply();
             }
         });
     }

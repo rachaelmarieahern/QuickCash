@@ -58,25 +58,21 @@ public class ClientNotificationFragment extends Fragment {
         Button toHelperProfileButton = getView().findViewById(R.id.clientToHelperProfileButton);
 
         toHelperProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionNotificationToHelperProfile));
-        //TODO: ADD APPLICANT ID FROM NOTIFICATION
         getUserInfoFromDB(sharedPreferences.getString("APPLICANT_KEY", "vY7fiWHThBcdps4YUItfE1ROrIt1"));
 
     }
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    User user;
-                    user = task.getResult().getValue(User.class);
-                    editor.putFloat("SUM_OF_RATINGS", (float) user.getSumOfRatings());
-                    editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
-                    editor.apply();
-                }
+        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                User user;
+                user = task.getResult().getValue(User.class);
+                editor.putFloat("SUM_OF_RATINGS", user.getSumOfRatings());
+                editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
+                editor.apply();
             }
         });
     }
