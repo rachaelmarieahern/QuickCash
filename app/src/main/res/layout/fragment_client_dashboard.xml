@@ -46,24 +46,6 @@
                 app:layout_constraintVertical_bias="0.1"
                 app:srcCompat="@android:drawable/ic_delete" />
 
-            <Button
-                android:id="@+id/clientMyProfileButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My Profile" />
-
-            <Button
-                android:id="@+id/addTaskButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Task" />
-
-            <Button
-                android:id="@+id/clientNotificationsButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notifications" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/taskListRecyclerView"
                 android:layout_width="match_parent"

@@ -50,20 +50,6 @@
                 android:layout_weight="0"
                 android:entries="@array/task_type_array" />
 
-            <Button
-                android:id="@+id/helperMyProfileButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="My Profile" />
-
-            <Button
-                android:id="@+id/helperNotificationsButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Notifications" />
-
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

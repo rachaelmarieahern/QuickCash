@@ -70,24 +70,24 @@ public class ClientDashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Navigation to My Profile Page
-        NavDirections actionDashboardToMyProfile= ClientDashboardFragmentDirections.clientDashboardToMyProfile();
-        Button toMyProfileButton = getView().findViewById(R.id.clientMyProfileButton);
-
-        toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
-
-
-        //Navigation to Notifications Page
-        NavDirections actionDashboardToNotifications= ClientDashboardFragmentDirections.clientDashboardtoNotification();
-        Button toNotificationsButton = getView().findViewById(R.id.clientNotificationsButton);
-
-        toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
-
-        //Navigation to Add Tasks Page
-        NavDirections actionDashboardToCreateTasks = ClientDashboardFragmentDirections.clientDashboardToCreateTask();
-        Button goToAddTasksButton =  getView().findViewById(R.id.addTaskButton);
-
-        goToAddTasksButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToCreateTasks));
+//        //Navigation to My Profile Page
+//        NavDirections actionDashboardToMyProfile= ClientDashboardFragmentDirections.clientDashboardToMyProfile();
+//        Button toMyProfileButton = getView().findViewById(R.id.clientMyProfileButton);
+//
+//        toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
+//
+//
+//        //Navigation to Notifications Page
+//        NavDirections actionDashboardToNotifications= ClientDashboardFragmentDirections.clientDashboardtoNotification();
+//        Button toNotificationsButton = getView().findViewById(R.id.clientNotificationsButton);
+//
+//        toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
+//
+//        //Navigation to Add Tasks Page
+//        NavDirections actionDashboardToCreateTasks = ClientDashboardFragmentDirections.clientDashboardToCreateTask();
+//        Button goToAddTasksButton =  getView().findViewById(R.id.addTaskButton);
+//
+//        goToAddTasksButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToCreateTasks));
 
         //Logout and navigate to splash page
         NavDirections actionDashboardToLogin = ClientDashboardFragmentDirections.clientDashboardToSplash();
