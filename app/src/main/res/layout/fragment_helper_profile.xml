@@ -125,7 +125,6 @@
                 android:layout_height="328dp"
                 android:paddingStart="20dp" />
 
->>>>>>> b1630f5 (Added recyclerviews to other profile pages)
 
         </LinearLayout>
 
