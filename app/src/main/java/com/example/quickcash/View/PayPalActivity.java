@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.example.paypalandroid.Config.Config;
 import com.example.quickcash.Config;
 import com.example.quickcash.PayPalViewModel;
 import com.example.quickcash.PaymentDetails;

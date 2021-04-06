@@ -1,4 +1,6 @@
 
-T	java:S107"AConstructor has 9 parameters, which is greater than 7 authorized.(¸Êª²
-:
-java:S1659"&Declare "latitude" on a separate line.(ƒàÓ
+<
+java:S1659"&Declare "latitude" on a separate line.(ƒàÓ
+^	java:S107"BConstructor has 10 parameters, which is greater than 7 authorized.(¸Êª²8¾¡½ÄŠ/
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¾¡½ÄŠ/

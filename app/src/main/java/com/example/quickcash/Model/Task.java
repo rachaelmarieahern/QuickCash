@@ -30,7 +30,6 @@ public class Task {
         this.wage = wage;
         this.taskType = taskType;
         this.author = author;
-        this.applicant = null;
     }
 
     //getters

@@ -70,25 +70,6 @@ public class ClientDashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        //Navigation to My Profile Page
-//        NavDirections actionDashboardToMyProfile= ClientDashboardFragmentDirections.clientDashboardToMyProfile();
-//        Button toMyProfileButton = getView().findViewById(R.id.clientMyProfileButton);
-//
-//        toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
-//
-//
-//        //Navigation to Notifications Page
-//        NavDirections actionDashboardToNotifications= ClientDashboardFragmentDirections.clientDashboardtoNotification();
-//        Button toNotificationsButton = getView().findViewById(R.id.clientNotificationsButton);
-//
-//        toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
-//
-//        //Navigation to Add Tasks Page
-//        NavDirections actionDashboardToCreateTasks = ClientDashboardFragmentDirections.clientDashboardToCreateTask();
-//        Button goToAddTasksButton =  getView().findViewById(R.id.addTaskButton);
-//
-//        goToAddTasksButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToCreateTasks));
-
         //Logout and navigate to splash page
         NavDirections actionDashboardToLogin = ClientDashboardFragmentDirections.clientDashboardToSplash();
         FloatingActionButton logOutButton = getView().findViewById(R.id.logOutButton);
@@ -106,20 +87,17 @@ public class ClientDashboardFragment extends Fragment {
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    User user;
-                    user = task.getResult().getValue(User.class);
-                    editor.putString("USER_EMAIL_KEY", user.getEmail());
-                    editor.putString("USER_NAME_KEY", user.getUsername());
-                    editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
-                    editor.apply();
+        db.getReference("CLIENTS").child(userID).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                User user;
+                user = task.getResult().getValue(User.class);
+                editor.putString("USER_EMAIL_KEY", user.getEmail());
+                editor.putString("USER_NAME_KEY", user.getUsername());
+                editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
+                editor.apply();
 
-                }
             }
         });
     }

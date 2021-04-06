@@ -74,16 +74,6 @@ public class HelperSpecificTaskFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        /*
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this.getContext())
-                .setSmallIcon(R.drawable.ic_exclamation_mark_in_a_circle)
-                .setContentTitle("Helper Application")
-                .setContentText("A helper has applied to one of your tasks.")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-         */
-
-        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this.getContext());
-
         Button apply = getView().findViewById(R.id.ApplyForTaskBtn);
         apply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -103,7 +93,6 @@ public class HelperSpecificTaskFragment extends Fragment {
                         DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
                     });
                 }
-                //notificationManager.notify(100, builder.build());
             }
         });
 

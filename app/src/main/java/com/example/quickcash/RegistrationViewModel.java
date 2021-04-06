@@ -83,8 +83,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 errorMessage = errorMessage.concat("\tInvalid Password");
                 password = ""; //reset password
             }
-
-            //toastMessage.setValue(errorMessage);
         }
 
     }
