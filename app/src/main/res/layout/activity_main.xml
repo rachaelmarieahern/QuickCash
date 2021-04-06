@@ -7,15 +7,15 @@
     android:layout_height="match_parent"
     >
 
-    <ImageView
-        android:id="@+id/quickCashLogo"
-        android:layout_width="259dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/quickcash_asset_2" />
+<!--    <ImageView-->
+<!--        android:id="@+id/quickCashLogo"-->
+<!--        android:layout_width="259dp"-->
+<!--        android:layout_height="72dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/quickcash_asset_2" />-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/quickCashLogo"
+        app:layout_constraintTop_toTopOf="parent"
 
         />
 

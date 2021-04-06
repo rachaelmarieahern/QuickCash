@@ -50,20 +50,6 @@
                 android:layout_weight="0"
                 android:entries="@array/task_type_array" />
 
-            <Button
-                android:id="@+id/helperMyProfileButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="My Profile" />
-
-            <Button
-                android:id="@+id/helperNotificationsButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Notifications" />
-
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -74,22 +60,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="5"
-            app:layout_constraintBottom_toTopOf="@+id/dashboardTaskBar"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toEndOf="@+id/linearLayout3"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-        <include
-            android:id="@+id/dashboardTaskBar"
-            layout="@layout/taskbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

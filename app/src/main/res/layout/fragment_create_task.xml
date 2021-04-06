@@ -15,16 +15,17 @@
         android:layout_height="match_parent">
 
 
-
-
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:id="@+id/scrollView2"
+            android:layout_width="417dp"
+            android:layout_height="534dp"
+            android:layout_marginBottom="16dp"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quickCashLogo"
-            android:fillViewport="true">
+            app:layout_constraintTop_toBottomOf="@+id/quickCashLogo">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,10 +67,10 @@
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/addTaskTypeSpinner"
-                    android:entries="@array/task_type_array"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:entries="@array/task_type_array" />
 
                 <CheckBox
                     android:id="@+id/checkBoxUrgent"
@@ -122,9 +123,9 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="@string/dd_mm_yyyy"
-                        android:text="@={viewModel.startDateString}"
                         android:includeFontPadding="false"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:text="@={viewModel.startDateString}" />
 
                     <EditText
                         android:id="@+id/endDateEditText"
@@ -133,9 +134,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:text="@={viewModel.endDateString}"
                         android:hint="@string/dd_mm_yyyy"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:text="@={viewModel.endDateString}" />
 
                 </LinearLayout>
 
@@ -156,7 +157,7 @@
                     android:id="@+id/addTaskButton"
                     style="@style/classic_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="30dp"
                     android:onClick="@{()->viewModel.addTaskClicked()}"
@@ -166,6 +167,19 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="44dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/quickcash_asset_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
