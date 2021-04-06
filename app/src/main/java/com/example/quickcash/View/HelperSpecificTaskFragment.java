@@ -36,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
@@ -101,16 +102,18 @@ public class HelperSpecificTaskFragment extends Fragment {
                     DatabaseReference applications = DB.getReference();
                     String taskID = sharedPreferences.getString("taskDatabaseID", "NO TASK DB FOUND");
                     String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                     Application newApplication = new Application(UserId, "IN PROGRESS", taskID);
                     applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
                         if (addApplication.isSuccessful()) { //if the task is successfully applied for
                             apply.setEnabled(false);
                         }
+                        DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
                     });
                 }
                 //notificationManager.notify(100, builder.build());
             }
-    });
+        });
 
         NavDirections actionTaskDetailToClientProfile = HelperSpecificTaskFragmentDirections.helperTaskDetailToClientProfile();
         Button toClientProfileButton = getView().findViewById(R.id.helperToClientProfileButton);
@@ -136,4 +139,5 @@ public class HelperSpecificTaskFragment extends Fragment {
             }
         });
     }
+
 }

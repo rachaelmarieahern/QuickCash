@@ -80,6 +80,7 @@ public class TaskAdapter extends FirebaseRecyclerAdapter<Task, TaskAdapter.TaskV
             putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
             putString(R.string.START_DATE_KEY, currentTask.getStartDate().toString());
             putString(R.string.AUTHOR_KEY, currentTask.getAuthor());
+            putString(R.string.APPLICANT_KEY, currentTask.getApplicant());
             editor.putBoolean("URGENT", currentTask.isUrgent());
             editor.putString("taskDatabaseID", currentTask.getTaskDatabaseID());
             editor.apply();
