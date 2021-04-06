@@ -125,7 +125,7 @@ public class HelperDashboardFragment extends Fragment {
 
             });
 
-//            //Navigation to My Profile Page
+//            Navigation to My Profile Page
 //            NavDirections actionDashboardToMyProfile = HelperDashboardFragmentDirections.helperDashboardToMyProfile();
 //            Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
 //
