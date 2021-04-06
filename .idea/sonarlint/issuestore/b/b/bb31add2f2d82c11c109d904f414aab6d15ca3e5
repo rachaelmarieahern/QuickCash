@@ -1,6 +1,28 @@
 
-V	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8¬û¼ Š/
-Y
-java:S1874"9Remove this use of "PreferenceManager"; it is deprecated.(©Ÿşáûÿÿÿÿ8¬û¼ Š/
-c
-java:S1874"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(©Ÿşáûÿÿÿÿ8¬û¼ Š/
+r
+java:S1128"PRemove this unused import 'com.google.android.gms.common.GoogleApiAvailability'.(»úÓÿÿÿÿÿ8€Ä§ÁŠ/
+@
+java:S1128"Remove this duplicated import.(¯­ë‹ıÿÿÿÿ8€Ä§ÁŠ/
+X	java:S110#"<This class has 9 parents which is greater than 5 authorized.(²Ú±8€Ä§ÁŠ/
+a
+java:S1128"DRemove this unused import 'androidx.fragment.app.FragmentManagerKt'.(×â›ç8€Ä§ÁŠ/
+`
+java:S1128	">Remove this unused import 'androidx.navigation.NavController'.(ˆç×ƒÿÿÿÿÿ8€Ä§ÁŠ/
+d
+java:S1128"BRemove this unused import 'androidx.fragment.app.FragmentManager'.(¯­ë‹ıÿÿÿÿ8€Ä§ÁŠ/
+[
+java:S1874+"9Remove this use of "PreferenceManager"; it is deprecated.(©Ÿşáûÿÿÿÿ8€Ä§ÁŠ/
+b
+java:S1128"@Remove this unused import 'androidx.core.content.ContextCompat'.(üäÂùÿÿÿÿ8€Ä§ÁŠ/
+Z
+java:S1128"=Remove this unused import 'androidx.core.app.ActivityCompat'.(ş¤—²8€Ä§ÁŠ/
+e
+java:S1874+"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(©Ÿşáûÿÿÿÿ8€Ä§ÁŠ/
+@
+java:S1128"Remove this duplicated import.(ĞÖØ–ıÿÿÿÿ8€Ä§ÁŠ/
+Z
+java:S1128"8Remove this unused import 'androidx.navigation.NavHost'.(ôô÷çÿÿÿÿÿ8€Ä§ÁŠ/
+^
+java:S1128"ARemove this unused import 'com.example.quickcash.Util.Constants'.(‰šúÃ8€Ä§ÁŠ/
+m
+java:S1128"KRemove this unused import 'com.google.android.gms.common.ConnectionResult'.(öÎãçüÿÿÿÿ8€Ä§ÁŠ/

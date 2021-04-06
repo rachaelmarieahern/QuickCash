@@ -15,21 +15,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.installations.FirebaseInstallations;
-import com.google.firebase.installations.InstallationTokenResult;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import android.app.Application;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import androidx.lifecycle.AndroidViewModel;
 public class RegistrationViewModel extends AndroidViewModel implements Observable {
     //DB connections
     public FirebaseAuth DBAuth;
@@ -41,7 +34,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     @Bindable
     public String username = "", email = "", password= "";
     @Bindable
-    public boolean helperSelected = false;
     public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
@@ -63,9 +55,8 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
         userTypeMessage.setValue(sharedPreferences.getString("USER_TYPE", ""));
     }
 
-    enum userType {HELPER, CLIENT}
     List<ErrorTypes> errors = new ArrayList<>();
-    userType userTypeSelection = userType.CLIENT;
+    private String userType = "";
 
     /**
      * When the user clicks the sign up button on the register page
@@ -103,13 +94,13 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      */
     public void typeSelected(boolean helper){
         if (helper) {
-            userTypeSelection = userType.HELPER;
-            editor.putString("USER_TYPE", "You are registering as a " + userTypeSelection.toString() + ".\nClick the back button to change your user type.");
+            userType = "HELPER";
         }
         else {
-            userTypeSelection = userType.CLIENT;
-            editor.putString("USER_TYPE", "You are registering as a " + userTypeSelection.toString() + ".\nClick the back button to change your user type.");
+            userType = "CLIENT";
         }
+        editor.putString("USER_TYPE", "You are registering as a " + userType + ".\nClick the back button to change your user type.");
+        editor.putString("USERACTUALTYPE", userType);
         editor.apply();
         navToRegistration.setValue(true);
     }
@@ -149,13 +140,12 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
             public void onComplete(@NonNull Task<AuthResult> createUNPass) {
                 if (createUNPass.isSuccessful()) { //if adding user to DB was successful
                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User newUser = new User(username.trim(), userTypeSelection.toString().trim(),
-                            email.trim(), 0, 0, 0, "token");
+                    User newUser = new User(username.trim(), sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND"), email.trim(), 0, 0, 0, "token");
                     DatabaseReference newRef;
-                    if (userTypeSelection.toString().equals("CLIENT"))
-                        newRef = FirebaseDatabase.getInstance().getReference().child("CLIENTS");
+                    if (sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND").equals("CLIENT"))
+                        newRef = FirebaseDatabase.getInstance().getReference("CLIENTS");
                     else  //if the user is a helper
-                        newRef = FirebaseDatabase.getInstance().getReference().child("HELPERS");
+                        newRef = FirebaseDatabase.getInstance().getReference("HELPERS");
                     //create user in FB auth
                     newRef.child(uID).setValue(newUser).addOnCompleteListener(setUNType -> {
                         if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
