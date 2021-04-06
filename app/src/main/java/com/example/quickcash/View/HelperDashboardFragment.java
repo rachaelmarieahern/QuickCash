@@ -163,9 +163,9 @@ public class HelperDashboardFragment extends Fragment {
                 } else {
                     User user;
                     user = task.getResult().getValue(User.class);
-                    editor.putString("USER_EMAIL_KEY", user.email);
-                    editor.putString("USER_NAME_KEY", user.username);
-                    editor.putFloat("AVERAGE_RATING_KEY", user.avgRating);
+                    editor.putString("USER_EMAIL_KEY", user.getEmail());
+                    editor.putString("USER_NAME_KEY", user.getUsername());
+                    editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
                     editor.apply();
                 }
             }
