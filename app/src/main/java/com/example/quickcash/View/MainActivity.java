@@ -16,6 +16,7 @@ import androidx.navigation.NavHost;
 import androidx.navigation.fragment.NavHostFragment;
 
 
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.SharedPreferences;
@@ -74,5 +75,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
