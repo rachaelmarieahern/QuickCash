@@ -5,17 +5,19 @@ public class User {
     public double sumOfRatings;
     public float avgRating;
     public int numOfRatings;
+    public String token;
 
     public User(){
     }
 
-    public User(String uName, String userType, String email){
+    public User(String uName, String userType, String email, String token){
         this.username = uName;
         this.userType = userType;
         this.email = email;
         this.avgRating = 5;
         this.numOfRatings = 0;
         this.sumOfRatings = 0;
+        this.token = token;
     }
 
     public String getUsername() {
