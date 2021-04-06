@@ -28,6 +28,7 @@
     <string name="verified_account_n_can_be_payed_for_hired_services_n_will_not_abandon_tasks_taken">• Verified Account \n • Can be payed for hired services \n • Will not abandon tasks taken</string>
     //API KEY
     <string name="google_map_api_key">AIzaSyCnbZRLNwz_MMjjF4OYxJ2eYBVHAkR_af4</string>
+    <string name="APPLICANT_KEY">APPLICANT_KEY</string>
 
 </resources>
 

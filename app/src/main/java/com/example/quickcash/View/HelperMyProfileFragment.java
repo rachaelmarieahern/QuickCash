@@ -74,7 +74,7 @@ public class HelperMyProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("applicant").equalTo(DBAuth.getCurrentUser().getUid());
+        baseQuery = FirebaseDatabase.getInstance().getReference("TASKS").orderByChild("applicant").equalTo(DBAuth.getCurrentUser().getUid());
 
         //Getting the query from Firebase
         options = new FirebaseRecyclerOptions.Builder<Task>().setLifecycleOwner(getViewLifecycleOwner()).setQuery(baseQuery, Task.class).build();
