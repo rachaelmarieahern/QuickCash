@@ -67,12 +67,12 @@ dependencies {
     //google maps API
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    
+
+    //paypal
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
     //testCompile
     testImplementation 'android.arch.core:core-testing:1.1.1'
 
     /*Mockito*/
     testImplementation "org.mockito:mockito-inline:3.4.0"
-
-
 }

@@ -72,6 +72,9 @@
             <action
                 android:id="@+id/clientProfileToTaskDetail"
                 app:destination="@id/helperTaskDetail" />
+            <action
+                android:id="@+id/helperPayPalClient"
+                app:destination="@id/helperPayPal" />
         </fragment>
         <fragment
             android:id="@+id/helperMyProfileToTaskDetail"
@@ -85,6 +88,10 @@
                 android:id="@+id/action_helperMyProfileFragment_to_helperTaskDetail"
                 app:destination="@id/helperTaskDetail" />
         </fragment>
+        <activity
+            android:id="@+id/helperPayPal"
+            android:name="com.example.quickcash.View.PayPalActivity"
+            android:label="PayPalActivity" />
     </navigation>
     <navigation android:id="@+id/loginGraph"
         app:startDestination="@id/loginFragment">
@@ -215,6 +222,13 @@
             <action
                 android:id="@+id/helperProfileToNotification"
                 app:destination="@id/clientNotificationFragment" />
+            <action
+                android:id="@+id/clientPayPalHelper"
+                app:destination="@id/clientPayPal" />
         </fragment>
+        <activity
+            android:id="@+id/clientPayPal"
+            android:name="com.example.quickcash.View.PayPalActivity"
+            android:label="PayPalActivity" />
     </navigation>
 </navigation>

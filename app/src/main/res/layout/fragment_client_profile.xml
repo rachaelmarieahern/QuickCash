@@ -27,12 +27,19 @@
                 android:layout_height="wrap_content"
                 android:text="(Other) Client Profile" />
 
+
             <RatingBar
                 android:id="@+id/clientRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:isIndicator="false"/>
+
+            <Button
+                android:id="@+id/clientPayPalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="payPal" />
 
         </LinearLayout>
 
