@@ -55,8 +55,6 @@ g
 7app/src/main/res/layout/fragment_helper_information.xml,a\e\ae00802cf53a02064286b19d3b1c309eed9b535f
 f
 6app/src/main/res/layout/fragment_client_my_profile.xml,9\b\9b8dc91c7b2eae3a30f049bc7af444e71354d0e2
-g
-7app/src/main/res/layout/fragment_client_information.xml,d\8\d87375fe8a8334a67ab1a52242af427b27ecfec6
 _
 /app/src/main/res/drawable/logoqc_background.xml,2\4\24748505afc529eb09e7e64f719c19ea5ca699f2
 ]
@@ -211,8 +209,6 @@ zapp/build/generated/ap_generated_sources/debug/out/com/example/quickcash/databi
 zapp/build/generated/ap_generated_sources/debug/out/com/example/quickcash/databinding/FragmentClientProfileBindingImpl.java,9\b\9b33630f8ecb921ee50a068e1cec2944a36c4240
 €
 Papp/build/generated/ap_generated_sources/debug/out/com/example/quickcash/BR.java,a\f\afd8aff2535820647d5b62acd2f395b5053bf0b0
-’
-bapp/build/generated/ap_generated_sources/debug/out/com/example/quickcash/DataBinderMapperImpl.java,9\4\946b59228b91a8debc818abab7f4f65bcfa907c1
 ¬
 |app/build/generated/ap_generated_sources/debug/out/com/example/quickcash/databinding/FragmentHelperDashboardBindingImpl.java,b\f\bf29e078efe6bbfe18c23cd6907fad92c6645e6b
 ´
@@ -907,3 +903,5 @@ t
 Dapp/build/intermediates/processed_res/debug/out/output-metadata.json,f\9\f997ed15d9a78060dcc4ef71f4b717cf229d2b45
 n
 >app/src/main/java/com/example/quickcash/Model/Application.java,8\f\8f46c8af5684a17180d6457e40e5cf7be096bc03
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35

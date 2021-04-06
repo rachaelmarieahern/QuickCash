@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
@@ -79,6 +81,17 @@ public class HelperSpecificTaskFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        /*
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this.getContext())
+                .setSmallIcon(R.drawable.ic_exclamation_mark_in_a_circle)
+                .setContentTitle("Helper Application")
+                .setContentText("A helper has applied to one of your tasks.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+         */
+
+        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this.getContext());
+
         Button apply = getView().findViewById(R.id.ApplyForTaskBtn);
         apply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -94,12 +107,11 @@ public class HelperSpecificTaskFragment extends Fragment {
                     applications.child("TASKAPPLICATIONS").push().setValue(newApplication).addOnCompleteListener(addApplication -> {
                         if (addApplication.isSuccessful()) { //if the task is successfully applied for
                             apply.setEnabled(false);
-                        } else {
-
                         }
                         DB.getReference("TASKS").child(taskID).child("applicant").setValue(UserId);
                     });
                 }
+                //notificationManager.notify(100, builder.build());
             }
         });
 
@@ -120,10 +132,8 @@ public class HelperSpecificTaskFragment extends Fragment {
                 } else {
                     User user;
                     user = task.getResult().getValue(User.class);
-                    editor.putFloat("SUM_OF_RATINGS", (float) user.sumOfRatings);
-                    editor.putInt("NUM_OF_RATINGS", user.numOfRatings);
-                    editor.putString("USER_NAME_KEY", user.username);
-                    editor.putString("USER_EMAIL_KEY", user.email);
+                    editor.putFloat("SUM_OF_RATINGS", user.getSumOfRatings());
+                    editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
                     editor.apply();
                 }
             }

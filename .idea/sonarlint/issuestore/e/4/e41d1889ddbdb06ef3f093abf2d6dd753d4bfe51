@@ -1,0 +1,13 @@
+
+e
+java:S1874+"CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(ı¿å¼şÿÿÿÿ8¤·õÀŠ/
+g
+java:S1128"KRemove this unused import 'com.google.firebase.database.DatabaseReference'.(ÉÓ¹8¤·õÀŠ/
+T
+java:S1135>"2Complete the task associated to this TODO comment.(â¦Ú¯ûÿÿÿÿ8¤·õÀŠ/
+J
+java:S1905M"(Remove this unnecessary cast to "float".(²¬·‰ıÿÿÿÿ8ôŠ”ÁŠ/
+E
+java:S1604E"(Make this anonymous inner class a lambda(…Ÿ¿´8¤·õÀŠ/
+[
+java:S1874+"9Remove this use of "PreferenceManager"; it is deprecated.(ı¿å¼şÿÿÿÿ8¤·õÀŠ/

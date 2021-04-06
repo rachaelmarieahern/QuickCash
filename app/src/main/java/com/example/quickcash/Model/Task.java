@@ -70,7 +70,7 @@ public class Task {
         return applicant;
     }
 
-    public void setApplicant(String applicant) {
+    public void getApplicant(String applicant) {
         this.applicant = applicant;
     }
 }
