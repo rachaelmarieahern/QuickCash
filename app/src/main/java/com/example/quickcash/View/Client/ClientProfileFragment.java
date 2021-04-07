@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,11 +28,7 @@ import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
 
 import com.example.quickcash.Model.Task;
-import com.example.quickcash.MyProfileViewModel;
-import com.example.quickcash.OtherProfileViewModel;
-import com.example.quickcash.R;
 import com.example.quickcash.Util.TaskAdapter;
-import com.example.quickcash.databinding.FragmentClientMyProfileBinding;
 
 import com.example.quickcash.databinding.FragmentClientProfileBinding;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
@@ -84,23 +79,15 @@ public class ClientProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RatingBar ratingBar = getView().findViewById(R.id.clientRatingBar);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingBar.setIsIndicator(true);
-                viewModel.ratingSubmitted(rating);
-            }
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
+            ratingBar1.setIsIndicator(true);
+            viewModel.ratingSubmitted(rating);
         });
 
         Button  payPal = getView().findViewById(R.id.clientPayPalButton);
         NavDirections goToPaypal = ClientProfileFragmentDirections.helperPayPalClient();
 
-        payPal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(goToPaypal);
-            }
-        });
+        payPal.setOnClickListener(v -> Navigation.findNavController(view).navigate(goToPaypal));
 
 
             baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("author").

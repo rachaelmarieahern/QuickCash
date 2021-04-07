@@ -3,7 +3,6 @@ package com.example.quickcash;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.databinding.Bindable;
@@ -12,8 +11,6 @@ import androidx.lifecycle.AndroidViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class OtherProfileViewModel extends AndroidViewModel implements Observable {
 
@@ -29,8 +26,10 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
     @Bindable
     public String ratingMessage;
 
-    private double avgRating, sumOfRatings;
-    private String userID, userType;
+    private double avgRating;
+    private double sumOfRatings;
+    private String userID;
+    private String userType;
     private boolean userTypeBoolean;
     private int numOfRatings;
 
@@ -78,11 +77,11 @@ public class OtherProfileViewModel extends AndroidViewModel implements Observabl
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 }

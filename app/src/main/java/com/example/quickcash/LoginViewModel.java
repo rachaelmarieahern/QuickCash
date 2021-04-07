@@ -10,7 +10,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginViewModel extends AndroidViewModel implements Observable {
@@ -36,7 +35,6 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
     public LoginViewModel(Application application) {
         super(application);
         DBAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = null;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
         editor = sharedPreferences.edit();
     }
@@ -73,12 +71,12 @@ public class LoginViewModel extends AndroidViewModel implements Observable {
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
 }

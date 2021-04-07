@@ -8,7 +8,6 @@ import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 
 
@@ -44,11 +43,11 @@ public class PayPalViewModel extends AndroidViewModel implements Observable {
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 }

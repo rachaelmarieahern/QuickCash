@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.Bindable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -31,17 +30,10 @@ import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.Util.TaskAdapter;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HelperDashboardFragment extends Fragment {
 
@@ -53,8 +45,6 @@ public class HelperDashboardFragment extends Fragment {
         SharedPreferences sharedPreferences;
         SharedPreferences.Editor editor;
         Query baseQuery;
-        FirebaseRecyclerOptions<Task> newOptions;
-        String taskID;
         FirebaseAuth DBAuth;
 
         public HelperDashboardFragment() {
@@ -125,20 +115,6 @@ public class HelperDashboardFragment extends Fragment {
 
             });
 
-
-//            Navigation to My Profile Page
-//            NavDirections actionDashboardToMyProfile = HelperDashboardFragmentDirections.helperDashboardToMyProfile();
-//            Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
-//
-//            toMyProfileButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToMyProfile));
-//
-//
-//            //Navigation to Notifications Page
-//            NavDirections actionDashboardToNotifications = HelperDashboardFragmentDirections.helperDashboardToNotifications();
-//            Button toNotificationsButton = getView().findViewById(R.id.helperNotificationsButton);
-//
-//            toNotificationsButton.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionDashboardToNotifications));
-//
             //Navigation to My Profile Page
             NavDirections actionDashboardToMyProfile = HelperDashboardFragmentDirections.helperDashboardToMyProfile();
             Button toMyProfileButton = getView().findViewById(R.id.helperMyProfileButton);
@@ -167,30 +143,22 @@ public class HelperDashboardFragment extends Fragment {
             Button goToMaps =  getView().findViewById(R.id.helperMapButton);
             NavDirections actionGoToMaps = HelperDashboardFragmentDirections.helperDashboardToMaps();
 
-            goToMaps.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(view).navigate(actionGoToMaps);
-                }
-            });
+            goToMaps.setOnClickListener(v -> Navigation.findNavController(view).navigate(actionGoToMaps));
 
         }
 
     public void getUserInfoFromDB(String userID) {
 
-        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    User user;
-                    user = task.getResult().getValue(User.class);
-                    editor.putString("USER_EMAIL_KEY", user.getEmail());
-                    editor.putString("USER_NAME_KEY", user.getUsername());
-                    editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
-                    editor.apply();
-                }
+        db.getReference("HELPERS").child(userID).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                User user;
+                user = task.getResult().getValue(User.class);
+                editor.putString("USER_EMAIL_KEY", user.getEmail());
+                editor.putString("USER_NAME_KEY", user.getUsername());
+                editor.putFloat("AVERAGE_RATING_KEY", user.getAvgRating());
+                editor.apply();
             }
         });
     }

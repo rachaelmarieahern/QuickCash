@@ -15,17 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.RatingBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.example.quickcash.AddTaskViewModel;
 import com.example.quickcash.Model.Task;
 import com.example.quickcash.MyProfileViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.Util.TaskAdapter;
-import com.example.quickcash.databinding.FragmentClientMyProfileBinding;
 import com.example.quickcash.databinding.FragmentHelperDashboardBinding;
 import com.example.quickcash.databinding.FragmentHelperMyProfileBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

@@ -63,10 +63,14 @@ public class AddTaskViewModel extends ViewModel implements Observable {
     }
 
     @Override
-    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        //method is used for navigation
+    }
 
     @Override
-    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {}
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        //method is used for navigation
+    }
 
 
 
@@ -156,7 +160,6 @@ public class AddTaskViewModel extends ViewModel implements Observable {
 
     public void addTaskToDB(){
         FirebaseAuth DBAuth = FirebaseAuth.getInstance();
-        //DBAuth.signInWithEmailAndPassword("helloman@live.com", "sdf234");
         if (DBAuth.getCurrentUser() != null) {
             FirebaseDatabase DB = FirebaseDatabase.getInstance();
             DatabaseReference tasks = DB.getReference();

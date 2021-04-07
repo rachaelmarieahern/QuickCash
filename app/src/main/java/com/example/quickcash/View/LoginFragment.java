@@ -2,7 +2,6 @@ package com.example.quickcash.View;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,13 +17,8 @@ import com.example.quickcash.LoginViewModel;
 import com.example.quickcash.R;
 import com.example.quickcash.Util.SessionManagement;
 import com.example.quickcash.databinding.FragmentLoginBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -74,12 +68,7 @@ public class LoginFragment extends Fragment {
 
         NavDirections actionLoginToHelperClientInfo= LoginFragmentDirections.loginToHelperClientInfo();
 
-        final Observer<Boolean> registrationObserver = new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable final Boolean register) {
-                Navigation.findNavController(view).navigate(actionLoginToHelperClientInfo);
-            }
-        };
+        final Observer<Boolean> registrationObserver = register -> Navigation.findNavController(view).navigate(actionLoginToHelperClientInfo);
 
         viewModel.navToInfo.observe(getViewLifecycleOwner(), registrationObserver);
 

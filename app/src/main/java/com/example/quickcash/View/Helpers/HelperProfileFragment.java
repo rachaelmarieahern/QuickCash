@@ -22,7 +22,6 @@ import android.widget.RatingBar;
 import android.widget.Button;
 
 import com.example.quickcash.Model.Task;
-import com.example.quickcash.MyProfileViewModel;
 import com.example.quickcash.OtherProfileViewModel;
 import com.example.quickcash.R;
 
@@ -74,12 +73,9 @@ public class HelperProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RatingBar ratingBar = getView().findViewById(R.id.helperRatingBar);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingBar.setIsIndicator(true);
-                viewModel.ratingSubmitted(rating);
-            }
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
+            ratingBar1.setIsIndicator(true);
+            viewModel.ratingSubmitted(rating);
         });
         baseQuery = FirebaseDatabase.getInstance().getReference().child("TASKS").orderByChild("applicant").equalTo(sharedPreferences.getString("APPLICANT_KEY", ""));
 
@@ -95,12 +91,7 @@ public class HelperProfileFragment extends Fragment {
         Button payPal = getView().findViewById(R.id.helperPayPalButton);
         NavDirections goToPaypal = HelperProfileFragmentDirections.clientPayPalHelper();
 
-        payPal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(goToPaypal);
-            }
-        });
+        payPal.setOnClickListener(v -> Navigation.findNavController(view).navigate(goToPaypal));
 
         //Setting the layout of the recyclerview to Linear
         helperRecyclerView.setLayoutManager(linearLayoutManager);

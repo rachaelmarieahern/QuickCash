@@ -4,16 +4,12 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.quickcash.Model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,20 +28,24 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
 
 
     @Bindable
-    public String username = "", email = "", password= "";
+    public String username = "";
+    @Bindable
+    public String email = "";
+    @Bindable
+    public String password= "";
     @Bindable
     public MutableLiveData<String> toastMessage = new MutableLiveData<>();
     @Bindable
     public MutableLiveData<Boolean> validLogin = new MutableLiveData<>();
 
     @Bindable
-    public MutableLiveData<String> userTypeMessage = new MutableLiveData<String>();
+    public MutableLiveData<String> userTypeMessage = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToRegistration = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToRegistration = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToClient = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToClient = new MutableLiveData<>();
     @Bindable
-    public MutableLiveData<Boolean> navToHelper = new MutableLiveData<Boolean>();
+    public MutableLiveData<Boolean> navToHelper = new MutableLiveData<>();
 
     public RegistrationViewModel(Application application) {
         super(application);
@@ -56,7 +56,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
     }
 
     List<ErrorTypes> errors = new ArrayList<>();
-    private String userType = "";
 
     /**
      * When the user clicks the sign up button on the register page
@@ -83,8 +82,6 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
                 errorMessage = errorMessage.concat("\tInvalid Password");
                 password = ""; //reset password
             }
-
-            //toastMessage.setValue(errorMessage);
         }
 
     }
@@ -93,6 +90,7 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      * Defines the type of user to create: Client or Helper
      */
     public void typeSelected(boolean helper){
+        String userType;
         if (helper) {
             userType = "HELPER";
         }
@@ -135,46 +133,43 @@ public class RegistrationViewModel extends AndroidViewModel implements Observabl
      */
     public void registerWithDB() {
         DBAuth = FirebaseAuth.getInstance();
-        DBAuth.createUserWithEmailAndPassword(email.trim(), password.trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> createUNPass) {
-                if (createUNPass.isSuccessful()) { //if adding user to DB was successful
-                    String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User newUser = new User(username.trim(), sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND"), email.trim(), 0, 0, 0, "token");
-                    DatabaseReference newRef;
-                    if (sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND").equals("CLIENT"))
-                        newRef = FirebaseDatabase.getInstance().getReference("CLIENTS");
-                    else  //if the user is a helper
-                        newRef = FirebaseDatabase.getInstance().getReference("HELPERS");
-                    //create user in FB auth
-                    newRef.child(uID).setValue(newUser).addOnCompleteListener(setUNType -> {
-                        if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
-                            FirebaseInstallations.getInstance().getToken(true).addOnCompleteListener(task -> {
-                                String token = task.getResult().getToken();
-                                newRef.child(uID).child("token").setValue(token);
-                            });//if the user is successfully added to FB RT DB
-                            editor.putBoolean("LOGGED_IN", true);
-                            editor.apply();
-                            validLogin.setValue(true);
-                        } else {
-                            toastMessage.setValue( "Error! " + Objects.requireNonNull(setUNType.getException()).getMessage());
-                        }
-                    });
-                } else {
-                    toastMessage.setValue( "Error! " + Objects.requireNonNull(createUNPass.getException()).getMessage());
-                }
+        DBAuth.createUserWithEmailAndPassword(email.trim(), password.trim()).addOnCompleteListener(createUNPass -> {
+            if (createUNPass.isSuccessful()) { //if adding user to DB was successful
+                String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                User newUser = new User(username.trim(), sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND"), email.trim(), 0, 0, 0, "token");
+                DatabaseReference newRef;
+                if (sharedPreferences.getString("USERACTUALTYPE", "NO TYPE FOUND").equals("CLIENT"))
+                    newRef = FirebaseDatabase.getInstance().getReference("CLIENTS");
+                else  //if the user is a helper
+                    newRef = FirebaseDatabase.getInstance().getReference("HELPERS");
+                //create user in FB auth
+                newRef.child(uID).setValue(newUser).addOnCompleteListener(setUNType -> {
+                    if (setUNType.isSuccessful()) { //if the user is successfully added to FB RT DB
+                        FirebaseInstallations.getInstance().getToken(true).addOnCompleteListener(task -> {
+                            String token = task.getResult().getToken();
+                            newRef.child(uID).child("token").setValue(token);
+                        });//if the user is successfully added to FB RT DB
+                        editor.putBoolean("LOGGED_IN", true);
+                        editor.apply();
+                        validLogin.setValue(true);
+                    } else {
+                        toastMessage.setValue( "Error! " + Objects.requireNonNull(setUNType.getException()).getMessage());
+                    }
+                });
+            } else {
+                toastMessage.setValue( "Error! " + Objects.requireNonNull(createUNPass.getException()).getMessage());
             }
         });
     }
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
     @Override
     public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-
+        //method is used for navigation
     }
 
 }

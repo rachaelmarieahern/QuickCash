@@ -1,11 +1,11 @@
 
-Y
-java:S1874("CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(ð’›†
-O
-java:S1874("9Remove this use of "PreferenceManager"; it is deprecated.(ð’›†
 F
 java:S1481'")Remove this unused "user" local variable.(ñåÄí8Í‚åÊˆ/
+O
+java:S1874("9Remove this use of "PreferenceManager"; it is deprecated.(ð’›†
 œ
 java:S1186P"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(þ„ê³üÿÿÿÿ
 œ
 java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ó¢ª…üÿÿÿÿ
+Y
+java:S1874("CRemove this use of "getDefaultSharedPreferences"; it is deprecated.(ð’›†

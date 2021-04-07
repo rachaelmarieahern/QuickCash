@@ -1,26 +1,17 @@
 package com.example.quickcash.View;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.example.paypalandroid.Config.Config;
 import com.example.quickcash.Config;
-import com.example.quickcash.PayPalViewModel;
 import com.example.quickcash.PaymentDetails;
 import com.example.quickcash.R;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -75,12 +66,7 @@ public class PayPalActivity extends AppCompatActivity {
 
 
 
-        payNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processPayment();
-            }
-        });
+        payNow.setOnClickListener(v -> processPayment());
     }
 
 

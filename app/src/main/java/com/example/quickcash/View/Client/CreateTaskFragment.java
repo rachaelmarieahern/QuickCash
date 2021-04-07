@@ -61,7 +61,7 @@ public class CreateTaskFragment extends Fragment{
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //method is used for navigation when nothing is selected
             }
         });
 
