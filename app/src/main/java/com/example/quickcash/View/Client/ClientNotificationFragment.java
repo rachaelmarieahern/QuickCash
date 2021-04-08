@@ -70,8 +70,11 @@ public class ClientNotificationFragment extends Fragment {
                 user = task.getResult().getValue(User.class);
                 editor.putFloat("SUM_OF_RATINGS", user.getSumOfRatings());
                 editor.putInt("NUM_OF_RATINGS", user.getNumOfRatings());
-                editor.apply();
-            }
+
+                    editor.putString("USER_NAME_KEY", user.getUsername());
+                    editor.putString("USER_EMAIL_KEY", user.getEmail());
+                    editor.apply();
+                }
         });
     }
 
